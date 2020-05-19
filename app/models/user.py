@@ -1,6 +1,7 @@
 from app.db.db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128))
@@ -20,7 +21,6 @@ class User(db.Model):
         return self.id
 
     def __repr__(self):
-        return '<User {}>'.format(self.username) 
+        return '<User {}>'.format(self.username)
 
     characters = db.relationship('Character', backref='user', lazy='dynamic')
-    

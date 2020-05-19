@@ -9,6 +9,12 @@ from app.db.db import db
 
 from app.models.user import User
 from app.models.character import Character
+from app.models.spell import Spell
+from app.models.spellbook import Spellbook
+from app.models._class import _Class
+from app.models.subclass import Subclass
+from app.models.slots import Slots
+
 
 app = create_app(DevelopmentConfig)
 register_extensions(app)
@@ -26,7 +32,18 @@ def make_shell_context():
 	def flush():
 		db.session.rollback()
 
-	return dict(app=app, db=db, db_add=db_add, flush=flush, clear=clear, User=User, Character=Character)
+	return dict(app=app,
+                db=db, 
+                db_add=db_add, 
+                flush=flush, 
+                clear=clear, 
+                User=User, 
+                Character=Character, 
+                _Class =_Class,
+                Subclass=Subclass, 
+                Slots=Slots, 
+                # Spellbook=Spellbook
+            )
 
 
 manager.add_command('shell', Shell(make_context=make_shell_context))
