@@ -16,7 +16,7 @@ def signup():
         db.session.commit()
         return redirect(url_for('login'))
 
-    return render_template('signup.html', form=form)
+    return render_template('form.html', form=form, title="Sign Up")
 
 def login():
     if current_user.is_authenticated:
@@ -30,7 +30,7 @@ def login():
         
         login_user(user, remember=form.remember_me.data)
         return redirect("/")
-    return render_template('login.html', form=form)
+    return render_template('form.html', form=form, title="Login")
 
 def logout():
     logout_user()

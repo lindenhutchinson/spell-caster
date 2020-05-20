@@ -21,7 +21,6 @@ class DevelopmentConfig(Config):
     DEBUG = True
     FLASK_APP = 'APP-DEV'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # SQLALCHEMY_DATABASE_URI = "mysql://spell_user:new_password@localhost:6900/spell-caster"
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI_DEV')
     SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -34,7 +33,6 @@ class TestingConfig(Config):
        """
     TESTING = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # SQLALCHEMY_DATABASE_URI = "mysql://spell_user:new_password@localhost:6900/spell-caster"
 
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI_TESTING')
 

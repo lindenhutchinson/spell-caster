@@ -1,4 +1,4 @@
-from .controllers import home, contact, user
+from .controllers import home, user
 
 def routes(app):
     '''All Routes / Url
@@ -17,7 +17,6 @@ def routes(app):
 
     # Add your Url rules here
     app.add_url_rule('/', view_func=home.index)
-    app.add_url_rule('/contact', view_func=contact.contact, methods=['GET','POST'])
     app.add_url_rule('/signup', view_func=user.signup, methods=['GET','POST'])
     app.add_url_rule('/login', view_func=user.login, methods=['GET','POST'])
     app.add_url_rule('/logout', view_func=user.logout)
