@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextField, SubmitField, PasswordField, BooleanField
+from wtforms import SelectField, StringField, TextField, SubmitField, PasswordField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, Length
-
 
 class ContactForm(FlaskForm):
     """Contact form."""
@@ -29,3 +28,21 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
 
     submit = SubmitField('Submit')
+
+class CharacterForm(FlaskForm):
+    """Create character form."""
+   
+    name = StringField('Name', [DataRequired()])
+    race = StringField('Race', [DataRequired()])
+    level = IntegerField('Level', [DataRequired()])
+    saving_throw = StringField('Saving Throw', [DataRequired()])
+    ability_score = IntegerField('Ability Score', [DataRequired()])
+
+    class_id = SelectField(u'Class')
+    submit = SubmitField('Submit')
+
+class PickCharacterForm(FlaskForm):
+    """Select your character."""
+
+    character = SelectField(u'Character')
+    submit = SubmitField('Select')

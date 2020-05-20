@@ -1,4 +1,4 @@
-from .controllers import home, user
+from .controllers import home, user, character
 
 def routes(app):
     '''All Routes / Url
@@ -20,4 +20,6 @@ def routes(app):
     app.add_url_rule('/register', view_func=user.register, methods=['GET','POST'])
     app.add_url_rule('/login', view_func=user.login, methods=['GET','POST'])
     app.add_url_rule('/logout', view_func=user.logout)
+    app.add_url_rule('/char/create', view_func=character.create, methods=['GET','POST'])
+    app.add_url_rule('/char', view_func=character.show, methods=['GET','POST'])
 

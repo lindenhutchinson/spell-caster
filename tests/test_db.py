@@ -35,8 +35,8 @@ class TestFunction(unittest.TestCase):
         self.db_add(user)
         return user
 
-    def add_character(self, name, race, level, saving_throw, ability_score,user, subclass, _class):
-        char = Character(name, level, race, saving_throw, ability_score, user, subclass, _class)
+    def add_character(self, name, race, level, saving_throw, ability_score,user, class_id):
+        char = Character(name, level, race, saving_throw, ability_score, user, class_id)
         self.db_add(char)
         return char
 
@@ -44,11 +44,6 @@ class TestFunction(unittest.TestCase):
         spell = Spell(name)
         self.db_add(spell)
         return spell
-
-    def add_subclass(self, name, desc, _class):
-        subclass = Subclass(name, desc, _class)
-        self.db_add(subclass)
-        return subclass
 
 
     def add_class(self, name, desc):
@@ -75,9 +70,8 @@ class TestFunction(unittest.TestCase):
         with self.app.app_context():
             user = self.add_user("user name", "password")
             _class = self.add_class("Druid", "This is the description for a druid")
-            subclass = self.add_subclass("Circle of spores", "subclass description!", _class)
 
-            char = self.add_character("Tez", 7, "Tortle", "wisdom", 4, user, subclass, _class)
+            char = self.add_character("Tez", 7, "Tortle", "wisdom", 4, user, _class.id)
 
             spell = self.add_spell("this is a real spell")
             spellbook = self.add_spellbook(char, spell)
@@ -88,7 +82,6 @@ class TestFunction(unittest.TestCase):
             self.assertEqual(char._class, _class)
             self.assertEqual(char.slots, slot)
             self.assertEqual(char.notes, notes)
-            self.assertEqual(subclass._class, _class)
             self.assertEqual(spellbook.spell, spell)
             self.assertEqual(spellbook.character, char)
 

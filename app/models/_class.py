@@ -5,8 +5,8 @@ class _Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
     desc = db.Column(db.String(5000))
-    subclasses = db.relationship("Subclass", backref="_class")
-    db.relationship("Character", backref="_class")
+
+    # db.relationship("Character", backref="_class")
 
     def __init__(self, name, desc):
         self.name = name

@@ -13,18 +13,15 @@ class Character(db.Model):
     spell_attack = db.Column(db.Integer)
     prof_bonus = db.Column(db.Integer)
 
-    subclass_id = db.Column(db.Integer, db.ForeignKey('subclass.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     class_id = db.Column(db.Integer, db.ForeignKey('class.id'))
 
-    
-    subclass = db.relationship("Subclass")
     slots = db.relationship("Slots", backref='character', uselist=False)
     notes = db.relationship("Notes", backref='character', uselist=False)
     spellbook = db.relationship('Spellbook', backref='character')
+    _class = db.relationship('_Class', backref='character')
 
-
-    def __init__(self, name, race, level, saving_throw, ability_score,user, subclass, _class):
+    def __init__(self, name, race, level, saving_throw, ability_score, user, class_id):
         self.name = name
         self.race = race
         self.level = level
@@ -35,8 +32,7 @@ class Character(db.Model):
         self.spell_save = 8 + self.ability_score + self.prof_bonus
         self.spell_attack = self.ability_score + self.prof_bonus
         self.user = user
-        self.subclass = subclass
-        self._class = _class
+        self.class_id = class_id
 
     def get_prof_bonus(self):
         x = self.level/4
