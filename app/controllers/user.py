@@ -4,19 +4,20 @@ from flask_login import current_user, login_user, logout_user
 from app.models.user import User
 from app.db.db import db
 
-from app.forms import SignupForm
+from app.forms import RegisterForm
 from app.forms import LoginForm
 
 
-def signup():
-    form = SignupForm()
+def register():
+    form = RegisterForm()
     if form.is_submitted():
         user = User(form.username.data, form.password.data)
         db.session.add(user)
         db.session.commit()
+        flash("Created user!")
         return redirect(url_for('login'))
 
-    return render_template('form.html', form=form, title="Sign Up")
+    return render_template('form.html', form=form, title="Register")
 
 def login():
     if current_user.is_authenticated:

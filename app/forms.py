@@ -15,8 +15,8 @@ class ContactForm(FlaskForm):
 
     submit = SubmitField('Submit')
 
-class SignupForm(FlaskForm):
-    """Signup user form."""
+class RegisterForm(FlaskForm):
+    """Register user form."""
     username = StringField('Name', [DataRequired()])
     password = PasswordField('Password', [DataRequired()])
 
