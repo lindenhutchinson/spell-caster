@@ -1,6 +1,7 @@
 from flask import Flask
-
+from flask_login import LoginManager
 from app.db.db import db
+from app.models.user import User
 from .router import routes
 
 
@@ -19,6 +20,7 @@ def create_app(config):
     app = Flask(__name__)
     app.url_map.strict_slashes = False
     app.config.from_object(config)
+
     return app
 
 
@@ -35,3 +37,8 @@ def register_extensions(app):
 
     db.init_app(app)
     routes(app)
+    login = LoginManager(app)
+
+    @login.user_loader
+    def load_user(id):
+        return User.query.get(int(id))

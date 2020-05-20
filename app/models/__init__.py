@@ -1,1 +1,3 @@
-from . import user, character, spell, spellbook, _class, subclass, notes
+from . import user, character, spell, spellbook, _class, subclass, notes, slots
+
+

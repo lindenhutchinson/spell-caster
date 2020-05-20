@@ -14,6 +14,7 @@ from app.models.spellbook import Spellbook
 from app.models._class import _Class
 from app.models.subclass import Subclass
 from app.models.slots import Slots
+from app.models.notes import Notes
 
 
 app = create_app(DevelopmentConfig)
@@ -42,7 +43,8 @@ def make_shell_context():
                 _Class =_Class,
                 Subclass=Subclass, 
                 Slots=Slots, 
-                # Spellbook=Spellbook
+                Spellbook=Spellbook,
+                Notes=Notes
             )
 
 
