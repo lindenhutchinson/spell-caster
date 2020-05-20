@@ -35,8 +35,8 @@ class TestFunction(unittest.TestCase):
         self.db_add(user)
         return user
 
-    def add_character(self, name, race, user):
-        char = Character(name, race, user)
+    def add_character(self, name, race, level, saving_throw, ability_score,user, subclass, _class):
+        char = Character(name, level, race, saving_throw, ability_score, user, subclass, _class)
         self.db_add(char)
         return char
 
@@ -45,14 +45,14 @@ class TestFunction(unittest.TestCase):
         self.db_add(spell)
         return spell
 
-    def add_subclass(self, name, desc, resource_name):
-        subclass = Subclass(name, desc, resource_name)
+    def add_subclass(self, name, desc, _class):
+        subclass = Subclass(name, desc, _class)
         self.db_add(subclass)
         return subclass
 
 
-    def add_class(self, name, level, desc, saving_throw, ability_score, character, subclass):
-        _class = _Class(name, level, desc, saving_throw, ability_score, character, subclass)
+    def add_class(self, name, desc):
+        _class = _Class(name, desc)
         self.db_add(_class)
         return _class
 
@@ -74,9 +74,11 @@ class TestFunction(unittest.TestCase):
     def test_db(self):
         with self.app.app_context():
             user = self.add_user("user name", "password")
-            char = self.add_character("testname", "test race", user)
-            subclass = self.add_subclass("subclass name", "subclass description!", "class resource name")
-            _class = self.add_class("test class name", 5, "test class description", "wisdom", 8, char, subclass)
+            _class = self.add_class("Druid", "This is the description for a druid")
+            subclass = self.add_subclass("Circle of spores", "subclass description!", _class)
+
+            char = self.add_character("Tez", 7, "Tortle", "wisdom", 4, user, subclass, _class)
+
             spell = self.add_spell("this is a real spell")
             spellbook = self.add_spellbook(char, spell)
             slot = self.add_slots(char, 1, 4)

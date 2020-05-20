@@ -5,15 +5,14 @@ class Subclass(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
     desc = db.Column(db.String(5000))
-    resource_name = db.Column(db.String(128))
-
-    _class = db.relationship("_Class", backref="subclass", uselist=False)
+    class_id = db.Column(db.Integer, db.ForeignKey("class.id"))
 
 
-    def __init__(self, name, desc, resource_name):
+
+    def __init__(self, name, desc, _class):
         self.name = name
         self.desc = desc
-        self.resource_name = resource_name
+        self._class = _class
 
     def __repr__(self):
         return '<Subclass {}>'.format(self.name) 

@@ -21,7 +21,7 @@ def register():
 
 def login():
     if current_user.is_authenticated:
-        return redirect("/")
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.is_submitted():
         user = User.query.filter_by(username=form.username.data).first()
@@ -30,9 +30,10 @@ def login():
             return redirect(url_for('login'))
         
         login_user(user, remember=form.remember_me.data)
-        return redirect("/")
+        return redirect(url_for('index'))
+
     return render_template('form.html', form=form, title="Login")
 
 def logout():
     logout_user()
-    return redirect("/")
+    return redirect(url_for('index'))
