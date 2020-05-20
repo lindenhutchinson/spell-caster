@@ -3,6 +3,9 @@ from app.db.db import db
 class Spell(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
+
+    spellbook = db.relationship("Spellbook", backref='spell')
+
     # level = db.Column(db.Integer)
     # cast_time = db.Column(db.String(128))
     # spell_range = db.Column(db.String(128))

@@ -14,10 +14,8 @@ class _Class(db.Model):
     prof_bonus = db.Column(db.Integer)
 
     subclass_id = db.Column(db.Integer, db.ForeignKey('subclass.id'))
-    subclass = db.relationship("Subclass")
 
-    def __init__(self, char_id, name, level, desc, saving_throw, ability_score, subclass_id):
-        self.char_id = char_id
+    def __init__(self, name, level, desc, saving_throw, ability_score, character, subclass):
         self.name = name
         self.level = level
         self.desc = desc
@@ -27,7 +25,10 @@ class _Class(db.Model):
         self.prof_bonus = self.get_prof_bonus()
         self.spell_save = 8 + self.ability_score + self.prof_bonus
         self.spell_attack = self.ability_score + self.prof_bonus
-        self.subclass_id = subclass_id
+        
+        self.subclass = subclass
+        self.character = character
+
 
 
     def set_resource(self, num):
@@ -50,9 +51,6 @@ class _Class(db.Model):
             return 6
         elif x>=6:
             return 6
-
-    
-
 
 
 

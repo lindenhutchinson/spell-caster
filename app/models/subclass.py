@@ -7,6 +7,7 @@ class Subclass(db.Model):
     desc = db.Column(db.String(5000))
     resource_name = db.Column(db.String(128))
 
+    _class = db.relationship("_Class", backref="subclass", uselist=False)
 
 
     def __init__(self, name, desc, resource_name):

@@ -5,6 +5,7 @@ from app.models.spellbook import Spellbook
 from app.models._class import _Class
 from app.models.subclass import Subclass
 from app.models.slots import Slots
+from app.models.notes import Notes
 
 import unittest
 
@@ -13,6 +14,7 @@ from app.db import db
 from app.config.config import TestingConfig
 
 
+# Create an instance of each DB model
 
 class TestFunction(unittest.TestCase):
     def setUp(self):
@@ -33,8 +35,8 @@ class TestFunction(unittest.TestCase):
         self.db_add(user)
         return user
 
-    def add_character(self, name, race, user_id):
-        char = Character(name, race, user_id)
+    def add_character(self, name, race, user):
+        char = Character(name, race, user)
         self.db_add(char)
         return char
 
@@ -49,29 +51,54 @@ class TestFunction(unittest.TestCase):
         return subclass
 
 
-    def add_class(self, char_id, name, level, desc, saving_throw, ability_score,subclass_id):
-        _class = _Class(char_id, name, level, desc, saving_throw, ability_score, subclass_id)
+    def add_class(self, name, level, desc, saving_throw, ability_score, character, subclass):
+        _class = _Class(name, level, desc, saving_throw, ability_score, character, subclass)
         self.db_add(_class)
         return _class
 
-    def add_spellbook(self, char_id, spell_id):
-        spellbook = Spellbook(char_id, spell_id)
+    def add_spellbook(self, character, spell):
+        spellbook = Spellbook(character, spell)
         self.db_add(spellbook)
         return spellbook
 
-    def add_slots(self, char_id):
-        slots = Slots(char_id)
+    def add_slots(self, character, lvl, max_val):
+        slots = Slots(lvl, max_val, character)
         self.db_add(slots)
         return slots
+
+    def add_notes(self, title, body, character):
+        notes = Notes(title, body, character)
+        self.db_add(notes)
+        return notes
 
     def test_db(self):
         with self.app.app_context():
             user = self.add_user("user name", "password")
-            char = self.add_character("testname", "test race", user.get_id())
+            char = self.add_character("testname", "test race", user)
             subclass = self.add_subclass("subclass name", "subclass description!", "class resource name")
-            _class = self.add_class(char.id, "test class name", 5, "test class description", "wisdom", 8, subclass.id)
+            _class = self.add_class("test class name", 5, "test class description", "wisdom", 8, char, subclass)
             spell = self.add_spell("this is a real spell")
-            spellbook = self.add_spellbook(char.id, spell.id)
+            spellbook = self.add_spellbook(char, spell)
+            slot = self.add_slots(char, 1, 4)
+            notes = self.add_notes("this is a title", "this is a body", char)
+
+            print("user has characters")
+            self.assertEqual(user.characters.one(), char)
+            print("character has class")
+            self.assertEqual(char._class, _class)
+            print("character has slots")
+            self.assertEqual(char.slots, slot)
+            print("character has notes")
+            self.assertEqual(char.notes, notes)
+            print("class has subclass")
+            self.assertEqual(subclass._class, _class)
+            print("spellbook has spell")
+            self.assertEqual(spellbook.spell, spell)
+            print("spellbook has character")
+            self.assertEqual(spellbook.character, char)
+
+
+          
 
 
     def tearDown(self):

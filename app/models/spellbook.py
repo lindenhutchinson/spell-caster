@@ -8,9 +8,9 @@ class Spellbook(db.Model):
     prepared = db.Column(db.Boolean)
 
 
-    def __init__(self, char_id, spell_id):
-        self.char_id = char_id
-        self.spell_id = spell_id
+    def __init__(self, character, spell):
+        self.character = character
+        self.spell = spell
         self.prepared = False
 
     def flip_prepare(self):
