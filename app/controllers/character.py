@@ -2,6 +2,8 @@ from flask import render_template, flash, redirect, url_for, request, session
 from flask_wtf import FlaskForm
 from flask_login import current_user, login_user, logout_user
 
+from werkzeug.datastructures import MultiDict
+
 from app.models.user import User
 from app.models.character import Character
 from app.models._class import _Class
@@ -21,13 +23,18 @@ def view():
         flash("Please create a character first!")
         return redirect(url_for('create'))
 
+    if not session['char_id']:
+        session['char_id'] = current_user.characters.first().id
 
     char = current_user.characters.filter_by(id=session['char_id']).first()
 
     if not char:
         char = current_user.characters.first()
 
-    form = PickCharacterForm()
+    if request.method == 'GET':
+        form = PickCharacterForm(formdata=MultiDict({'character': char.id}))
+    else:
+        form = PickCharacterForm()
 
     form.character.choices = [(g.id, g.name) for g in current_user.characters]
 
@@ -68,25 +75,37 @@ def edit():
 
     char = current_user.characters.filter_by(id=session['char_id']).first()
 
-    form = CharacterForm()
+    if request.method == 'GET':
+        form = CharacterForm(formdata=MultiDict({
+            'name': char.name,
+            'race': char.race,
+            'level': char.level,
+            'saving_throw': char.saving_throw,
+            'ability_score': char.ability_score,
+            'class_id': char.class_id
+        }))
+    else:
+        form = CharacterForm()
 
     form.class_id.choices = [(g.id, g.name) for g in _Class.query.order_by('name')]
- 
-    form.name.data = char.name
-    form.race.data = char.race
-    form.level.data = char.level
-    form.saving_throw.data = char.saving_throw
-    form.ability_score.data = char.ability_score
-    form.class_id.data = char.class_id
 
-    if form.validate_on_submit():
-        char.name = form.name.data
-        char.race = form.race.data
-        char.level = form.level.data
-        char.saving_throw = form.saving_throw.data
-        char.ability_score = form.ability_score.data
-        char.class_id = form.class_id.data
-        db.session.add(char)
+    if form.is_submitted():
+        Character.query.filter_by(id=session['char_id']).update({
+            Character.name:form.name.data,
+            Character.race:form.race.data,
+            Character.level:form.level.data,
+            Character.saving_throw:form.saving_throw.data,
+            Character.ability_score:form.ability_score.data,
+            Character.class_id: form.class_id.data
+        })
+
+        # char.name = form.name.data
+        # char.race = form.race.data
+        # char.level = form.level.data
+        # char.saving_throw = form.saving_throw.data
+        # char.ability_score = form.ability_score.data
+        # char.class_id = form.class_id.data
+        # db.session.add(char)
         db.session.commit()
         flash("Updated character!")
         return redirect(url_for('view'))
@@ -105,5 +124,6 @@ def delete():
     current_user.characters.filter_by(id=session['char_id']).delete()
     db.session.commit()
     flash("Character deleted!")
+    session['char_id'] = current_user.characters.first().id
     return redirect(url_for('view'))
     
