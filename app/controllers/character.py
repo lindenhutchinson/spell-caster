@@ -14,14 +14,14 @@ from app.forms import CharacterForm
 from app.forms import PickCharacterForm
 
 
-def view():
+def view_char():
     if not current_user.is_authenticated:
         flash("Please login first!")
         return redirect(url_for('login'))
 
     if current_user.characters.count() == 0:
         flash("Please create a character first!")
-        return redirect(url_for('create'))
+        return redirect(url_for('create_char'))
 
     if not session['char_id']:
         session['char_id'] = current_user.characters.first().id
@@ -40,13 +40,13 @@ def view():
 
     if form.is_submitted():
         session['char_id'] = form.character.data
-        return redirect(url_for('view'))
+        return redirect(url_for('view_char'))
 
     return render_template('char.html', char=char, form=form, title=char.name)
 
 
 
-def create():
+def create_char():
     if not current_user.is_authenticated:
         flash("Please login first!")
         return redirect(url_for('login'))
@@ -60,18 +60,18 @@ def create():
         db.session.commit()
         session['char_id'] = char.id
         flash("Created character!")
-        return redirect(url_for('view'))
+        return redirect(url_for('view_char'))
 
     return render_template('form.html', form=form, title="Create Character")
 
-def edit():
+def edit_char():
     if not current_user.is_authenticated:
         flash("Please login first!")
         return redirect(url_for('login'))
 
     if not int(session['char_id']) in [c.id for c in current_user.characters]:
         flash("Please select a character first!")
-        return redirect(url_for('view'))
+        return redirect(url_for('view_char'))
 
     char = current_user.characters.filter_by(id=session['char_id']).first()
 
@@ -108,22 +108,22 @@ def edit():
         # db.session.add(char)
         db.session.commit()
         flash("Updated character!")
-        return redirect(url_for('view'))
+        return redirect(url_for('view_char'))
 
     return render_template('form.html', form=form, title="Edit Character")
 
-def delete():
+def delete_char():
     if not current_user.is_authenticated:
         flash("Please login first!")
         return redirect(url_for('login'))
 
     if not session['char_id']:
         flash("Please select a character first!")
-        return redirect(url_for('view'))
+        return redirect(url_for('view_char'))
 
     current_user.characters.filter_by(id=session['char_id']).delete()
     db.session.commit()
     flash("Character deleted!")
     session['char_id'] = current_user.characters.first().id
-    return redirect(url_for('view'))
+    return redirect(url_for('view_char'))
     

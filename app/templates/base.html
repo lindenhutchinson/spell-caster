@@ -1,5 +1,6 @@
 {% extends 'bootstrap/base.html' %}
 
+
 {% block title %}
 {% if title %}{{ title }} - SpellCaster{% else %}Welcome to SpellCaster{% endif %}
 {% endblock %}
@@ -16,7 +17,8 @@
       <li><a href="{{ url_for('register') }}">Register</a></li>
       <li><a href="{{ url_for('login') }}">Login</a></li>
       {% else %}
-      <li><a href="{{ url_for('view') }}">Characters</a></li>
+      <li><a href="{{ url_for('view_char') }}">Characters</a></li>
+      <li><a href="{{ url_for('view_class') }}">Classes</a></li>
       <li><a href="{{ url_for('logout') }}">Logout</a></li>
       {% endif %}
     </ul>

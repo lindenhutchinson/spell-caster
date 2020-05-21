@@ -78,10 +78,11 @@ class TestFunction(unittest.TestCase):
             slot = self.add_slots(char, 1, 4)
             notes = self.add_notes("this is a title", "this is a body", char)
 
-            self.assertEqual(user.characters.one(), char)
+            self.assertEqual(user.characters[0], char)
+            self.assertEqual(_class.characters[0], char)
             self.assertEqual(char._class, _class)
-            self.assertEqual(char.slots, slot)
-            self.assertEqual(char.notes, notes)
+            self.assertEqual(char.slots[0], slot)
+            self.assertEqual(char.notes[0], notes)
             self.assertEqual(spellbook.spell, spell)
             self.assertEqual(spellbook.character, char)
 

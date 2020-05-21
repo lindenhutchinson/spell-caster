@@ -14,12 +14,12 @@ class Character(db.Model):
     prof_bonus = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    class_id = db.Column(db.Integer, db.ForeignKey('class.id'))
+    class_id = db.Column(db.Integer, db.ForeignKey('class.id', ondelete="CASCADE"))
 
-    slots = db.relationship("Slots", backref='character', uselist=False)
-    notes = db.relationship("Notes", backref='character', uselist=False)
+    slots = db.relationship("Slots", backref='character')
+    notes = db.relationship("Notes", backref='character')
     spellbook = db.relationship('Spellbook', backref='character')
-    _class = db.relationship('_Class', backref='character')
+    
 
     def __init__(self, name, race, level, saving_throw, ability_score, user, class_id):
         self.name = name

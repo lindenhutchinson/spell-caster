@@ -1,18 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField, TextField, SubmitField, PasswordField, BooleanField, IntegerField
+from wtforms import SelectField, StringField, TextField,TextAreaField, SubmitField, PasswordField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, Length
-
-class ContactForm(FlaskForm):
-    """Contact form."""
-    name = StringField('Name', [
-        DataRequired()])
-    email = StringField('Email', [
-        DataRequired()])
-    body = TextField('Message', [
-        DataRequired(),
-        Length(min=4, message=('Your message is too short.'))])
-
-    submit = SubmitField('Submit')
 
 class RegisterForm(FlaskForm):
     """Register user form."""
@@ -42,7 +30,20 @@ class CharacterForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class PickCharacterForm(FlaskForm):
-    """Select your character."""
+    """Select a character form."""
 
     character = SelectField(u'Characters')
     submit = SubmitField('Select')
+
+class PickClassForm(FlaskForm):
+    """Select a class form."""
+
+    class_id = SelectField(u'Classes')
+    submit = SubmitField('Select')
+
+class ClassForm(FlaskForm):
+    """Create class form."""
+    name = StringField('Name', [DataRequired()])
+    desc = TextAreaField('Description', [DataRequired()])
+    submit = SubmitField('Submit')
+

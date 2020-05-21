@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 569be3bd9c4c
+Revision ID: 60a416d26b35
 Revises: 
-Create Date: 2020-05-20 19:55:57.984181
+Create Date: 2020-05-21 19:03:09.058623
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '569be3bd9c4c'
+revision = '60a416d26b35'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,14 +35,6 @@ def upgrade():
     sa.Column('password', sa.String(length=128), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('subclass',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=128), nullable=True),
-    sa.Column('desc', sa.String(length=5000), nullable=True),
-    sa.Column('class_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['class_id'], ['class.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
     op.create_table('character',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=128), nullable=True),
@@ -54,12 +46,18 @@ def upgrade():
     sa.Column('spell_save', sa.Integer(), nullable=True),
     sa.Column('spell_attack', sa.Integer(), nullable=True),
     sa.Column('prof_bonus', sa.Integer(), nullable=True),
-    sa.Column('subclass_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('class_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['class_id'], ['class.id'], ),
-    sa.ForeignKeyConstraint(['subclass_id'], ['subclass.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('subclass',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=128), nullable=True),
+    sa.Column('desc', sa.String(length=5000), nullable=True),
+    sa.Column('class_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['class_id'], ['class.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('notes',
@@ -97,8 +95,8 @@ def downgrade():
     op.drop_table('spellbook')
     op.drop_table('slots')
     op.drop_table('notes')
-    op.drop_table('character')
     op.drop_table('subclass')
+    op.drop_table('character')
     op.drop_table('user')
     op.drop_table('spell')
     op.drop_table('class')
