@@ -44,5 +44,5 @@ class CharacterForm(FlaskForm):
 class PickCharacterForm(FlaskForm):
     """Select your character."""
 
-    character = SelectField(u'Character')
+    character = SelectField(u'Characters')
     submit = SubmitField('Select')

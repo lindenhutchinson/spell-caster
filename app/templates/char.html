@@ -1,12 +1,20 @@
-{% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
-
-{% block app_content %}
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
+app_content %}
 <div class="row">
-    <div class="col-md-4">
-        {{ wtf.quick_form(form) }}
-    </div>
+  <div class="col-md-4">
+    {{ wtf.quick_form(form) }}
+  </div>
 </div>
-<h1>{{ char.name }}</h1>
-<p>A level {{ char.level }} {{ char.race }} {{ char._class.name }}</p>
+<div class="row">
+  <div class="col-md-6">
+    <h1>{{ char.name }}</h1>
+    <p>A level {{ char.level }} {{ char.race }} {{ char._class.name }}</p>
+  </div>
+  <div class="col-md-6">
+    <a href="{{ url_for('create') }}" class="btn btn-success">New</a>
+    <a href="{{ url_for('edit') }}" class="btn btn-default">Edit</a>
+    <a href="{{ url_for('delete') }}" onclick="return confirm('Are you sure you want to delete this character? You cannot get them back!')" class="btn btn-danger">Delete</a>
+  </div>
+</div>
+
 {% endblock %}
