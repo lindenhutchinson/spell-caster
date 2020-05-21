@@ -1,13 +1,30 @@
 .error-body {
-    padding: 10%;
+  padding: 10%;
 }
 
 .error-body h1 {
-    font-size: 210px;
-    font-weight: 900;
-    line-height: 210px;
+  font-size: 210px;
+  font-weight: 900;
+  line-height: 210px;
 }
 
 .cancel-btn {
-    margin-top:3px;
+  margin-top: 3px;
+}
+
+.spell-table {
+  text-align: center;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.spell-table th,
+td {
+  text-align: left;
+  padding: 16px;
+}
+
+.spell-table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }

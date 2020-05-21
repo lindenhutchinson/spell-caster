@@ -3,25 +3,44 @@ from app.db.db import db
 class Spell(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
-
+    level = db.Column(db.Integer)
+    cast_time = db.Column(db.String(128))
+    concentration = db.Column(db.Boolean)
+    ritual = db.Column(db.Boolean)
+    spell_range = db.Column(db.String(128))
+    components = db.Column(db.String(128))
+    duration = db.Column(db.String(128))
+    school = db.Column(db.String(128))
+    info = db.Column(db.String(5000))
+    from_book = db.Column(db.String(128))
+    is_bard = db.Column(db.Boolean, nullable=True)
+    is_cleric = db.Column(db.Boolean, nullable=True)
+    is_druid = db.Column(db.Boolean, nullable=True)
+    is_paladin = db.Column(db.Boolean, nullable=True)
+    is_ranger = db.Column(db.Boolean, nullable=True)
+    is_sorcerer = db.Column(db.Boolean, nullable=True)
+    is_warlock = db.Column(db.Boolean, nullable=True)
+    is_wizard = db.Column(db.Boolean, nullable=True)
     spellbook = db.relationship("Spellbook", backref='spell')
 
-    # level = db.Column(db.Integer)
-    # cast_time = db.Column(db.String(128))
-    # spell_range = db.Column(db.String(128))
-    # components = db.Column(db.String(128))
-    # duration = db.Column(db.String(128))
-    # school = db.Column(db.String(128))
-    # info = db.Column(db.String(128))
-    # from_book = db.Column(db.String(128))
-    # is_bard = db.Column(db.Boolean)
-    # is_cleric = db.Column(db.Boolean)
-    # is_druid = db.Column(db.Boolean)
-    # is_paladin = db.Column(db.Boolean)
-    # is_ranger = db.Column(db.Boolean)
-    # is_sorcerer = db.Column(db.Boolean)
-    # is_warlock = db.Column(db.Boolean)
-    # is_wizard = db.Column(db.Boolean)
 
-    def __init__(self, name):
+    def __init__(self, name, level, cast_time, concentration,ritual,spell_range, components, duration, school, info, from_book, is_bard, is_cleric, is_druid, is_paladin, is_ranger, is_sorcerer, is_warlock, is_wizard):
         self.name = name
+        self.level = level
+        self.cast_time=cast_time
+        self.concentration=concentration
+        self.ritual=ritual
+        self.spell_range=spell_range
+        self.components = components
+        self.duration = duration
+        self.school = school
+        self.info = info
+        self.from_book = from_book
+        self.is_bard = is_bard
+        self.is_cleric = is_cleric
+        self.is_druid = is_druid
+        self.is_paladin = is_paladin
+        self.is_ranger = is_ranger
+        self.is_sorcerer = is_sorcerer
+        self.is_warlock = is_warlock
+        self.is_wizard = is_wizard

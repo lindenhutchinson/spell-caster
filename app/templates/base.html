@@ -9,10 +9,10 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Spell Caster</a>
+      <a class="navbar-brand" href="{{ url_for('index') }}">Spell Caster</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li><a href="{{ url_for('index') }}">Home</a></li>
       {% if current_user.is_anonymous %}
       <li><a href="{{ url_for('register') }}">Register</a></li>
       <li><a href="{{ url_for('login') }}">Login</a></li>

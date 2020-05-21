@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block app_content %}
+<div class="container">
+    <table class="spell-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Level</th>
+                <th>School</th>
+                <th>Cast-Time</th>
+                <th>Ritual</th>
+                <th>Concentration</th>
+            </tr>
+        </thead>
+
+            <tr>
+                <td>{{spell.name}}</td>
+                <td>{{spell.level}}</td>
+                <td>{{spell.school}}</td>
+                <td>{{spell.cast_time}}</td>
+                <td>{{spell.concentration}}</td>
+            </tr>
+    
+        </table>
+    </div>
+    {{spell.info}}
+
+
+{% endblock %}

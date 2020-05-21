@@ -40,8 +40,8 @@ class TestFunction(unittest.TestCase):
         self.db_add(char)
         return char
 
-    def add_spell(self, name):
-        spell = Spell(name)
+    def add_spell(self, name, level, cast_time, concentration, ritual,spell_range, components, duration, school, info, from_book, is_bard, is_cleric, is_druid, is_paladin, is_ranger, is_sorcerer, is_warlock, is_wizard):
+        spell = Spell(name, level, cast_time, concentration, ritual, spell_range, components, duration, school, info, from_book, is_bard, is_cleric, is_druid, is_paladin, is_ranger, is_sorcerer, is_warlock, is_wizard)
         self.db_add(spell)
         return spell
 
@@ -72,8 +72,7 @@ class TestFunction(unittest.TestCase):
             _class = self.add_class("Druid", "This is the description for a druid")
 
             char = self.add_character("Tez", 7, "Tortle", "wisdom", 4, user, _class.id)
-
-            spell = self.add_spell("this is a real spell")
+            spell = self.add_spell("spell_name",5,"Instant",1,1,"5 feet","All of them","it takes forever","school of rock", "this is some very important info","the bible", 1, 1, 0, 1, 1, 1, 1, 1)
             spellbook = self.add_spellbook(char, spell)
             slot = self.add_slots(char, 1, 4)
             notes = self.add_notes("this is a title", "this is a body", char)
@@ -85,6 +84,7 @@ class TestFunction(unittest.TestCase):
             self.assertEqual(char.notes[0], notes)
             self.assertEqual(spellbook.spell, spell)
             self.assertEqual(spellbook.character, char)
+
 
 
           

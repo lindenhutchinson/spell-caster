@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-4">
             {{ wtf.quick_form(form) }}
-            <input class="cancel-btn btn btn-danger" action="action" onclick="confirm('Nothing will be saved!'); window.history.go(-1); return false;" type="button" value="Cancel" />
+            <input class="cancel-btn btn btn-danger" action="action" onclick="if(confirm('Nothing will be saved!')) window.history.go(-1);" type="button" value="Cancel" />
         </div>
     </div>
 {% endblock %}
