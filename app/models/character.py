@@ -17,7 +17,8 @@ class Character(db.Model):
     class_id = db.Column(db.Integer, db.ForeignKey('class.id', ondelete="CASCADE"))
 
     slots = db.relationship("Slots", backref='character')
-    notes = db.relationship("Notes", backref='character')
+    notes = db.relationship('Note', backref='character', lazy='dynamic', cascade="all, delete", passive_deletes=True)
+
     spellbook = db.relationship('Spellbook', backref='character')
     
 

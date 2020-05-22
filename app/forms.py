@@ -30,7 +30,7 @@ class CharacterForm(FlaskForm):
     ability_score = IntegerField('Ability Score', [DataRequired()])
 
     class_id = SelectField(u'Class')
-    submit = SubmitField('Submit')
+    submit = SubmitField('Save')
 
 
 class PickCharacterForm(FlaskForm):
@@ -51,8 +51,19 @@ class ClassForm(FlaskForm):
     """Create class form."""
     name = StringField('Name', [DataRequired()])
     desc = TextAreaField('Description', [DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Save')
 
+class PickNoteForm(FlaskForm):
+    """Select a note form."""
+
+    note_id = SelectField(u'Notes')
+    submit = SubmitField('Select')
+
+class NoteForm(FlaskForm):
+    """A General Notes Form""" 
+    title = StringField('Title', [DataRequired()])
+    body = TextAreaField('Your thoughts...', [DataRequired()])
+    submit = SubmitField('Save')
 
 class SpellForm(FlaskForm):
     """Spell form."""
@@ -76,5 +87,5 @@ class SpellForm(FlaskForm):
     is_sorcerer = BooleanField("Sorcerer")
     is_warlock = BooleanField("Warlock")
     is_wizard = BooleanField("Wizard")
-    submit = SubmitField('Submit')
+    submit = SubmitField('Save')
 

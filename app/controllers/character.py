@@ -12,31 +12,31 @@ from app.db.db import db
 
 from app.forms import CharacterForm
 from app.forms import PickCharacterForm
+from app.utils.character_helpers import *
+from app.utils.model_helpers import *
+
 
 
 def view_char():
-    if not current_user.is_authenticated:
-        flash("Please login first!")
+    if not is_user_logged_in():
         return redirect(url_for('login'))
 
-    if current_user.characters.count() == 0:
+    if not user_has_characters():
         flash("Please create a character first!")
         return redirect(url_for('create_char'))
+        
+    if not is_char_id_set():
+        session['char_id'] = get_default_char_id()
+        print("setting default id")
 
-    if not session['char_id']:
-        session['char_id'] = current_user.characters.first().id
-
-    char = current_user.characters.filter_by(id=session['char_id']).first()
-
-    if not char:
-        char = current_user.characters.first()
+    char = get_current_char()
 
     if request.method == 'GET':
         form = PickCharacterForm(formdata=MultiDict({'character': char.id}))
     else:
         form = PickCharacterForm()
 
-    form.character.choices = [(g.id, g.name) for g in current_user.characters]
+    form.character.choices = get_select_characters('name')
 
     if form.is_submitted():
         session['char_id'] = form.character.data
@@ -47,33 +47,34 @@ def view_char():
 
 
 def create_char():
-    if not current_user.is_authenticated:
-        flash("Please login first!")
+    if not is_user_logged_in():
         return redirect(url_for('login'))
+
     form = CharacterForm()
 
-    form.class_id.choices = [(g.id, g.name) for g in _Class.query.order_by('name')]
+    form.class_id.choices = get_select_choices(_Class, 'name')
 
     if form.is_submitted():
         char = Character(form.name.data, form.race.data, form.level.data, form.saving_throw.data, form.ability_score.data,current_user, form.class_id.data)
-        db.session.add(char)
-        db.session.commit()
+        insert_obj(char, "character")
         session['char_id'] = char.id
-        flash("Created character!")
         return redirect(url_for('view_char'))
 
     return render_template('form.html', form=form, title="Create Character")
 
 def edit_char():
-    if not current_user.is_authenticated:
-        flash("Please login first!")
+    if not is_user_logged_in():
         return redirect(url_for('login'))
 
-    if not int(session['char_id']) in [c.id for c in current_user.characters]:
-        flash("Please select a character first!")
+    if not user_has_characters():
+        flash("Please create a character first!")
+        return redirect(url_for('create_char'))
+        
+    if not is_char_id_set():
+        flash("Please select a character first!")  
         return redirect(url_for('view_char'))
 
-    char = current_user.characters.filter_by(id=session['char_id']).first()
+    char = get_current_char()
 
     if request.method == 'GET':
         form = CharacterForm(formdata=MultiDict({
@@ -87,25 +88,15 @@ def edit_char():
     else:
         form = CharacterForm()
 
-    form.class_id.choices = [(g.id, g.name) for g in _Class.query.order_by('name')]
+    form.class_id.choices = get_select_choices(_Class, 'name')
 
     if form.is_submitted():
-        Character.query.filter_by(id=session['char_id']).update({
-            Character.name:form.name.data,
-            Character.race:form.race.data,
-            Character.level:form.level.data,
-            Character.saving_throw:form.saving_throw.data,
-            Character.ability_score:form.ability_score.data,
-            Character.class_id: form.class_id.data
-        })
-
-        # char.name = form.name.data
-        # char.race = form.race.data
-        # char.level = form.level.data
-        # char.saving_throw = form.saving_throw.data
-        # char.ability_score = form.ability_score.data
-        # char.class_id = form.class_id.data
-        # db.session.add(char)
+        char.name = form.name.data
+        char.race = form.race.data
+        char.level = form.level.data
+        char.saving_throw = form.saving_throw.data
+        char.ability_score = form.ability_score.data
+        char.class_id = form.class_id.data
         db.session.commit()
         flash("Updated character!")
         return redirect(url_for('view_char'))
@@ -113,17 +104,20 @@ def edit_char():
     return render_template('form.html', form=form, title="Edit Character")
 
 def delete_char():
-    if not current_user.is_authenticated:
-        flash("Please login first!")
+    if not is_user_logged_in():
         return redirect(url_for('login'))
-
-    if not session['char_id']:
-        flash("Please select a character first!")
+        
+    if not is_char_id_set():
+        flash("Please select a character first!")  
         return redirect(url_for('view_char'))
 
-    current_user.characters.filter_by(id=session['char_id']).delete()
-    db.session.commit()
+    delete_current_char()
     flash("Character deleted!")
-    session['char_id'] = current_user.characters.first().id
-    return redirect(url_for('view_char'))
+
+    if user_has_characters():
+        session['char_id'] = get_default_char_id()
+        return redirect(url_for('view_char'))
+    else:
+        return redirect(url_for('create_char'))
+
     

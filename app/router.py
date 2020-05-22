@@ -1,4 +1,5 @@
-from .controllers import home, user, character, _class, spell
+from .controllers import home, user, character, _class, spell, note
+
 
 def routes(app):
     '''All Routes / Url
@@ -33,6 +34,10 @@ def routes(app):
 
     app.add_url_rule('/spell/create', view_func=spell.create_spell, methods=['GET', 'POST'])
     app.add_url_rule('/spell', view_func=spell.view_spell, methods=['GET'])
+
+    app.add_url_rule('/notes', view_func=note.view_note, methods=['GET','POST'])
+    app.add_url_rule('/notes/create', view_func=note.create_note, methods=['GET','POST'])
+    app.add_url_rule('/notes/edit', view_func=note.edit_note, methods=['GET','POST'])
 
 
 

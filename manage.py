@@ -9,12 +9,8 @@ from app.db.db import db
 
 from app.models.user import User
 from app.models.character import Character
-from app.models.spell import Spell
-from app.models.spellbook import Spellbook
 from app.models._class import _Class
-from app.models.subclass import Subclass
-from app.models.slots import Slots
-from app.models.notes import Notes
+
 
 
 app = create_app(DevelopmentConfig)
@@ -40,11 +36,7 @@ def make_shell_context():
                 clear=clear, 
                 User=User, 
                 Character=Character, 
-                _Class =_Class,
-                Subclass=Subclass, 
-                Slots=Slots, 
-                Spellbook=Spellbook,
-                Notes=Notes
+                _Class =_Class
             )
 
 

@@ -5,7 +5,7 @@ from app.models.spellbook import Spellbook
 from app.models._class import _Class
 from app.models.subclass import Subclass
 from app.models.slots import Slots
-from app.models.notes import Notes
+from app.models.note import Note
 
 import unittest
 
@@ -61,10 +61,10 @@ class TestFunction(unittest.TestCase):
         self.db_add(slots)
         return slots
 
-    def add_notes(self, title, body, character):
-        notes = Notes(title, body, character)
-        self.db_add(notes)
-        return notes
+    def add_note(self, title, body, character):
+        note = Note(title, body, character)
+        self.db_add(note)
+        return note
 
     def test_db(self):
         with self.app.app_context():
@@ -75,13 +75,13 @@ class TestFunction(unittest.TestCase):
             spell = self.add_spell("spell_name",5,"Instant",1,1,"5 feet","All of them","it takes forever","school of rock", "this is some very important info","the bible", 1, 1, 0, 1, 1, 1, 1, 1)
             spellbook = self.add_spellbook(char, spell)
             slot = self.add_slots(char, 1, 4)
-            notes = self.add_notes("this is a title", "this is a body", char)
+            note = self.add_note("this is a title", "this is a body", char.id)
 
             self.assertEqual(user.characters[0], char)
             self.assertEqual(_class.characters[0], char)
             self.assertEqual(char._class, _class)
             self.assertEqual(char.slots[0], slot)
-            self.assertEqual(char.notes[0], notes)
+            self.assertEqual(char.notes[0], note)
             self.assertEqual(spellbook.spell, spell)
             self.assertEqual(spellbook.character, char)
 
