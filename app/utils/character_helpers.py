@@ -16,16 +16,11 @@ def character_has(model):
 # returns boolean
 # checks if the session character id is set to one of the current user's characters
 def is_char_id_set():
-    return True if int(session['char_id']) in [c.id for c in current_user.characters] else False
+    return True if str(session['char_id']) in [str(c.id) for c in current_user.characters] else False
 
 # returns the currently selected character
 def get_current_char():
     return current_user.characters.filter_by(id=session['char_id']).first()
-
-# deletes the currently selected character
-def delete_current_char():
-    current_user.characters.filter_by(id=session['char_id']).delete()
-    db.session.commit()
 
 # returns a character owned by the current user
 def get_default_char_id():
@@ -38,7 +33,7 @@ def get_select_characters(orderby):
 
 # returns an object of a given model owned by the currently selected character, filtered by id
 def get_char_child(model, id):
-    return model.query.filter_by(char_id=session['char_id'], id=id).first()
+    return model.query.filter_by(char_id=session['char_id'], id=id).one()
 
 # returns the first object of a given model owned by the currently selected character
 def get_char_child_default(model):

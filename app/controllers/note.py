@@ -42,9 +42,9 @@ def create_note():
     if form.is_submitted():
         note = Note(form.title.data,form.body.data, char.id)
         insert_obj(note, "note")
-        return redirect(url_for('view_note'))
+        return redirect(url_for('view_note', id=note.id))
 
-    return render_template('form.html', form=form, title="Create Spell")
+    return render_template('form.html', form=form, title="Create Note")
 
 def view_note():
     # check user is authenticated
@@ -148,3 +148,26 @@ def edit_note():
         return redirect(url_for('view_note', id=note.id))
 
     return render_template('form.html', form=form, title="Edit Note")
+
+def delete_note():
+    if not is_user_logged_in():
+        return redirect(url_for('login'))
+        
+    if not is_char_id_set():
+        flash("Please select a character first!")  
+        return redirect(url_for('view_char'))
+
+
+    # get the note owned by the current character, selected by url parameter
+    note = get_char_child(Note, request.args.get('id', type = int))
+
+    # check note exists
+    if not is_obj(note, "note"):
+        return redirect(url_for('view_note'))
+
+    delete_model(note)
+    flash("Deleted note!")  
+    return redirect(url_for('view_note')) if get_default(Note) else redirect(url_for('index'))
+
+
+    

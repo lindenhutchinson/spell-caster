@@ -5,11 +5,15 @@ from app.db.db import db
 # returns Boolean
 # checks if the current user is authenticated
 def is_user_logged_in():
-    if not current_user.is_authenticated:
-        flash("Please login first!")
-        return False
+    if current_user.is_authenticated:
+        return True
     
-    return True
+    flash("Please login first!")
+    return False
+    # todo - 
+    # keep functions consistent
+    # move session variables and flash methods to their respective controllers for better clarity
+
 
 # inserts a model instance into the database
 def insert_obj(obj, obj_name):
@@ -21,7 +25,7 @@ def insert_obj(obj, obj_name):
 def get_select_choices(model, orderby):
     return [(g.id, g.name) for g in model.query.order_by(orderby).all()]
 
-# returns a model instance id
+# returns a model instance by a given id
 def get_model(model, id):
     return model.query.get(id)
 
@@ -47,3 +51,6 @@ def is_default(default, model_name):
 
     return True
 
+def delete_model(model):
+    model.query.filter_by(id=model.id).delete()
+    db.session.commit()

@@ -13,7 +13,7 @@ from app.db.db import db
 from app.forms import CharacterForm
 from app.forms import PickCharacterForm
 from app.utils.character_helpers import *
-from app.utils.model_helpers import is_user_logged_in, insert_obj, get_select_choices
+from app.utils.model_helpers import *
 
 
 
@@ -31,7 +31,8 @@ def view_char():
     if not is_char_id_set():
         session['char_id'] = get_default_char_id()
 
-    char = get_current_char()
+    # char = get_current_char()
+    char = get_model(Character, session['char_id'])
 
     # the SelectField should show the currently selected character
     if request.method == 'GET':
@@ -114,13 +115,13 @@ def delete_char():
         flash("Please select a character first!")  
         return redirect(url_for('view_char'))
 
-    delete_current_char()
-    flash("Character deleted!")
-
+    char = get_model(Character, session['char_id'])
+    delete_model(char)
+    flash("Deleted character!")
     if user_has_characters():
         session['char_id'] = get_default_char_id()
         return redirect(url_for('view_char'))
     else:
-        return redirect(url_for('create_char'))
+        return redirect(url_for('index'))
 
     

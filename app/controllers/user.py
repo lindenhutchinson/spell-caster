@@ -35,6 +35,6 @@ def login():
     return render_template('form.html', form=form, title="Login")
 
 def logout():
-    session['char_id'] = ''
+    session['char_id'] = 0
     logout_user()
     return redirect(url_for('index'))

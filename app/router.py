@@ -38,6 +38,7 @@ def routes(app):
     app.add_url_rule('/notes', view_func=note.view_note, methods=['GET','POST'])
     app.add_url_rule('/notes/create', view_func=note.create_note, methods=['GET','POST'])
     app.add_url_rule('/notes/edit', view_func=note.edit_note, methods=['GET','POST'])
+    app.add_url_rule('/notes/delete', view_func=note.delete_note, methods=['GET'])
 
 
 

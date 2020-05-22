@@ -7,7 +7,7 @@ from app.models._class import _Class
 
 from app.db.db import db
 
-from app.utils.model_helpers import is_user_logged_in, insert_obj, is_obj, get_default, is_default, get_model, get_select_choices
+from app.utils.model_helpers import *
 
 from app.forms import ClassForm, PickClassForm
 
@@ -90,10 +90,10 @@ def delete_class():
         return redirect(url_for('view_class'))
 
     if len(_class.characters) > 0:
-        flash("Can't delete a class that characters are using!")
+        flash("Can't delete a class that {} characters are using!".format(len(_class.characters)))
         return redirect(url_for('view_class', id=_class.id))
 
-    _class.query.delete()
-    db.session.commit()
+    delete_model(_class)
+    
     flash("Class deleted!")
     return redirect(url_for('view_class'))

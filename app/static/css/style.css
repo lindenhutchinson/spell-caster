@@ -28,3 +28,19 @@ td {
 .spell-table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+.inline li {
+  list-style: none;
+  background-image: none;
+  background-repeat: none;
+  background-position: 0;
+}
+.list-inline-item {
+  margin-bottom: 1rem;
+}
+.tab {
+margin-left: 1em
+}
+.double-tab {
+margin-left: 2.5em
+}
