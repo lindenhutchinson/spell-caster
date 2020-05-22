@@ -19,6 +19,9 @@ class Slots(db.Model):
         self.max_val = max_val
         self.cur_val = max_val
 
+    def __repr__(self):
+        return '<Slots {}>'.format(self.character.name)
+
     # def get_char(self):
     #     return db.session.query(_Class).filter(Character.id == self.char_id).join(_Class).filter(Character.id == _Class.char_id).one_or_none()
 

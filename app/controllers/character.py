@@ -13,24 +13,27 @@ from app.db.db import db
 from app.forms import CharacterForm
 from app.forms import PickCharacterForm
 from app.utils.character_helpers import *
-from app.utils.model_helpers import *
+from app.utils.model_helpers import is_user_logged_in, insert_obj, get_select_choices
 
 
 
 def view_char():
+    # check user is authenticated
     if not is_user_logged_in():
         return redirect(url_for('login'))
 
+    # check user has characters
     if not user_has_characters():
         flash("Please create a character first!")
         return redirect(url_for('create_char'))
-        
+
+    # check user has selected a character  
     if not is_char_id_set():
         session['char_id'] = get_default_char_id()
-        print("setting default id")
 
     char = get_current_char()
 
+    # the SelectField should show the currently selected character
     if request.method == 'GET':
         form = PickCharacterForm(formdata=MultiDict({'character': char.id}))
     else:

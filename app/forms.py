@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField, TextField, TextAreaField, SubmitField, PasswordField, BooleanField, IntegerField
+from wtforms import widgets, SelectMultipleField, SelectField, StringField, TextField, TextAreaField, SubmitField, PasswordField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, Length
 
 
@@ -64,6 +64,17 @@ class NoteForm(FlaskForm):
     title = StringField('Title', [DataRequired()])
     body = TextAreaField('Your thoughts...', [DataRequired()])
     submit = SubmitField('Save')
+
+
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
+
+class PickSpellForm(FlaskForm):
+    submit = SubmitField('Save')
+    spell_ids = MultiCheckboxField('Spells')
 
 class SpellForm(FlaskForm):
     """Spell form."""

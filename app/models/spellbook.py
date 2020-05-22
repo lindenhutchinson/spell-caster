@@ -13,11 +13,9 @@ class Spellbook(db.Model):
         self.spell = spell
         self.prepared = False
 
-    def flip_prepare(self):
-        self.prepared = not self.prepared
 
-    # def __repr__(self):
-    #     return '<Spellbook {}>'.format(self.name) 
+    def __repr__(self):
+        return '<Spellbook {}>'.format(self.name) 
 
 
 

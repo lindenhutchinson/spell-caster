@@ -21,7 +21,7 @@ class Spell(db.Model):
     is_sorcerer = db.Column(db.Boolean, nullable=True)
     is_warlock = db.Column(db.Boolean, nullable=True)
     is_wizard = db.Column(db.Boolean, nullable=True)
-    spellbook = db.relationship("Spellbook", backref='spell')
+    spellbooks = db.relationship("Spellbook", backref='spell')
 
 
     def __init__(self, name, level, cast_time, concentration,ritual,spell_range, components, duration, school, info, from_book, is_bard, is_cleric, is_druid, is_paladin, is_ranger, is_sorcerer, is_warlock, is_wizard):
@@ -44,3 +44,6 @@ class Spell(db.Model):
         self.is_sorcerer = is_sorcerer
         self.is_warlock = is_warlock
         self.is_wizard = is_wizard
+
+    def __repr__(self):
+        return '<Spell {}>'.format(self.name)

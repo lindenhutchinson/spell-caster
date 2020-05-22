@@ -14,3 +14,6 @@ class Note(db.Model):
         self.body = body
         self.created_at = datetime.datetime.utcnow()
         self.char_id = char_id
+
+    def __repr__(self):
+        return '<Note {}>'.format(self.title)

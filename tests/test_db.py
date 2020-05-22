@@ -70,7 +70,6 @@ class TestFunction(unittest.TestCase):
         with self.app.app_context():
             user = self.add_user("user name", "password")
             _class = self.add_class("Druid", "This is the description for a druid")
-
             char = self.add_character("Tez", 7, "Tortle", "wisdom", 4, user, _class.id)
             spell = self.add_spell("spell_name",5,"Instant",1,1,"5 feet","All of them","it takes forever","school of rock", "this is some very important info","the bible", 1, 1, 0, 1, 1, 1, 1, 1)
             spellbook = self.add_spellbook(char, spell)
@@ -84,6 +83,7 @@ class TestFunction(unittest.TestCase):
             self.assertEqual(char.notes[0], note)
             self.assertEqual(spellbook.spell, spell)
             self.assertEqual(spellbook.character, char)
+            self.assertEqual(char.spellbook[0].spell, spell)
 
 
 
