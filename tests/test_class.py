@@ -101,6 +101,6 @@ class TestFunction(unittest.TestCase):
             insert_model(_class)
 
             response = self.delete_class(_class.id)
-            self.assertIn(b"Create Class", response.data)
+            self.assertIn(b"homepage", response.data)
 
 

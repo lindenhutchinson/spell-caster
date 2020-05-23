@@ -34,7 +34,7 @@ class TestFunction(unittest.TestCase):
             insert_model(_class)
             char = Character("Tez", "Tortle", 7,"wisdom", 4, _class.id, user)
             insert_model(char)
-            spell = Spell("spell_name",5,"Instant",1,1,"5 feet","All of them","it takes forever","school of rock", "this is some very important info","the bible", 1, 1, 0, 1, 1, 1, 1, 1)
+            spell = Spell("spell_name",5,"Instant","5 feet","All of them","it takes forever","school of rock", "this is some very important info","the bible",1,1, 1, 1, 0, 1, 1, 1, 1, 1)
             insert_model(spell)
             spellbook = Spellbook(char, spell)
             insert_model(spellbook)

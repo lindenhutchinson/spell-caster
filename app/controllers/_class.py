@@ -102,4 +102,5 @@ def delete_class():
     delete_model(_class)
     
     flash("Class deleted!")
-    return redirect(url_for('view_class'))
+
+    return redirect(url_for('view_class')) if get_default(_Class) else redirect(url_for('index'))

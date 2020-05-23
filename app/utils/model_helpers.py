@@ -1,5 +1,6 @@
 from app.db.db import db
 import inspect
+import string
 
 # inserts a model object into the database
 def insert_model(model):
@@ -23,11 +24,12 @@ def insert_form(model, form, *args):
 def update_form(obj, form):
     inspect.getmembers(obj)
     inspect.getmembers(form)
+
     updates = {}
-    for key in obj.__dict__.keys():
-        for f_key, f_value in form.__dict__.items():
-            if key == f_key:
-                updates.update({key:f_value.data})
+    for key  in obj.__dict__.keys():
+        if hasattr(form, key):
+            updates.update({key:form[key].data})
+
 
     obj.query.update(updates)
     db.session.commit()

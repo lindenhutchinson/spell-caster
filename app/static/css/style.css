@@ -13,21 +13,42 @@
 }
 
 .spell-table {
-  text-align: center;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
+  border-collapse: collapse; /* Collapse borders */
+  width: 100%; /* Full-width */
+  border: 1px solid #ddd; /* Add a grey border */
+  font-size: 18px; /* Increase font-size */
 }
-
-.spell-table th,
-td {
-  text-align: left;
+.spell-table th{
+  text-align: center;
+  padding: 16px;
+}
+.spell-table td {
+  text-align: center;
   padding: 16px;
 }
 
 .spell-table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+
+
+
+.spell-table tr {
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+.spell-table tr.header,
+tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+}
+
+
+
+
+
 
 .inline li {
   list-style: none;

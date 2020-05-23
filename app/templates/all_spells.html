@@ -6,25 +6,89 @@
         <th>Name</th>
         <th>Level</th>
         <th>Concentration</th>
+        <th>Ritual</th>
+        <th>Cast Time</th>
         <th>Range</th>
         <th>Duration</th>
+        <th>Components</th>
         <th>School</th>
-        <th>Ritual</th>
       </tr>
     </thead>
     <tbody>
       {% for spell in spells %}
-      <tr href="{{ url_for('view_spell', id=spell.id) }}">
-        <td>{{spell.name}}</td>
-        <td>{{spell.level}}</td>
-        <td>{{spell.concentration}}</td>
-        <td>{{spell.spell_range}}</td>
-        <td>{{spell.duration}}</td>
-        <td>{{spell.school}}</td>
-        <td>{{spell.ritual}}</td>
+      <tr onclick = >
+        
+          <td><a href="{{ url_for('view_spell', id=spell.id) }}" target="_blank">{{spell.name}}</a></td>
+          <td>{{spell.level}}</td>
+          <td>{{spell.concentration}}</td>
+          <td>{{spell.ritual}}</td>
+          <td>{{spell.cast_time}}</td>
+          <td>{{spell.spell_range}}</td>
+          <td>{{spell.duration}}</td>
+          <td>{{spell.components}}</td>
+          <td>{{spell.school}}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 </div>
+
+<script>
+  function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+  var getCellValue = function (tr, idx) {
+    return tr.children[idx].innerText || tr.children[idx].textContent;
+  };
+
+  var comparer = function (idx, asc) {
+    return function (a, b) {
+      return (function (v1, v2) {
+        return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
+          ? v1 - v2
+          : v1.toString().localeCompare(v2);
+      })(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+    };
+  };
+
+  // do the work...
+  Array.prototype.slice
+    .call(document.querySelectorAll("th"))
+    .forEach(function (th) {
+      th.addEventListener("click", function () {
+        var table = th.parentNode;
+        while (table.tagName.toUpperCase() != "TABLE") table = table.parentNode;
+        Array.prototype.slice
+          .call(table.querySelectorAll("tr:nth-child(n+2)"))
+          .sort(
+            comparer(
+              Array.prototype.slice.call(th.parentNode.children).indexOf(th),
+              (this.asc = !this.asc)
+            )
+          )
+          .forEach(function (tr) {
+            table.appendChild(tr);
+          });
+      });
+    });
+</script>
 {% endblock %}
