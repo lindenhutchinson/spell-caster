@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block app_content %}
+<div class="container">
+  <table class="spell-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Level</th>
+        <th>Concentration</th>
+        <th>Range</th>
+        <th>Duration</th>
+        <th>School</th>
+        <th>Ritual</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for spell in spells %}
+      <tr href="{{ url_for('view_spell', id=spell.id) }}">
+        <td>{{spell.name}}</td>
+        <td>{{spell.level}}</td>
+        <td>{{spell.concentration}}</td>
+        <td>{{spell.spell_range}}</td>
+        <td>{{spell.duration}}</td>
+        <td>{{spell.school}}</td>
+        <td>{{spell.ritual}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -14,6 +14,7 @@ from app.db.db import db
 from app.forms import NoteForm, PickNoteForm
 
 from app.utils.model_helpers import *
+
 from app.utils.character_helpers import *
 
 
@@ -21,7 +22,8 @@ from app.utils.character_helpers import *
 
 def create_note():
     # check user is authenticated
-    if not is_user_logged_in:
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
 
     # check user has characters
@@ -34,21 +36,22 @@ def create_note():
         flash("Please select a character first!")  
         return redirect(url_for('view_char'))
 
-    char = get_current_char()
+    char = get_model(Character, session['char_id'])
 
     form = NoteForm()
 
     # insert the created note into the database after the user has submitted the form
     if form.is_submitted():
-        note = Note(form.title.data,form.body.data, char.id)
-        insert_obj(note, "note")
+        note = insert_form(Note, form, char.id)
+        flash("Created a note!")
         return redirect(url_for('view_note', id=note.id))
 
     return render_template('form.html', form=form, title="Create Note")
 
 def view_note():
     # check user is authenticated
-    if not is_user_logged_in:
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
 
     # check user has characters
@@ -72,16 +75,18 @@ def view_note():
     default = get_char_child_default(Note)
 
     # check the default obj exists. This is only a sanity check
-    # at this point, user will have a note
-    if not is_default(default, "note"):
+    # at this point, user should have a note!
+    if not default:
+        flash("Please create a note first!")
         return redirect(url_for('create_note'))
 
     # get the note selected via url parameter, so long as it is owned by the current character
     note = get_char_child(Note, request.args.get('id', default = default.id, type = int))
 
     # check the selected note exists
-    if not is_obj(note, "note"):
-        return redirect(url_for('index'))
+    if not note:
+        flash("Couldn't find that note!")
+        return redirect(url_for('view_note'))
 
     # if the form isn't being submitted, the SelectField should show the currently selected note
     if request.method == 'GET':
@@ -103,7 +108,8 @@ def view_note():
 
 def edit_note():
     # check user is authenticated
-    if not is_user_logged_in:
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
 
     # check user has characters
@@ -120,14 +126,16 @@ def edit_note():
     default = get_char_child_default(Note)
 
     # sanity check for default note object
-    if not is_default(default, "note"):
+    if not default:
+        flash("Couldn't find that note!")
         return redirect(url_for('create_note'))
 
     # get the note owned by the current character, selected by url parameter
     note = get_char_child(Note, request.args.get('id', default = default.id, type = int))
 
     # check note exists
-    if not is_obj(note, "note"):
+    if not note:
+        flash("Couldn't find that note!")
         return redirect(url_for('view_note'))
 
     # if the form is being loaded, form should be filled with current note values
@@ -140,34 +148,32 @@ def edit_note():
         form = NoteForm()
 
     if form.is_submitted():
-        note.title = form.title.data
-        note.body = form.body.data
-        db.session.commit()
-
+        update_form(note, form)
         flash("Updated note!")
         return redirect(url_for('view_note', id=note.id))
 
     return render_template('form.html', form=form, title="Edit Note")
 
 def delete_note():
-    if not is_user_logged_in():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
         
     if not is_char_id_set():
         flash("Please select a character first!")  
         return redirect(url_for('view_char'))
 
-
     # get the note owned by the current character, selected by url parameter
     note = get_char_child(Note, request.args.get('id', type = int))
 
     # check note exists
-    if not is_obj(note, "note"):
+    if not note:
+        flash("Couldn't find that note!")
         return redirect(url_for('view_note'))
 
     delete_model(note)
     flash("Deleted note!")  
-    return redirect(url_for('view_note')) if get_default(Note) else redirect(url_for('index'))
+    return redirect(url_for('view_note')) if get_all_char_child(Note, "created_at") else redirect(url_for('index'))
 
 
     

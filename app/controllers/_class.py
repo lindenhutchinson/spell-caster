@@ -7,36 +7,42 @@ from app.models._class import _Class
 
 from app.db.db import db
 
-from app.utils.model_helpers import *
+from app.utils.model_helpers import update_form, insert_form, insert_model, get_default, get_model, get_select_choices, delete_model
 
 from app.forms import ClassForm, PickClassForm
 
 
 def create_class():
-    if not is_user_logged_in():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
 
     form = ClassForm()
 
     if form.is_submitted():
-        _class = _Class(form.name.data, form.desc.data)
-        insert_obj(_class, "class")
+        # _class = _Class(form.name.data, form.desc.data)
+        # insert_model(_class)
+        _class = insert_form(_Class, form)
+        flash("Created a class!")
+
         return redirect(url_for('view_class', id=_class.id))
 
     return render_template('form.html', form=form, title="Create Class")
 
 def view_class():
-    if not is_user_logged_in():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
 
     default = get_default(_Class)
-
-    if not is_default(default, "class"):
+    if not default:
+        flash("Please create a class!")
         return redirect(url_for('create_class'))
 
     _class = get_model(_Class, request.args.get('id', default = default.id, type = int))
-    if not is_obj(_class, "class"):
-        return redirect(url_for('index'))
+    if not _class:
+        flash("Couldn't find that class!")
+        return redirect(url_for('view_class'))
 
     if request.method == 'GET':
         form = PickClassForm(formdata=MultiDict({'class_id': _class.id}))
@@ -52,15 +58,13 @@ def view_class():
 
 
 def edit_class():
-    if not is_user_logged_in():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
 
-    default = get_default(_Class)
-    if not is_default(default, "class"):
-        return redirect(url_for('create_class'))
-
-    _class = get_model(_Class, request.args.get('id', default = default.id, type = int))
-    if not is_obj(_class, "class"):
+    _class = get_model(_Class, request.args.get('id', type = int))
+    if not _class:
+        flash("Couldn't find that class!")
         return redirect(url_for('view_class'))
 
     if request.method == 'GET':
@@ -72,21 +76,23 @@ def edit_class():
         form = ClassForm()
 
     if form.is_submitted():
-        _class.name = form.name.data
-        _class.desc = form.desc.data
-        db.session.commit()
-
+        # _class.name = form.name.data
+        # _class.desc = form.desc.data
+        # db.session.commit()
+        update_form(_class, form)
         flash("Updated class!")
         return redirect(url_for('view_class', id=_class.id))
 
     return render_template('form.html', form=form, title="Edit Class")
 
 def delete_class():
-    if not is_user_logged_in():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
     
     _class = get_model(_Class, request.args.get('id', type = int))
-    if not is_obj(_class, "class"):
+    if not _class:
+        flash("Couldn't find that class!")
         return redirect(url_for('view_class'))
 
     if len(_class.characters) > 0:

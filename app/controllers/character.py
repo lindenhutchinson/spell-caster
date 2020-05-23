@@ -16,10 +16,10 @@ from app.utils.character_helpers import *
 from app.utils.model_helpers import *
 
 
-
 def view_char():
     # check user is authenticated
-    if not is_user_logged_in():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
 
     # check user has characters
@@ -51,7 +51,8 @@ def view_char():
 
 
 def create_char():
-    if not is_user_logged_in():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
 
     form = CharacterForm()
@@ -59,15 +60,17 @@ def create_char():
     form.class_id.choices = get_select_choices(_Class, 'name')
 
     if form.is_submitted():
-        char = Character(form.name.data, form.race.data, form.level.data, form.saving_throw.data, form.ability_score.data,current_user, form.class_id.data)
-        insert_obj(char, "character")
+        char = insert_form(Character, form, current_user)
+ 
+        flash("Created a character!")
         session['char_id'] = char.id
         return redirect(url_for('view_char'))
 
     return render_template('form.html', form=form, title="Create Character")
 
 def edit_char():
-    if not is_user_logged_in():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
 
     if not user_has_characters():
@@ -95,22 +98,17 @@ def edit_char():
     form.class_id.choices = get_select_choices(_Class, 'name')
 
     if form.is_submitted():
-        char.name = form.name.data
-        char.race = form.race.data
-        char.level = form.level.data
-        char.saving_throw = form.saving_throw.data
-        char.ability_score = form.ability_score.data
-        char.class_id = form.class_id.data
-        db.session.commit()
+        update_form(char, form)
         flash("Updated character!")
         return redirect(url_for('view_char'))
 
     return render_template('form.html', form=form, title="Edit Character")
 
 def delete_char():
-    if not is_user_logged_in():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
         return redirect(url_for('login'))
-        
+
     if not is_char_id_set():
         flash("Please select a character first!")  
         return redirect(url_for('view_char'))

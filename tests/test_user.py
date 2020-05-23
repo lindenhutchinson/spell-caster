@@ -4,6 +4,10 @@ from app.app import create_app, register_extensions
 from app.db import db
 from app.config.config import TestingConfig
 
+# test can edit user
+# test can delete user
+# test deleting a user deletes all characters
+# test user can only delete themselves
 
 class TestFunction(unittest.TestCase):
     def setUp(self):

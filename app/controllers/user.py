@@ -7,7 +7,6 @@ from app.db.db import db
 from app.forms import RegisterForm
 from app.forms import LoginForm
 
-
 def register():
     form = RegisterForm()
     if form.is_submitted():
@@ -30,6 +29,7 @@ def login():
             return redirect(url_for('login'))
         
         login_user(user, remember=form.remember_me.data)
+        session['char_id'] = 0
         return redirect(url_for('index'))
 
     return render_template('form.html', form=form, title="Login")

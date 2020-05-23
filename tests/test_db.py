@@ -10,9 +10,9 @@ from app.models.note import Note
 import unittest
 
 from app.app import create_app, register_extensions
-from app.db import db
 from app.config.config import TestingConfig
 
+from app.utils.test_helpers import *
 
 # Create an instance of each DB model
 
@@ -26,70 +26,54 @@ class TestFunction(unittest.TestCase):
             # create all tables
             db.db.create_all()
 
-    def db_add(self, o):
-        db.db.session.add(o)
-        db.db.session.commit()
-
-    def add_user(self, name, password):
-        user = User(name, password)
-        self.db_add(user)
-        return user
-
-    def add_character(self, name, race, level, saving_throw, ability_score,user, class_id):
-        char = Character(name, level, race, saving_throw, ability_score, user, class_id)
-        self.db_add(char)
-        return char
-
-    def add_spell(self, name, level, cast_time, concentration, ritual,spell_range, components, duration, school, info, from_book, is_bard, is_cleric, is_druid, is_paladin, is_ranger, is_sorcerer, is_warlock, is_wizard):
-        spell = Spell(name, level, cast_time, concentration, ritual, spell_range, components, duration, school, info, from_book, is_bard, is_cleric, is_druid, is_paladin, is_ranger, is_sorcerer, is_warlock, is_wizard)
-        self.db_add(spell)
-        return spell
-
-
-    def add_class(self, name, desc):
-        _class = _Class(name, desc)
-        self.db_add(_class)
-        return _class
-
-    def add_spellbook(self, character, spell):
-        spellbook = Spellbook(character, spell)
-        self.db_add(spellbook)
-        return spellbook
-
-    def add_slots(self, character, lvl, max_val):
-        slots = Slots(lvl, max_val, character)
-        self.db_add(slots)
-        return slots
-
-    def add_note(self, title, body, character):
-        note = Note(title, body, character)
-        self.db_add(note)
-        return note
-
     def test_db(self):
         with self.app.app_context():
-            user = self.add_user("user name", "password")
-            _class = self.add_class("Druid", "This is the description for a druid")
-            char = self.add_character("Tez", 7, "Tortle", "wisdom", 4, user, _class.id)
-            spell = self.add_spell("spell_name",5,"Instant",1,1,"5 feet","All of them","it takes forever","school of rock", "this is some very important info","the bible", 1, 1, 0, 1, 1, 1, 1, 1)
-            spellbook = self.add_spellbook(char, spell)
-            slot = self.add_slots(char, 1, 4)
-            note = self.add_note("this is a title", "this is a body", char.id)
+            user = User("user name", "password")
+            insert_model(user)
+            _class = _Class("Druid", "This is the description for a druid")
+            insert_model(_class)
+            char = Character("Tez", "Tortle", 7,"wisdom", 4, _class.id, user)
+            insert_model(char)
+            spell = Spell("spell_name",5,"Instant",1,1,"5 feet","All of them","it takes forever","school of rock", "this is some very important info","the bible", 1, 1, 0, 1, 1, 1, 1, 1)
+            insert_model(spell)
+            spellbook = Spellbook(char, spell)
+            insert_model(spellbook)
+            slot = Slots(1, 4, char)
+            insert_model(slot)
+            note = Note("this is a title", "this is a body", char.id)
+            insert_model(note)
 
+            # test user has a character
             self.assertEqual(user.characters[0], char)
+            # test class has a character
             self.assertEqual(_class.characters[0], char)
+            # test character has a class
             self.assertEqual(char._class, _class)
+            # test character has a slot
             self.assertEqual(char.slots[0], slot)
+            # test character has a note
             self.assertEqual(char.notes[0], note)
+            # test spellbook has a spell
             self.assertEqual(spellbook.spell, spell)
+            # test spellbook has a character
             self.assertEqual(spellbook.character, char)
+            # test character has a spellbook which has a spell
             self.assertEqual(char.spellbook[0].spell, spell)
 
+            # test can get a model by ID
+            my_char = get_model(Character, char.id)
+            self.assertEqual(my_char, char)
 
+            # test can get a default model
+            my_spell = get_default(Spell)
+            self.assertEqual(my_spell, spell)
+
+            # test can delete a model
+            delete_model(note)
+            deleted_note = get_model(Note, note.id)
+            self.assertEqual(None, deleted_note)
 
           
-
-
     def tearDown(self):
         with self.app.app_context():
             # drop all tables

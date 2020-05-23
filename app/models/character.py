@@ -22,7 +22,7 @@ class Character(db.Model):
     spellbook = db.relationship('Spellbook', backref='character')
     
 
-    def __init__(self, name, race, level, saving_throw, ability_score, user, class_id):
+    def __init__(self, name, race, level, saving_throw, ability_score, class_id, user):
         self.name = name
         self.race = race
         self.level = level

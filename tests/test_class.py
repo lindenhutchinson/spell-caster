@@ -4,9 +4,15 @@ from app.models.character import Character
 from app.models._class import _Class
 
 from app.app import create_app, register_extensions
-from app.db import db
+# from app.db import db
 
 from app.config.config import TestingConfig
+
+from app.utils.test_helpers import *
+
+# TODO:
+# test class cannot be deleted if being used by characters
+
 
 class TestFunction(unittest.TestCase):
     def setUp(self):
@@ -23,21 +29,6 @@ class TestFunction(unittest.TestCase):
             # drop all tables
             db.db.session.remove()
             db.db.drop_all()
-
-    # helpers
-    def db_add(self, o):
-        db.db.session.add(o)
-        db.db.session.commit()
-
-    def add_class(self, name, desc):
-        _class = _Class(name, desc)
-        self.db_add(_class)
-        return _class
-
-    def add_character(self, name, race, level, saving_throw, ability_score,user, class_id):
-        char = Character(name, race, level, saving_throw, ability_score, user, class_id)
-        self.db_add(char)
-        return char
 
     def create_and_login_user(self, username, password):
         self.client.post(
@@ -92,7 +83,8 @@ class TestFunction(unittest.TestCase):
             self.create_and_login_user("user","password")
             name = b"Druid"
             desc = b"Druid description right here!" 
-            _class = self.add_class(name, desc)
+            _class = _Class(name, desc)
+            insert_model(_class)
             new_name = b"Wizard"
             new_desc = b"Wizard desc"
             response = self.edit_class(_class.id, new_name, new_desc)
@@ -102,8 +94,13 @@ class TestFunction(unittest.TestCase):
     def test_can_delete_class(self):
         with self.app.app_context():
             self.create_and_login_user("user","password")
-            new_name = b"Wizard"
-            new_desc = b"Wizard desc"
-            _class = self.add_class(new_name, new_desc)
+
+            name = b"Druid"
+            desc = b"Druid description right here!" 
+            _class = _Class(name, desc)
+            insert_model(_class)
+
             response = self.delete_class(_class.id)
             self.assertIn(b"Create Class", response.data)
+
+

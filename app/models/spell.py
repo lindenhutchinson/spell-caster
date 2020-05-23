@@ -24,7 +24,7 @@ class Spell(db.Model):
     spellbooks = db.relationship("Spellbook", backref='spell')
 
 
-    def __init__(self, name, level, cast_time, concentration,ritual,spell_range, components, duration, school, info, from_book, is_bard, is_cleric, is_druid, is_paladin, is_ranger, is_sorcerer, is_warlock, is_wizard):
+    def __init__(self, name, level, cast_time, spell_range, components, duration, school, info, from_book, concentration=0,ritual=0, is_bard=0, is_cleric=0, is_druid=0, is_paladin=0, is_ranger=0, is_sorcerer=0, is_warlock=0, is_wizard=0):
         self.name = name
         self.level = level
         self.cast_time=cast_time

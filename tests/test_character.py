@@ -5,10 +5,19 @@ from app.models.character import Character
 from app.models._class import _Class
 
 from app.app import create_app, register_extensions
-from app.db import db
+# from app.db import db
 import flask
 from app.config.config import TestingConfig
 
+from app.utils.test_helpers import *
+
+# TODO tests:
+# test user is redirected to character page if exists after deleting character
+# test user cannot view another user's character
+# test user cannot delete another user's character
+# test user cannot edit another user's character
+# test user can have multiple characters and can cycle by using a session variable
+# test deleting a character deletes all notes, slots and spellbooks
 
 class TestFunction(flask_testing.TestCase):
 
@@ -20,7 +29,7 @@ class TestFunction(flask_testing.TestCase):
         with self.app.app_context():
             # create all tables
             db.db.create_all()
-        
+
         return self.app
 
     def tearDown(self):
@@ -29,29 +38,9 @@ class TestFunction(flask_testing.TestCase):
             db.db.session.remove()
             db.db.drop_all()
 
-    # helpers
-    def db_add(self, o):
-        db.db.session.add(o)
-        db.db.session.commit()
-
-    def add_user(self, name, password):
-        user = User(name, password)
-        self.db_add(user)
-        return user
-
-    def add_class(self, name, desc):
-        _class = _Class(name, desc)
-        self.db_add(_class)
-        return _class
-
-    def add_character(self, name, race, level, saving_throw, ability_score, user, class_id):
-        char = Character(name, race, level, saving_throw,
-                         ability_score, user, class_id)
-        self.db_add(char)
-        return char
-
     def create_and_login_user(self, username, password):
-        user = self.add_user(username, password)
+        user = User(username, password)
+        insert_model(user)
         self.client.post(
             '/login',
             data=dict(username=username, password=password),
@@ -74,7 +63,6 @@ class TestFunction(flask_testing.TestCase):
             follow_redirects=True
         )
 
-    # currently cannot test deleting a character as session variables need to be accessed during the test
     def delete_char(self):
         return self.client.get(
             '/char/delete',
@@ -85,7 +73,6 @@ class TestFunction(flask_testing.TestCase):
 ##################################################################################################################
     # tests
 
-
     def test_char_needs_authentication(self):
         response = self.client.get('/char', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -93,63 +80,83 @@ class TestFunction(flask_testing.TestCase):
 
     def test_can_create_character(self):
         with self.app.app_context():
+            # setup test by creating a class
             c_name = b"Druid"
             c_desc = "This is the description for druid"
+            _class = _Class(c_name, c_desc)
+            insert_model(_class)
 
-            _class = self.add_class(c_name, c_desc)
+            # create a user and log them in
             u_name = "Test User"
             u_pass = "password"
+            self.create_and_login_user(u_name, u_pass)
 
-            ch_name_1 = b"Test Char"
+            # define the variables that will be used to create the character
+            ch_name = b"Test Char"
             race = b"This is a race"
             level = 5
             mod = 4
             mod_name = "Wisdom"
             class_id = _class.id
 
-            self.create_and_login_user(u_name, u_pass)
-
+            # send a request to create a new character
             response = self.create_char(
-                ch_name_1, race, level, mod_name, mod, class_id)
+                ch_name, race, level, mod_name, mod, class_id)
 
+            # assert we have created a character and have been redirected to its page
             self.assertIn(c_name, response.data)
-            self.assertIn(ch_name_1, response.data)
+            self.assertIn(ch_name, response.data)
             self.assertIn(race, response.data)
 
     def test_user_can_edit_character(self):
         with self.app.app_context():
+            # setup test by creating a class
             c_name = b"Druid"
             c_desc = "This is the description for druid"
+            _class = _Class(c_name, c_desc)
+            insert_model(_class)
 
-            _class = self.add_class(c_name, c_desc)
+            # create a user and log them in
             u_name = "Test User"
             u_pass = "password"
+            self.create_and_login_user(u_name, u_pass)
 
-            ch_name_1 = b"Test Char"
+            # define the variables that will be used to create the character
+            ch_name = b"Test Char"
             race = b"This is a race"
             level = 5
             mod = 4
             mod_name = "Wisdom"
             class_id = _class.id
 
-            self.create_and_login_user(u_name, u_pass)
-
+            # send a request to create a new character
             response = self.create_char(
-                ch_name_1, race, level, mod_name, mod, class_id)
+                ch_name, race, level, mod_name, mod, class_id)
+                
+            # assert we have created a character and have been redirected to its page
             self.assertIn(c_name, response.data)
-            self.assertIn(ch_name_1, response.data)
+            self.assertIn(ch_name, response.data)
             self.assertIn(race, response.data)
+
+            # create a new class
             c_name = b"Wizard"
             c_desc = "This is the description for wizard"
-            _class = self.add_class(c_name, c_desc)
+            _class = _Class(c_name, c_desc)
+            insert_model(_class)
+
+            # define new variables to update the current character with
             ch_name_2 = b"New character"
             race = b"This is a new race"
             level = 10
             mod = 8
             mod_name = "Strength"
             class_id = _class.id
+
+            # send a request to update the character
             response = self.edit_char(
                 ch_name_2, race, level, mod_name, mod, class_id)
+
+            # assert the values have been updated on the character page
             self.assertIn(c_name, response.data)
             self.assertIn(ch_name_2, response.data)
             self.assertIn(race, response.data)
@@ -157,30 +164,39 @@ class TestFunction(flask_testing.TestCase):
     def test_can_delete_char(self):
         with self.app.app_context():
 
+            # setup test by creating a class
             c_name = b"Druid"
             c_desc = "This is the description for druid"
+            _class = _Class(c_name, c_desc)
+            insert_model(_class)
 
-            _class = self.add_class(c_name, c_desc)
+            # create a user and log them in
             u_name = "Test User"
             u_pass = "password"
+            self.create_and_login_user(u_name, u_pass)
 
-            ch_name_1 = b"Test Char"
+            # define the variables that will be used to create the character
+            ch_name = b"Test Char"
             race = b"This is a race"
             level = 5
             mod = 4
             mod_name = "Wisdom"
             class_id = _class.id
 
-            user = self.create_and_login_user(u_name, u_pass)
-
-            self.create_char(
-                ch_name_1, race, level, mod_name, mod, class_id)
-
-
-            response = self.delete_char()
+            # send a request to create a new character
+            response = self.create_char(
+                ch_name, race, level, mod_name, mod, class_id)
                 
-            self.assertIn(b"homepage", response.data)
+            # assert we have created a character and have been redirected to its page
+            self.assertIn(c_name, response.data)
+            self.assertIn(ch_name, response.data)
+            self.assertIn(race, response.data)
 
+            # send a request to delete the current character
+            response = self.delete_char()
+
+            # as the current user has no more characters, assert we have been redirected to the homepage
+            self.assertIn(b"homepage", response.data)
 
 if __name__ == '__main__':
     unittest.main()

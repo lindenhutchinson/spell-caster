@@ -1,25 +1,37 @@
-from flask import flash, session
-from flask_login import current_user
 from app.db.db import db
+import inspect
 
-# returns Boolean
-# checks if the current user is authenticated
-def is_user_logged_in():
-    if current_user.is_authenticated:
-        return True
-    
-    flash("Please login first!")
-    return False
-    # todo - 
-    # keep functions consistent
-    # move session variables and flash methods to their respective controllers for better clarity
+# inserts a model object into the database
+def insert_model(model):
+    db.session.add(model)
+    db.session.commit()
 
+# inserts a model object into the database, getting the model values via a passed form
+def insert_form(model, form, *args):
+    items = []
+    for item in form:
+        if item.data and item is not form.csrf_token and item is not form.submit:
+            items.append(item.data)
 
-# inserts a model instance into the database
-def insert_obj(obj, obj_name):
+    obj = model(*items, *args)
     db.session.add(obj)
     db.session.commit()
-    flash("Created {}".format(obj_name))
+
+    return obj
+    
+# updates a model object via the values passed in a form
+def update_form(obj, form):
+    inspect.getmembers(obj)
+    inspect.getmembers(form)
+    updates = {}
+    for key in obj.__dict__.keys():
+        for f_key, f_value in form.__dict__.items():
+            if key == f_key:
+                updates.update({key:f_value.data})
+
+    obj.query.update(updates)
+    db.session.commit()
+
 
 # returns a list of ids and names to be used in a SelectField
 def get_select_choices(model, orderby):
@@ -29,28 +41,15 @@ def get_select_choices(model, orderby):
 def get_model(model, id):
     return model.query.get(id)
 
-# returns a boolean
-# checks if the referenced object exists, updates flash message if not
-def is_obj(obj, model_name):
-    if not obj:
-        flash("Couldn't find that {}!".format(model_name))
-        return False
 
-    return True
+def get_all_models(model):
+    return model.query.all()
 
 # returns the first item in a database column
 def get_default(model):
     return model.query.first()
 
-# returns a boolean
-# checks if the referenced default value exists, updates flash message if not
-def is_default(default, model_name):
-    if(not default):
-        flash("Please create a {}!".format(model_name))
-        return False
-
-    return True
-
+# deletes the referenced model
 def delete_model(model):
     model.query.filter_by(id=model.id).delete()
     db.session.commit()
