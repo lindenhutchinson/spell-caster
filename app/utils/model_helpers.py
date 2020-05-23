@@ -19,6 +19,11 @@ def insert_form(model, form, *args):
     db.session.commit()
 
     return obj
+
+def insert_seeded_model(model, data, *args):
+    obj = model(*data.items(), *args)
+    db.session.add(obj)
+    db.session.commit()
     
 # updates a model object via the values passed in a form
 def update_form(obj, form):
@@ -31,7 +36,7 @@ def update_form(obj, form):
             updates.update({key:form[key].data})
 
 
-    obj.query.update(updates)
+    obj.query.filter_by(id=obj.id).update(updates)
     db.session.commit()
 
 

@@ -1,9 +1,10 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
-from app.db.db import db
+from app.db import db
 from app.models.user import User
 from .router import routes
+
 
 
 def create_app(config):
@@ -36,11 +37,10 @@ def register_extensions(app):
     :rtype: NoneType
     """
 
-    db.init_app(app)
+    db.db.init_app(app)
     routes(app)
     login = LoginManager(app)
     bootstrap = Bootstrap(app)
-
     @login.user_loader
     def load_user(id):
         return User.query.get(int(id))

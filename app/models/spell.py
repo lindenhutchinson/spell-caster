@@ -8,7 +8,7 @@ class Spell(db.Model):
     concentration = db.Column(db.Boolean)
     ritual = db.Column(db.Boolean)
     spell_range = db.Column(db.String(128))
-    components = db.Column(db.String(128))
+    components = db.Column(db.String(500))
     duration = db.Column(db.String(128))
     school = db.Column(db.String(128))
     info = db.Column(db.String(5000))
@@ -26,24 +26,24 @@ class Spell(db.Model):
 
     def __init__(self, name, level, cast_time, spell_range, components, duration, school, info, from_book, concentration=0,ritual=0, is_bard=0, is_cleric=0, is_druid=0, is_paladin=0, is_ranger=0, is_sorcerer=0, is_warlock=0, is_wizard=0):
         self.name = name
-        self.level = level
+        self.level = int(level)
         self.cast_time=cast_time
-        self.concentration=concentration
-        self.ritual=ritual
+        self.concentration=int(concentration)
+        self.ritual=int(ritual)
         self.spell_range=spell_range
         self.components = components
         self.duration = duration
         self.school = school
         self.info = info
         self.from_book = from_book
-        self.is_bard = is_bard
-        self.is_cleric = is_cleric
-        self.is_druid = is_druid
-        self.is_paladin = is_paladin
-        self.is_ranger = is_ranger
-        self.is_sorcerer = is_sorcerer
-        self.is_warlock = is_warlock
-        self.is_wizard = is_wizard
+        self.is_bard = int(is_bard)
+        self.is_cleric = int(is_cleric)
+        self.is_druid = int(is_druid)
+        self.is_paladin = int(is_paladin)
+        self.is_ranger = int(is_ranger)
+        self.is_sorcerer = int(is_sorcerer)
+        self.is_warlock = int(is_warlock)
+        self.is_wizard = int(is_wizard)
 
     def __repr__(self):
         return '<Spell {}>'.format(self.name)

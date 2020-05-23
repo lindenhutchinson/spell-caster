@@ -2,62 +2,48 @@
 <div class="page-head row">
   <div class="col-md-10">
     <h1>{{ spell.name }}</h1>
+    <p class="tab">
+      A {% if spell.is_bard %} Bard {% endif %} {% if spell.is_cleric %}
+      Cleric {% endif %} {% if spell.is_druid %} Druid {% endif %} {% if
+      spell.is_paladin %} Paladin {% endif %} {% if spell.is_ranger %} Ranger
+      {% endif %} {% if spell.is_sorcerer %} Sorcerer {% endif %} {% if
+      spell.is_warlock %} Warlock {% endif %} {% if spell.is_wizard %} Wizard
+      {% endif %} spell
+    </p>
   </div>
   <div class="col-md-2">
-    <div class="inline">
+    <div class="inline page-head">
       <li>
-        <a
-          href="{{ url_for('create_spell') }}"
-          class="list-inline-item btn btn-block btn-success"
-          >New</a
-        >
+        <a href="{{ url_for('create_spell') }}" class="list-inline-item btn btn-block btn-success">New</a>
       </li>
       <li>
-        <a
-          href="{{ url_for('edit_spell', id=spell.id) }}"
-          class="list-inline-item btn-block btn btn-default"
-          >Edit</a
-        >
+        <a href="{{ url_for('edit_spell', id=spell.id) }}" class="list-inline-item btn-block btn btn-default">Edit</a>
       </li>
       <li>
-        <a
-          href="{{ url_for('delete_spell', id=spell.id) }}"
-          class="list-inline-item btn-block btn btn-danger"
-          onclick="return confirm('Are you sure you want to delete this spell? You cannot get it back!')"
-          >Delete</a
-        >
+        <a href="{{ url_for('delete_spell', id=spell.id) }}" class="list-inline-item btn-block btn btn-danger"
+          onclick="return confirm('Are you sure you want to delete this spell? You cannot get it back!')">Delete</a>
       </li>
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <ul>
-        <li><strong>Level: </strong>{{ spell.level }}</li>
-        <li><strong>Concentration: </strong>{{ spell.concentration }}</li>
-        <li><strong>Range: </strong>{{ spell.spell_range }}</li>
-        <li><strong>Components: </strong>{{ spell.components }}</li>
-        <li><strong>Duration: </strong>{{ spell.duration }}</li>
-        <li><strong>School: </strong>{{ spell.school }}</li>
-        <li><strong>Ritual: </strong>{{ spell.ritual }}</li>
-      </ul>
-      <p>
-        A {% if spell.is_bard %} Bard {% endif %} {% if spell.is_cleric %}
-        Cleric {% endif %} {% if spell.is_druid %} Druid {% endif %} {% if
-        spell.is_paladin %} Paladin {% endif %} {% if spell.is_ranger %} Ranger
-        {% endif %} {% if spell.is_sorcerer %} Sorcerer {% endif %} {% if
-        spell.is_warlock %} Warlock {% endif %} {% if spell.is_wizard %} Wizard
-        {% endif %} spell
-      </p>
-      <p>
-        {{ spell.from_book }}
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    {{spell.info}}
+
+<div class="row">
+  <div class="col-md-6">
+    <ul>
+      <li><strong>Level: </strong>{{ spell.level }}</li>
+      <li><strong>Concentration: </strong>{{ spell.concentration }}</li>
+      <li><strong>Range: </strong>{{ spell.spell_range }}</li>
+      <li><strong>Components: </strong>{{ spell.components }}</li>
+      <li><strong>Duration: </strong>{{ spell.duration }}</li>
+      <li><strong>School: </strong>{{ spell.school }}</li>
+      <li><strong>Ritual: </strong>{{ spell.ritual }}</li>
+      <li><strong>Book: </strong>{{ spell.from_book }}</li>
+    </ul>
   </div>
 </div>
+<div class="row">
+  {{spell.info | safe}}
+</div>
+
 
 {% endblock %}
