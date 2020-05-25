@@ -14,6 +14,8 @@ from app.db.db import db
 from app.forms import SpellForm
 
 from app.utils.model_helpers import *
+from app.tables.spell_table import SpellTable
+
 
 def create_spell():
     if not current_user.is_authenticated:
@@ -45,11 +47,13 @@ def view_spell():
 
 def view_all_spells():
     spells = get_all_models(Spell)
+    
+    table = SpellTable(spells)
     if not spells:
         flash("No spells found!")
         return redirect(url_for('create_spell'))
 
-    return render_template('all_spells.html', spells=spells, title="Spells")
+    return render_template('all_spells.html', table=table, title="Spells")
 
 def edit_spell():
     if not current_user.is_authenticated:

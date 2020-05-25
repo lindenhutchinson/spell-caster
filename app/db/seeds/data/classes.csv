@@ -1,0 +1,3153 @@
+"Bard","<div id='page-content'>
+<p><strong><em>Whether scholar, skald, or scoundrel, a bard weaves magic through words and music to inspire allies, demoralize foes, manipulate minds, create illusions, and even heal wounds. The bard is a master of song, speech, and the magic they contain.</em></strong></p>
+<p><em>You must have a Charisma score of 13 or higher in order to multiclass in or out of this class.</em></p>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='5'>The Bard</th>
+<th colspan='9'>Spell Slots per Spell Level</th>
+</tr>
+<tr>
+<th>Level</th>
+<th>Proficiency Bonus</th>
+<th>Features</th>
+<th>Cantrips Known</th>
+<th>Spells Known</th>
+<th>1st</th>
+<th>2nd</th>
+<th>3rd</th>
+<th>4th</th>
+<th>5th</th>
+<th>6th</th>
+<th>7th</th>
+<th>8th</th>
+<th>9th</th>
+</tr>
+<tr>
+<td>1st</td>
+<td>+2</td>
+<td>Spellcasting, Bardic Inspiration (d6)</td>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>+2</td>
+<td>Jack of All Trades, Song of Rest (d6)</td>
+<td>2</td>
+<td>5</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>+2</td>
+<td>Bard College, Expertise</td>
+<td>2</td>
+<td>6</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>+2</td>
+<td>Ability Score Improvement</td>
+<td>3</td>
+<td>7</td>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>+3</td>
+<td>Bardic Inspiration (d8), Font of Inspiration</td>
+<td>3</td>
+<td>8</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6th</td>
+<td>+3</td>
+<td>Countercharm, Bard College feature</td>
+<td>3</td>
+<td>9</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>7th</td>
+<td>+3</td>
+<td></td>
+<td>3</td>
+<td>10</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>8th</td>
+<td>+3</td>
+<td>Ability Score Improvement</td>
+<td>3</td>
+<td>11</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>9th</td>
+<td>+4</td>
+<td>Song of Rest (d8)</td>
+<td>3</td>
+<td>12</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10th</td>
+<td>+4</td>
+<td>Bardic Inspiration (d10), Expertise, Magical Secrets</td>
+<td>4</td>
+<td>14</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>11th</td>
+<td>+4</td>
+<td></td>
+<td>4</td>
+<td>15</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>12th</td>
+<td>+4</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>15</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>13th</td>
+<td>+5</td>
+<td>Song of Rest (d10)</td>
+<td>4</td>
+<td>16</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>14th</td>
+<td>+5</td>
+<td>Magical Secrets, Bard College feature</td>
+<td>4</td>
+<td>18</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>15th</td>
+<td>+5</td>
+<td>Bardic Inspiration (d12)</td>
+<td>4</td>
+<td>19</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>16th</td>
+<td>+5</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>19</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>17th</td>
+<td>+6</td>
+<td>Song of Rest (d12)</td>
+<td>4</td>
+<td>20</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>18th</td>
+<td>+6</td>
+<td>Magical Secrets</td>
+<td>4</td>
+<td>22</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>19th</td>
+<td>+6</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>22</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>20th</td>
+<td>+6</td>
+<td>Superior Inspiration</td>
+<td>4</td>
+<td>22</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</table>
+<div class='feature'>
+<div class='row'>
+<h1 id='toc0'><span>Class Features</span></h1>
+<div class='col-lg-12'>
+<p>As a bard, you gain the following class features.</p>
+<h5 id='toc1'><span>Hit Points</span></h5>
+<p><strong>Hit Dice:</strong> 1d8 per bard level<br/>
+<strong>Hit Points at 1st Level:</strong> 8 + your Constitution modifier<br/>
+<strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + your Constitution modifier per bard level after 1st</p>
+<h5 id='toc2'><span>Proficiencies</span></h5>
+<p><strong>Armor:</strong> Light armor<br/>
+<strong>Weapons:</strong> Simple weapons, hand crossbows, longswords, rapiers, shortswords<br/>
+<strong>Tools:</strong> Three musical instruments of your choice<br/>
+<strong>Saving Throws:</strong> Dexterity, Charisma<br/>
+<strong>Skills:</strong> Choose any three</p>
+<h5 id='toc3'><span>Equipment</span></h5>
+<p>You start with the following equipment, in addition to the equipment granted by your background:<br/>
+• (a) a rapier, (b) a longsword, or (c) any simple weapon<br/>
+• (a) a diplomat's pack or (b) an entertainer's pack<br/>
+• (a) a lute or (b) any other musical instrument<br/>
+• Leather armor and a dagger</p>
+<h3 id='toc4'><span>Spellcasting</span></h3>
+<p>You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your spells are part of your vast repertoire, magic that you can tune to different situations.</p>
+<h5 id='toc5'><span>Cantrips</span></h5>
+<p>You know two cantrips of your choice from the <a href='http://dnd5e.wikidot.com/spells:bard'>bard spell list</a>. You learn additional bard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Bard table.</p>
+<h5 id='toc6'><span>Spell Slots</span></h5>
+<p>The Bard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. For example, if you know the 1st-level spell <a href='http://dnd5e.wikidot.com/spell:cure-wounds'>Cure Wounds</a> and have a 1st-level and a 2nd-level spell slot available, you can cast <a href='http://dnd5e.wikidot.com/spell:cure-wounds'>Cure Wounds</a> using either slot.</p>
+<h5 id='toc7'><span>Spells Known of 1st Level and Higher</span></h5>
+<p>You know four 1st-level spells of your choice from the <a href='http://dnd5e.wikidot.com/spells:bard'>bard spell list</a>.</p>
+<p>The Spells Known column of the Bard table shows when you learn more bard spells of your choice. Each of these spells must be of a level for which you have spell slots, as shown on the table. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level.</p>
+<p>Additionally, when you gain a level in this class, you can choose one of the bard spells you know and replace it with another spell from the bard spell list, which also must be of a level for which you have spell slots.</p>
+<h5 id='toc8'><span>Spellcasting Ability</span></h5>
+<p>Charisma is your spellcasting ability for your bard spells. Your magic comes from the heart and soul you pour into the performance of your music or oration. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a bard spell you cast and when making an attack roll with one.</p>
+<p><strong>Spell save DC</strong> = 8 + your proficiency bonus + your Charisma modifier</p>
+<p><strong>Spell attack modifier</strong> = your proficiency bonus + your Charisma modifier</p>
+<h5 id='toc9'><span>Ritual Casting</span></h5>
+<p>You can cast any bard spell you know as a ritual if that spell has the ritual tag.</p>
+<h5 id='toc10'><span>Spellcasting Focus</span></h5>
+<p>You can use a musical instrument (found in chapter 5) as a spellcasting focus for your bard spells.</p>
+<h3 id='toc11'><span>Bardic Inspiration</span></h3>
+<p>You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6.</p>
+<p>Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the DM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.</p>
+<p>You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest.</p>
+<p>Your Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.</p>
+<h3 id='toc12'><span>Jack of All Trades</span></h3>
+<p>Starting at 2nd level, you can add half your proficiency bonus, rounded down, to any ability check you make that doesn't already include your proficiency bonus.</p>
+<h3 id='toc13'><span>Song of Rest</span></h3>
+<p>Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance spend one or more Hit Dice to regain hit points at the end of the short rest, each of those creatures regains an extra 1d6 hit points.</p>
+<h3 id='toc14'><span>Bard College</span></h3>
+<p>At 3rd level, you delve into the advanced techniques of a bard college of your choice:<br/>
+• <a href='http://dnd5e.wikidot.com/bard:college-of-creation-ua'>Creation (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/bard:eloquence'>Eloquence (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/bard:glamour'>Glamour</a><br/>
+• <a href='http://dnd5e.wikidot.com/bard:lore'>Lore</a><br/>
+• <a href='http://dnd5e.wikidot.com/bard:satire'>Satire (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/bard:swords'>Swords</a><br/>
+• <a href='http://dnd5e.wikidot.com/bard:valor'>Valor</a><br/>
+• <a href='http://dnd5e.wikidot.com/bard:whispers'>Whispers</a><br/>
+Your choice grants you features at 3rd level and again at 6th and 14th level.</p>
+<h3 id='toc15'><span>Expertise</span></h3>
+<p>At 3rd level, choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.</p>
+<p>At 10th level, you can choose another two skill proficiencies to gain this benefit.</p>
+<h3 id='toc16'><span>Ability Score Improvement</span></h3>
+<p>When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.</p>
+<h3 id='toc17'><span>Font of Inspiration</span></h3>
+<p>Beginning when you reach 5th level, you regain all of your expended uses of Bardic Inspiration when you finish a short or long rest.</p>
+<h3 id='toc18'><span>Countercharm</span></h3>
+<p>At 6th level, you gain the ability to use musical notes or words of power to disrupt mind-influencing effects. As an action, you can start a performance that lasts until the end of your next turn. During that time, you and any friendly creatures within 30 feet of you have advantage on saving throws against being frightened or charmed. A creature must be able to hear you to gain this benefit. The performance ends early if you are incapacitated or silenced or if you voluntarily end it (no action required).</p>
+<h3 id='toc19'><span>Magical Secrets</span></h3>
+<p>By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip.</p>
+<p>The chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table.</p>
+<p>You learn two additional spells from any class at 14th level and again at 18th level.</p>
+<h3 id='toc20'><span>Superior Inspiration</span></h3>
+<p>At 20th level, when you roll initiative and have no uses of Bardic Inspiration left, you regain one use.</p>
+</div>
+</div>
+</div>
+</div>"
+"Druid","<div id='page-content'>
+<p><strong><em>Whether calling on the elemental forces of nature or emulating the creatures of the animal world, druids are an embodiment of nature's resilience, cunning, and fury. They claim no mastery over nature, but see themselves as extensions of nature's indomitable will.</em></strong></p>
+<p><em>You must have a Wisdom score of 13 or higher in order to multiclass in or out of this class.</em></p>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='4'>The Druid</th>
+<th colspan='10'>Spell Slots per Spell Level</th>
+</tr>
+<tr>
+<th>Level</th>
+<th>Proficiency Bonus</th>
+<th>Features</th>
+<th>Cantrips Known</th>
+<th>1st</th>
+<th>2nd</th>
+<th>3rd</th>
+<th>4th</th>
+<th>5th</th>
+<th>6th</th>
+<th>7th</th>
+<th>8th</th>
+<th>9th</th>
+</tr>
+<tr>
+<td>1st</td>
+<td>+2</td>
+<td>Druidic, Spellcasting</td>
+<td>2</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>+2</td>
+<td>Wild Shape, Druid Circle</td>
+<td>2</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>+2</td>
+<td></td>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>+2</td>
+<td>Wild Shape improvement, Ability Score Improvement</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>+3</td>
+<td></td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6th</td>
+<td>+3</td>
+<td>Druid Circle feature</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>7th</td>
+<td>+3</td>
+<td></td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>8th</td>
+<td>+3</td>
+<td>Wild Shape improvement, Ability Score Improvement</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>9th</td>
+<td>+4</td>
+<td></td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10th</td>
+<td>+4</td>
+<td>Druid Circle feature</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>11th</td>
+<td>+4</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>12th</td>
+<td>+4</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>13th</td>
+<td>+5</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>14th</td>
+<td>+5</td>
+<td>Druid Circle feature</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>15th</td>
+<td>+5</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>16th</td>
+<td>+5</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>17th</td>
+<td>+6</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>18th</td>
+<td>+6</td>
+<td>Timeless Body, Beast Spells</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>19th</td>
+<td>+6</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>20th</td>
+<td>+6</td>
+<td>Archdruid</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</table>
+<div class='feature'>
+<div class='row'>
+<h1 id='toc0'><span>Class Features</span></h1>
+<div class='col-lg-12'>
+<p>As a druid, you gain the following class features.</p>
+<h5 id='toc1'><span>Hit Points</span></h5>
+<p><strong>Hit Dice:</strong> 1d8 per druid level<br/>
+<strong>Hit Points at 1st Level:</strong> 8 + your Constitution modifier<br/>
+<strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + your Constitution modifier per druid level after 1st</p>
+<h5 id='toc2'><span>Proficiencies</span></h5>
+<p><strong>Armor:</strong> Light armor, medium armor, shields (druids will not wear armor or use shields made of metal)<br/>
+<strong>Weapons:</strong> Clubs, daggers, darts, javelins, maces, quarterstaffs, scimitars, sickles, slings, spears<br/>
+<strong>Tools:</strong> Herbalism kit<br/>
+<strong>Saving Throws:</strong> Intelligence, Wisdom<br/>
+<strong>Skills:</strong> Choose two from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, and Survival</p>
+<h5 id='toc3'><span>Equipment</span></h5>
+<p>You start with the following equipment, in addition to the equipment granted by your background:<br/>
+• (a) a wooden shield or (b) any simple weapon<br/>
+• (a) a scimitar or (b) any simple melee weapon<br/>
+• Leather armor, an explorer's pack, and a druidic focus</p>
+<h3 id='toc4'><span>Druidic</span></h3>
+<p>You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom (Perception) check but can't decipher it without magic.</p>
+<h3 id='toc5'><span>Spellcasting</span></h3>
+<p>Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will.</p>
+<h5 id='toc6'><span>Cantrips</span></h5>
+<p>At 1st level, you know two cantrips of your choice from the <a href='http://dnd5e.wikidot.com/spells:druid'>druid spell list</a>. You learn additional druid cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Druid table.</p>
+<h5 id='toc7'><span>Preparing and Casting Spells</span></h5>
+<p>The Druid table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these druid spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.</p>
+<p>You prepare the list of druid spells that are available for you to cast, choosing from the druid spell list. When you do so, choose a number of druid spells equal to your Wisdom modifier + your Druid level (minimum of one spell). The spells must be of a level for which you have spell slots.</p>
+<p>For example, if you are a 3rd-level druid, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell <a href='http://dnd5e.wikidot.com/spell:cure-wounds'>Cure Wounds</a>, you can cast it using a 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.</p>
+<h5 id='toc8'><span>Spellcasting Ability</span></h5>
+<p>Wisdom is your spellcasting ability for your druid spells, since your magic draws upon your devotion and attunement to nature. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a druid spell you cast and when making an attack roll with one.</p>
+<p><strong>Spell save DC</strong> = 8 + your proficiency bonus + your Wisdom modifier</p>
+<p><strong>Spell attack modifier</strong> = your proficiency bonus + your Wisdom modifier</p>
+<h5 id='toc9'><span>Ritual Casting</span></h5>
+<p>You can cast a druid spell as a ritual if that spell has the ritual tag and you have the spell prepared.</p>
+<h5 id='toc10'><span>Spellcasting Focus</span></h5>
+<p>You can use a druidic focus as a spellcasting focus for your druid spells.</p>
+<h3 id='toc11'><span>Wild Shape</span></h3>
+<p>Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature twice. You regain expended uses when you finish a short or long rest.</p>
+<p>Your druid level determines the beasts you can transform into, as shown in the Beast Shapes table. At 2nd level, for example, you can transform into any beast that has a challenge rating of 1/4 or lower that doesn't have a flying or swimming speed.</p>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='4'>Beast Shapes</th>
+</tr>
+<tr>
+<th>Level</th>
+<th>Max. CR</th>
+<th>Limitations</th>
+<th>Example</th>
+</tr>
+<tr>
+<td>2nd</td>
+<td>1/4</td>
+<td>No flying or swimming speed</td>
+<td>Wolf</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>1/2</td>
+<td>No flying speed</td>
+<td>Crocodile</td>
+</tr>
+<tr>
+<td>8th</td>
+<td>1</td>
+<td></td>
+<td>Giant eagle</td>
+</tr>
+</table>
+<p>You can stay in a beast shape for a number of hours equal to half your druid level (rounded down). You then revert to your normal form unless you expend another use of this feature. You can revert to your normal form earlier by using a bonus action on your turn. You automatically revert if you fall unconscious, drop to 0 hit points, or die.</p>
+<p>While you are transformed, the following rules apply:</p>
+<p>• Your game statistics are replaced by the statistics of the beast, but you retain your alignment, personality, and Intelligence, Wisdom, and Charisma scores. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you and the bonus in its stat block is higher than yours, use the creature's bonus instead of yours. If the creature has any legendary or lair actions, you can't use them.</p>
+<p>• When you transform, you assume the beast's hit points and Hit Dice. When you revert to your normal form, you return to the number of hit points you had before you transformed. However, if you revert as a result of dropping to 0 hit points, any excess damage carries over to your normal form, For example, if you take 10 damage in animal form and have only 1 hit point left, you revert and take 9 damage. As long as the excess damage doesn't reduce your normal form to 0 hit points, you aren't knocked unconscious.</p>
+<p>• You can't cast spells, and your ability to speak or take any action that requires hands is limited to the capabilities of your beast form. Transforming doesn't break your concentration on a spell you've already cast, however, or prevent you from taking actions that are part of a spell, such as <a href='http://dnd5e.wikidot.com/spell:call-lightning'>Call Lightning</a>, that you've already cast.</p>
+<p>• You retain the benefit of any features from your class, race, or other source and can use them if the new form is physically capable of doing so. However, you can't use any of your special senses, such as darkvision, unless your new form also has that sense.</p>
+<p>• You choose whether your equipment falls to the ground in your space, merges into your new form, or is worn by it. Worn equipment functions as normal, but the DM decides whether it is practical for the new form to wear a piece of equipment, based on the creature's shape and size. Your equipment doesn't change size or shape to match the new form, and any equipment that the new form can't wear must either fall to the ground or merge with it. Equipment that merges with the form has no effect until you leave the form.</p>
+<h3 id='toc12'><span>Druid Circle</span></h3>
+<p>At 2nd level, you choose to identify with a circle of druids:<br/>
+• <a href='http://dnd5e.wikidot.com/druid:dreams'>Dreams</a><br/>
+• <a href='http://dnd5e.wikidot.com/druid:moon'>Moon</a><br/>
+• <a href='http://dnd5e.wikidot.com/druid:land'>Land</a><br/>
+• <a href='http://dnd5e.wikidot.com/druid:shepherd'>Shepherd</a><br/>
+• <a href='http://dnd5e.wikidot.com/druid:spores'>Spores</a><br/>
+• <a href='http://dnd5e.wikidot.com/druid:circle-of-stars-ua'>Stars (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/druid:twilight'>Twilight (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/druid:circle-of-wildlife-ua'>Wildfire (UA)</a><br/>
+Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.</p>
+<h3 id='toc13'><span>Ability Score Improvement</span></h3>
+<p>When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.</p>
+<h3 id='toc14'><span>Timeless Body</span></h3>
+<p>Starting at 18th level, the primal magic that you wield causes you to age more slowly. For every 10 years that pass, your body ages only 1 year.</p>
+<h3 id='toc15'><span>Beast Shapes</span></h3>
+<p>Beginning at 18th level, you can cast many of your druid spells in any shape you assume using Wild Shape. You can perform the somatic and verbal components of a druid spell while in a beast shape, but you aren't able to provide material components.</p>
+<h3 id='toc16'><span>Archdruid</span></h3>
+<p>At 20th level, you can use your Wild Shape an unlimited number of times.</p>
+</div>
+</div>
+</div>
+</div>"
+"Cleric","<div id='page-content'>
+<p><strong><em>Clerics are intermediaries between the mortal world and the distant planes of the gods. As varied as the gods they serve, clerics strive to embody the handiwork of their deities. No ordinary priest, a cleric is imbued with divine magic.<br/></em></strong></p>
+<p><em>You must have a Wisdom score of 13 or higher in order to multiclass in or out of this class.</em></p>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='4'>The Cleric</th>
+<th colspan='9'>Spell Slots per Spell Level</th>
+</tr>
+<tr>
+<th>Level</th>
+<th>Proficiency Bonus</th>
+<th>Features</th>
+<th>Cantrips Known</th>
+<th>1st</th>
+<th>2nd</th>
+<th>3rd</th>
+<th>4th</th>
+<th>5th</th>
+<th>6th</th>
+<th>7th</th>
+<th>8th</th>
+<th>9th</th>
+</tr>
+<tr>
+<td>1st</td>
+<td>+2</td>
+<td>Spellcasting, Divine Domain</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>+2</td>
+<td>Channel Divinity (x1), Divine Domain feature</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>+2</td>
+<td></td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>+2</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>+3</td>
+<td>Destroy Undead (CR 1/2)</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6th</td>
+<td>+3</td>
+<td>Channel Divinity (x2), Divine Domain feature</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>7th</td>
+<td>+3</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>8th</td>
+<td>+3</td>
+<td>Ability Score Improvement, Destroy Undead (CR 1), Divine Domain feature</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>9th</td>
+<td>+4</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10th</td>
+<td>+4</td>
+<td>Divine Intervention</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>11th</td>
+<td>+4</td>
+<td>Destroy Undead (CR 2)</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>12th</td>
+<td>+4</td>
+<td>Ability Score Improvement</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>13th</td>
+<td>+5</td>
+<td></td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>14th</td>
+<td>+5</td>
+<td>Destroy Undead (CR 3)</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>15th</td>
+<td>+5</td>
+<td></td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>16th</td>
+<td>+5</td>
+<td>Ability Score Improvement</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>17th</td>
+<td>+6</td>
+<td>Destroy Undead (CR 4), Divine Domain feature</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>18th</td>
+<td>+6</td>
+<td>Channel Divinity (x3)</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>19th</td>
+<td>+6</td>
+<td>Ability Score Improvement</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>20th</td>
+<td>+6</td>
+<td>Divine Intervention improvement</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</table>
+<div class='feature'>
+<div class='row'>
+<h1 id='toc0'><span>Class Features</span></h1>
+<div class='col-lg-12'>
+<p>As a cleric, you gain the following class features.</p>
+<h5 id='toc1'><span>Hit Points</span></h5>
+<p><strong>Hit Dice:</strong> 1d8 per cleric level<br/>
+<strong>Hit Points at 1st Level:</strong> 8 + your Constitution modifier<br/>
+<strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + your Constitution modifier per cleric level after 1st</p>
+<h5 id='toc2'><span>Proficiencies</span></h5>
+<p><strong>Armor:</strong> Light armor, medium armor, shields<br/>
+<strong>Weapons:</strong> All simple weapons<br/>
+<strong>Tools:</strong> None<br/>
+<strong>Saving Throws:</strong> Wisdom, Charisma<br/>
+<strong>Skills:</strong> Choose two from History, Insight, Medicine, Persuasion, and Religion</p>
+<h5 id='toc3'><span>Equipment</span></h5>
+<p>You start with the following equipment, in addition to the equipment granted by your background:<br/>
+• (a) a mace or (b) a warhammer (if proficient)<br/>
+• (a) scale mail, (b) leather armor, or (c) chain mail (if proficient)<br/>
+• (a) a light crossbow and 20 bolts or (b) any simple weapon<br/>
+• (a) a priest's pack or (b) an explorer's pack<br/>
+• A shield and a holy symbol</p>
+<h3 id='toc4'><span>Spellcasting</span></h3>
+<p>As a conduit for divine power, you can cast cleric spells.</p>
+<h5 id='toc5'><span>Cantrips</span></h5>
+<p>At 1st level, you know three cantrips of your choice from the <a href='http://dnd5e.wikidot.com/spells:cleric'>cleric spell list</a>. You learn additional cleric cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Cleric table.</p>
+<h5 id='toc6'><span>Spell Slots</span></h5>
+<p>The Cleric table shows how many spell slots you have to cast your spells of lst level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.</p>
+<p>You prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier + your cleric level (minimum of one spell). The spells must be of a level for which you have spell slots.</p>
+<p>For example, if you are a 3rd-level cleric, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell <a href='http://dnd5e.wikidot.com/spell:cure-wounds'>Cure Wounds</a>, you can cast it using a 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.</p>
+<p>You can change your list of prepared spells when you finish a long rest. Preparing a new list of cleric spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list.</p>
+<h5 id='toc7'><span>Spellcasting Ability</span></h5>
+<p>Wisdom is your spellcasting ability for your cleric spells. The power of your spells comes from your devotion to your deity. You use your Wisdom whenever a cleric spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a cleric spell you cast and when making an attack roll with one.</p>
+<p><strong>Spell save DC</strong> = 8 + your proficiency bonus + your Wisdom modifier</p>
+<p><strong>Spell attack modifier</strong> = your proficiency bonus + your Wisdom modifier</p>
+<h5 id='toc8'><span>Ritual Casting</span></h5>
+<p>You can cast a cleric spell as a ritual if that spell has the ritual tag and you have the spell prepared.</p>
+<h5 id='toc9'><span>Spellcasting Focus</span></h5>
+<p>You can use a holy symbol as a spellcasting focus for your cleric spells.</p>
+<h3 id='toc10'><span>Divine Domain</span></h3>
+<p>Choose one domain:<br/>
+• <a href='http://dnd5e.wikidot.com/cleric:arcana'>Arcana</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:death'>Death</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:forge'>Forge</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:grave'>Grave</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:knowledge'>Knowledge</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:life'>Life</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:light'>Light</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:nature'>Nature</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:order'>Order</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:protection'>Protection (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:tempest'>Tempest</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:trickery'>Trickery</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:twilight'>Twilight (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:unity-domain-ua'>Unity (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:war'>War</a><br/>
+The following subclass is unofficial homebrew created by WOTC affiliated DM, Matthew Mercer:<br/>
+• <a href='http://dnd5e.wikidot.com/cleric:blood'>Blood</a><br/>
+The following domains are designed for the Amonkhet setting, but may be used elsewhere with DM permission:<br/>
+• <a href='http://dnd5e.wikidot.com/cleric:solidarity'>Solidarity</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:strength'>Strength</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:ambition'>Ambition</a><br/>
+• <a href='http://dnd5e.wikidot.com/cleric:zeal'>Zeal</a><br/>
+Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.</p>
+<h5 id='toc11'><span>Domain Spells</span></h5>
+<p>Each domain has a list of spells-its domain spells that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.</p>
+<p>If you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.</p>
+<h3 id='toc12'><span>Channel Divinity</span></h3>
+<p>At 2nd level, you gain the ability to channel divine energy directly from your deity, using that energy to fuel magical effects. You start with two such effects: Turn Undead and an effect determined by your domain. Some domains grant you additional effects as you advance in levels, as noted in the domain description.</p>
+<p>When you use your Channel Divinity, you choose which effect to create. You must then finish a short or long rest to use your Channel Divinity again.</p>
+<p>Some Channel Divinity effects require saving throws. When you use such an effect from this class, the DC equals your cleric spell save DC.</p>
+<p>Beginning at 6th level, you can use your Channel Divinity twice between rests, and beginning at 18th level, you can use it three times between rests. When you finish a short or long rest, you regain your expended uses.</p>
+<h5 id='toc13'><span>Channel Divinity: Turn Undead</span></h5>
+<p>As an action, you present your holy symbol and speak a prayer censuring the undead. Each undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes any damage.</p>
+<p>A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action.</p>
+<h3 id='toc14'><span>Ability Score Improvement</span></h3>
+<p>When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.</p>
+<h3 id='toc15'><span>Destroy Undead</span></h3>
+<p>Starting at 5th level, when an undead fails its saving throw against your Turn Undead feature, the creature is instantly destroyed if its challenge rating is at or below a certain threshold, as shown in the Cleric table above.</p>
+<h3 id='toc16'><span>Divine Intervention</span></h3>
+<p>Beginning at 10th level, you can call on your deity to intervene on your behalf when your need is great.</p>
+<p>Imploring your deity's aid requires you to use your action. Describe the assistance you seek, and roll percentile dice. If you roll a number equal to or lower than your cleric level, your deity intervenes. The DM chooses the nature of the intervention; the effect of any cleric spell or cleric domain spell would be appropriate. If your deity intervenes, you can't use this feature again for 7 days. Otherwise, you can use it again after you finish a long rest.</p>
+<p>At 20th level, your call for intervention succeeds automatically, no roll required.</p>
+</div>
+</div>
+</div>
+</div>"
+"Sorcerer","<div id='page-content'>
+<p><strong><em>Sorcerers carry a magical birthright conferred upon them by an exotic bloodline, some otherworldly influence, or exposure to unknown cosmic forces. No one chooses sorcery; the power chooses the sorcerer.</em></strong></p>
+<p><em>You must have a Charisma score of 13 or higher in order to multiclass in or out of this class.</em></p>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='6'>The Sorcerer</th>
+<th colspan='9'>Spell Slots per Spell Level</th>
+</tr>
+<tr>
+<th>Level</th>
+<th>Proficiency Bonus</th>
+<th>Sorcery Points</th>
+<th>Features</th>
+<th>Cantrips Known</th>
+<th>Spells Known</th>
+<th>1st</th>
+<th>2nd</th>
+<th>3rd</th>
+<th>4th</th>
+<th>5th</th>
+<th>6th</th>
+<th>7th</th>
+<th>8th</th>
+<th>9th</th>
+</tr>
+<tr>
+<td>1st</td>
+<td>+2</td>
+<td>-</td>
+<td>Spellcasting, Sorcerous Origin</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>+2</td>
+<td>2</td>
+<td>Font of Magic</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>+2</td>
+<td>3</td>
+<td>Metamagic</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>+2</td>
+<td>4</td>
+<td>Ability Score Improvement</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>+3</td>
+<td>5</td>
+<td></td>
+<td>5</td>
+<td>6</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6th</td>
+<td>+3</td>
+<td>6</td>
+<td>Sorcerous Origin feature</td>
+<td>5</td>
+<td>7</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>7th</td>
+<td>+3</td>
+<td>7</td>
+<td></td>
+<td>5</td>
+<td>8</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>8th</td>
+<td>+3</td>
+<td>8</td>
+<td>Ability Score Improvement</td>
+<td>5</td>
+<td>9</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>9th</td>
+<td>+4</td>
+<td>9</td>
+<td></td>
+<td>5</td>
+<td>10</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10th</td>
+<td>+4</td>
+<td>10</td>
+<td>Metamagic</td>
+<td>6</td>
+<td>11</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>11th</td>
+<td>+4</td>
+<td>11</td>
+<td></td>
+<td>6</td>
+<td>12</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>12th</td>
+<td>+4</td>
+<td>12</td>
+<td>Ability Score Improvement</td>
+<td>6</td>
+<td>12</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>13th</td>
+<td>+5</td>
+<td>13</td>
+<td></td>
+<td>6</td>
+<td>13</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>14th</td>
+<td>+5</td>
+<td>14</td>
+<td>Sorcerous Origin feature</td>
+<td>6</td>
+<td>13</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>15th</td>
+<td>+5</td>
+<td>15</td>
+<td></td>
+<td>6</td>
+<td>14</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>16th</td>
+<td>+5</td>
+<td>16</td>
+<td>Ability Score Improvement</td>
+<td>6</td>
+<td>14</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>17th</td>
+<td>+6</td>
+<td>17</td>
+<td>Metamagic</td>
+<td>6</td>
+<td>15</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>18th</td>
+<td>+6</td>
+<td>18</td>
+<td>Sorcerous Origin feature</td>
+<td>6</td>
+<td>15</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>19th</td>
+<td>+6</td>
+<td>19</td>
+<td>Ability Score Improvement</td>
+<td>6</td>
+<td>15</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>20th</td>
+<td>+6</td>
+<td>20</td>
+<td>Sorcerous Restoration</td>
+<td>6</td>
+<td>15</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</table>
+<div class='feature'>
+<div class='row'>
+<h1 id='toc0'><span>Class Features</span></h1>
+<div class='col-lg-12'>
+<p>As a sorcerer, you gain the following class features.</p>
+<h5 id='toc1'><span>Hit Points</span></h5>
+<p><strong>Hit Dice:</strong> 1d6 per sorcerer level<br/>
+<strong>Hit Points at 1st Level:</strong> 6 + your Constitution modifier<br/>
+<strong>Hit Points at Higher Levels:</strong> 1d6 (or 4) + your Constitution modifier per sorcerer level after 1st</p>
+<h5 id='toc2'><span>Proficiencies</span></h5>
+<p><strong>Armor:</strong> None<br/>
+<strong>Weapons:</strong> Daggers, darts, slings, quarterstaffs, light crossbows<br/>
+<strong>Tools:</strong> None<br/>
+<strong>Sav</strong><strong>ing Throws:</strong> Constitution, Charisma<br/>
+<strong>Skills:</strong> Choose two from Arcana, Deception, Insight, Intimidation, Persuasion, and Religion</p>
+<h5 id='toc3'><span>Equipment</span></h5>
+<p>You start with the following equipment, in addition to the equipment granted by your background:<br/>
+• (a) a light crossbow and 20 bolts or (b) any simple weapon<br/>
+• (a) a component pouch or (b) an arcane focus<br/>
+• (a) a dungeoneer's pack or (b) an explorer's pack<br/>
+• Two daggers</p>
+<h3 id='toc4'><span>Spellcasting</span></h3>
+<p>An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells.</p>
+<h5 id='toc5'><span>Cantrips</span></h5>
+<p>At 1st level, you know four cantrips of your choice from the <a href='http://dnd5e.wikidot.com/spells:sorcerer'>sorcerer spell list</a>. You learn additional sorcerer cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Sorcerer table.</p>
+<h5 id='toc6'><span>Spell Slots</span></h5>
+<p>The Sorcerer table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these sorcerer spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.</p>
+<p>For example, if you know the 1st-level spell <a href='http://dnd5e.wikidot.com/spell:burning-hands'>Burning Hands</a> and have a 1st-level and a 2nd-level spell slot available, you can cast <a href='http://dnd5e.wikidot.com/spell:burning-hands'>Burning Hands</a> using either slot.</p>
+<h5 id='toc7'><span>Spells Known of 1st Level and Higher</span></h5>
+<p>You know two 1st-level spells of your choice from the <a href='http://dnd5e.wikidot.com/spells:sorcerer'>sorcerer spell list</a>.</p>
+<p>The Spells Known column of the Sorcerer table shows when you learn more sorcerer spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level.</p>
+<p>Additionally, when you gain a level in this class, you can choose one of the sorcerer spells you know and replace it with another spell from the sorcerer spell list, which also must be of a level for which you have spell slots.</p>
+<h5 id='toc8'><span>Spellcasting Ability</span></h5>
+<p>Charisma is your spellcasting ability for your sorcerer spells, since the power of your magic relies on your ability to project your will into the world. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a sorcerer spell you cast and when making an attack roll with one.</p>
+<p><strong>Spell save DC</strong> = 8 + your proficiency bonus + your Charisma modifier</p>
+<p><strong>Spell attack modifier</strong> = your proficiency bonus + your Charisma modifier</p>
+<h5 id='toc9'><span>Spellcasting Focus</span></h5>
+<p>You can use an arcane focus as a spellcasting focus for your sorcerer spells.</p>
+<h3 id='toc10'><span>Sorcerous Origin</span></h3>
+<p>Choose a sorcerous origin, which describes the source of your innate magical power:<br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:aberrant-mind-ua'>Aberrant Mind (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:clockwork-soul-ua'>Clockwork Soul (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:draconic-bloodline'>Draconic Bloodline</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:divine-soul'>Divine Soul</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:giant-soul'>Giant Soul (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:phoenix'>Phoenix (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:psionic-soul'>Psionic Soul (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:pyromancy'>Pyromancy (Kaladesh)</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:sea'>Sea (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:shadow'>Shadow</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:stone'>Stone (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:storm'>Storm</a><br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:wild-magic'>Wild Magic</a><br/>
+The following subclass is unofficial homebrew created by WOTC affiliated DM, Matthew Mercer:<br/>
+• <a href='http://dnd5e.wikidot.com/sorcerer:runechild'>Runechild</a><br/>
+Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level.</p>
+<h3 id='toc11'><span>Font of Magic</span></h3>
+<p>At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects.</p>
+<h6 id='toc12'><span>Sorcery Points</span></h6>
+<p>You have 2 sorcery points, and you gain more as you reach higher levels, as shown in the Sorcery Points column of the Sorcerer table. You can never have more sorcery points than shown on the table for your level. You regain all spent sorcery points when you finish a long rest.</p>
+<h6 id='toc13'><span>Flexible Casting</span></h6>
+<p>You can use your sorcery points to gain additional spell slots, or sacrifice spell slots to gain additional sorcery points. You learn other ways to use your sorcery points as you reach higher levels.<br/>
+<strong><em>Creating Spell Slots.</em></strong> You can transform unexpended sorcery points into one spell slot as a bonus action on your turn. The Creating Spell Slots table shows the cost of creating a spell slot of a given level. You can create spell slots no higher in level than 5th. The created spell slots vanish at the end of a long rest.</p>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='2'>Creating Spell Slots</th>
+</tr>
+<tr>
+<th>Spell Slot Level</th>
+<th>Sorcery Point Cost</th>
+</tr>
+<tr>
+<td>1st</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>5</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>6</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>7</td>
+</tr>
+</table>
+<p><strong><em>Converting a Spell Slot to Sorcery Points.</em></strong> As a bonus action on your turn, you can expend one spell slot and gain a number of sorcery points equal to the slot's level.</p>
+<h3 id='toc14'><span>Metamagic</span></h3>
+<p>At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level.</p>
+<p>You can use only one Metamagic option on a spell when you cast it, unless otherwise noted.</p>
+<h6 id='toc15'><span>• Careful Spell</span></h6>
+<p>When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. To do so, you spend 1 sorcery point and choose a number of those creatures up to your Charisma modifier (minimum of one creature). A chosen creature automatically succeeds on its saving throw against the spell.</p>
+<h6 id='toc16'><span>• Distant Spell</span></h6>
+<p>When you cast a spell that has a range of 5 feet or greater, you can spend 1 sorcery point to double the range of the spell.</p>
+<p>When you cast a spell that has a range of touch, you can spend 1 sorcery point to make the range of the spell 30 feet.</p>
+<h6 id='toc17'><span>• Empowered Spell</span></h6>
+<p>When you roll damage for a spell, you can spend 1 sorcery point to reroll a number of the damage dice up to your Charisma modifier (minimum of one). You must use the new rolls.</p>
+<p>You can use Empowered Spell even if you have already used a different Metamagic option during the casting of the spell.</p>
+<h6 id='toc18'><span>• Extended Spell</span></h6>
+<p>When you cast a spell that has a duration of 1 minute or longer, you can spend 1 sorcery point to double its duration, to a maximum duration of 24 hours.</p>
+<h6 id='toc19'><span>• Heightened Spell</span></h6>
+<p>When you cast a spell that forces a creature to make a saving throw to resist its effects, you can spend 3 sorcery points to give one target of the spell disadvantage on its first saving throw made against the spell.</p>
+<h6 id='toc20'><span>• Quickened Spell</span></h6>
+<p>When you cast a spell that has a casting time of 1 action, you can spend 2 sorcery points to change the casting time to 1 bonus action for this casting.</p>
+<h6 id='toc21'><span>• Subtle Spell</span></h6>
+<p>When you cast a spell, you can spend 1 sorcery point to cast it without any somatic or verbal components.</p>
+<h6 id='toc22'><span>• Twinned Spell</span></h6>
+<p>When you cast a spell that targets only one creature and doesn't have a range of self, you can spend a number of sorcery points equal to the spell's level to target a second creature in range with the same spell (1 sorcery point if the spell is a cantrip). To be eligible for Twinned Spell, a spell must be incapable of targeting more than one creature at the spell's current level.</p>
+<h3 id='toc23'><span>Ability Score Improvement</span></h3>
+<p>When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.</p>
+<h3 id='toc24'><span>Sorcerous Restoration</span></h3>
+<p>At 20th level, you regain 4 expended sorcery points whenever you finish a short rest.</p>
+</div>
+</div>
+</div>
+</div>"
+"Ranger","<div id='page-content'>
+<p><strong><em>Far from the bustle of cities and towns, past the hedges that shelter the most distant farms from the terrors of the wild, amid the dense-packed trees of trackless forests and across wide and empty plains, rangers keep their unending watch.</em></strong></p>
+<p><em>You must have a Dexterity score and a Wisdom score of 13 or higher in order to multiclass in or out of this class.</em></p>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='4'>The Ranger</th>
+<th colspan='9'>Spell Slots per Spell Level</th>
+</tr>
+<tr>
+<th>Level</th>
+<th>Proficiency Bonus</th>
+<th>Features</th>
+<th>Spells Known</th>
+<th>1st</th>
+<th>2nd</th>
+<th>3rd</th>
+<th>4th</th>
+<th>5th</th>
+</tr>
+<tr>
+<td>1st</td>
+<td>+2</td>
+<td>Favored Enemy, Natural Explorer</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>+2</td>
+<td>Fighting Style, Spellcasting</td>
+<td>2</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>+2</td>
+<td>Primeval Awareness, Ranger Conclave</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>+2</td>
+<td>Ability Score Improvement</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>+3</td>
+<td>Ranger Conclave feature</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6th</td>
+<td>+3</td>
+<td>Greater Favored Enemy</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>7th</td>
+<td>+3</td>
+<td>Ranger Conclave feature</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>8th</td>
+<td>+3</td>
+<td>Ability Score Improvement, Fleet of Foot</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>9th</td>
+<td>+4</td>
+<td></td>
+<td>6</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10th</td>
+<td>+4</td>
+<td>Hide in Plain Sight</td>
+<td>6</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>11th</td>
+<td>+4</td>
+<td>Ranger Conclave feature</td>
+<td>7</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>12th</td>
+<td>+4</td>
+<td>Ability Score Improvement</td>
+<td>7</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>13th</td>
+<td>+5</td>
+<td></td>
+<td>8</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>14th</td>
+<td>+5</td>
+<td>Vanish</td>
+<td>8</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>15th</td>
+<td>+5</td>
+<td>Ranger Conclave feature</td>
+<td>9</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>16th</td>
+<td>+5</td>
+<td>Ability Score Improvement</td>
+<td>9</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>17th</td>
+<td>+6</td>
+<td></td>
+<td>10</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>18th</td>
+<td>+6</td>
+<td>Feral Senses</td>
+<td>10</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>19th</td>
+<td>+6</td>
+<td>Ability Score Improvement</td>
+<td>11</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>20th</td>
+<td>+6</td>
+<td>Foe Slayer</td>
+<td>11</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</table>
+<div class='feature'>
+<div class='row'>
+<h1 id='toc0'><span>Class Features</span></h1>
+<div class='col-lg-12'>
+<p>As a ranger, you gain the following class features.</p>
+<h5 id='toc1'><span>Hit Points</span></h5>
+<p><strong>Hit Dice:</strong> 1d10 per ranger level<br/>
+<strong>Hit Points at 1st Level:</strong> 10 + your Constitution modifier<br/>
+<strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + your Constitution modifier per ranger level after 1st</p>
+<h5 id='toc2'><span>Proficiencies</span></h5>
+<p><strong>Armor:</strong> Light armor, medium armor, shields<br/>
+<strong>Weapons:</strong> Simple weapons, martial weapons<br/>
+<strong>Tools:</strong> None<br/>
+<strong>Saving Throws:</strong> Strength, Dexterity<br/>
+<strong>Skills:</strong> Choose three from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, and Survival</p>
+<h5 id='toc3'><span>Equipment</span></h5>
+<p>You start with the following equipment, in addition to the equipment granted by your background:<br/>
+• (a) scale mail or (b) leather armor<br/>
+• (a) two shortswords or (b) two simple melee weapons<br/>
+• (a) a dungeoneer's pack or (b) an explorer's pack<br/>
+• A longbow and a quiver of 20 arrows</p>
+<h3 id='toc4'><span>Favored Enemy</span></h3>
+<p>Beginning at 1st level, you have significant experience studying, tracking, hunting, and even talking to a certain type of enemy commonly encountered in the wilds.</p>
+<p>Choose a type of favored enemy: beasts, fey, humanoids, monstrosities, or undead. You gain a +2 bonus to damage rolls with weapon attacks against creatures of the chosen type. Additionally, you have advantage on Wisdom (Survival) checks to track your favored enemies, as well as on Intelligence checks to recall information about them.</p>
+<p>When you gain this feature, you also learn one language of your choice, typically one spoken by your favored enemy or creatures associated with it. However, you are free to pick any language you wish to learn.</p>
+<h3 id='toc5'><span>Natural Explorer</span></h3>
+<p>You are a master of navigating the natural world, and you react with swift and decisive action when attacked. This grants you the following benefits:</p>
+<p>• You ignore difficult terrain.</p>
+<p>• You have advantage on initiative rolls.</p>
+<p>• On your first turn during combat, you have advantage on attack rolls against creatures that have not yet acted.</p>
+<p>In addition, you are skilled at navigating the wilderness. You gain the following benefits when traveling for an hour or more:</p>
+<p>• Difficult terrain doesn’t slow your group’s travel.</p>
+<p>• Your group can’t become lost except by magical means.</p>
+<p>• Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger.</p>
+<p>• If you are traveling alone, you can move stealthily at a normal pace.</p>
+<p>• When you forage, you find twice as much food as you normally would.</p>
+<p>• While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.</p>
+<h3 id='toc6'><span>Fighting Style</span></h3>
+<p>At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again.</p>
+<h6 id='toc7'><span>• Archery</span></h6>
+<p>You gain a +2 bonus to attack rolls you make with ranged weapons.</p>
+<h6 id='toc8'><span>• Close Quarters Shooter (UA)</span></h6>
+<p>When making a ranged attack while you are within 5 feet of a hostile creature, you do not have disadvantage on the attack roll. Your ranged attacks ignore half cover and three-quarters cover against targets within 30 feet of you. You have a +1 bonus to attack rolls on ranged attacks.</p>
+<h6 id='toc9'><span>• Defense</span></h6>
+<p>While you are wearing armor, you gain a +1 bonus to AC.</p>
+<h6 id='toc10'><span>• Dueling</span></h6>
+<p>When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.</p>
+<h6 id='toc11'><span>• Mariner (UA)</span></h6>
+<p>As long as you not wearing heavy armor or using a shield, you have a swimming speed and a climbing speed equal to your normal speed, and you gain a +1 bonus to armor class.</p>
+<h6 id='toc12'><span>• Tunnel Fighter (UA)</span></h6>
+<p>As a bonus action, you can enter a defensive stance that lasts until the start of your next turn. While in your defensive stance, you can make opportunity attacks without using your reaction, and you can use your reaction to make a melee attack against a creature that moves more than 5 feet while within your reach.</p>
+<h6 id='toc13'><span>• Two-Weapon Fighting</span></h6>
+<p>When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.</p>
+<h6 id='toc14'><span>• Druidic Warrior (UA)</span></h6>
+<p>You learn two cantrips of your choice from the druid spell list. They count as ranger spells for you, and Wisdom is your spellcasting ability for them. Whenever you gain a level in this class, you can replace one of these cantrips with another cantrip from the druid spell list.</p>
+<h6 id='toc15'><span>• Blinding Fighting (UA)</span></h6>
+<p>Being unable to see a creature doesn’t impose disadvantage on your attack rolls against it, provided the creature isn’t hidden from you.</p>
+<h6 id='toc16'><span>• Interception(UA)</span></h6>
+<p>When a creature you can see hits a target that is within 5 feet of you with an attack, you can use your reaction to reduce the damage the target takes by 1d10 + your proficiency bonus (to a minimum of 0 damage). You must be wielding a shield or a simple or martial weapon to use this reaction.</p>
+<h6 id='toc17'><span>• Thrown Weapon Fighting (UA)</span></h6>
+<p>You can draw a weapon that has the thrown property as part of the attack you make with the weapon.<br/>
+In addition, when you hit with a ranged attack using a thrown weapon, you gain a +1 bonus to the damage roll.</p>
+<h6 id='toc18'><span>• Unarmed Fighting (UA)</span></h6>
+<p>Your unarmed strikes can deal bludgeoning damage equal to 1d6 + your Strength modifier. If you strike with two free hands, the d6 becomes a d8.<br/>
+When you successfully start a grapple, you can deal 1d4 bludgeoning damage to the grappled creature. Until the grapple ends, you can also deal this damage to the creature whenever you hit it with a melee attack.</p>
+<h3 id='toc19'><span>Spellcasting</span></h3>
+<p>By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does.</p>
+<h6 id='toc20'><span>Spell Slots</span></h6>
+<p>The Ranger table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.</p>
+<p>For example, if you know the 1st-level spell <a href='http://dnd5e.wikidot.com/spell:animal-friendship'>Animal Friendship</a> and have a 1st-level and a 2nd-level spell slot available, you can cast <a href='http://dnd5e.wikidot.com/spell:animal-friendship'>Animal Friendship</a> using either slot.</p>
+<h6 id='toc21'><span>Spells Known of 1st Level and Higher</span></h6>
+<p>You know two 1st-level spells of your choice from the <a href='http://dnd5e.wikidot.com/spells:ranger'>ranger spell list</a>.<br/>
+The Spells Known column of the Ranger table shows when you learn more ranger spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 5th level in this class, you can learn one new spell of 1st or 2nd level.</p>
+<p>Additionally, when you gain a level in this class, you can choose one of the ranger spells you know and replace it with another spell from the ranger spell list, which also must be of a level for which you have spell slots.</p>
+<h6 id='toc22'><span>Spellcasting Ability</span></h6>
+<p>Wisdom is your spellcasting ability for your ranger spells, since your magic draws on your attunement to nature. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a ranger spell you cast and when making an attack roll with one.</p>
+<p><strong>Spell save DC</strong> = 8 + your proficiency bonus + your Wisdom modifier</p>
+<p><strong>Spell attack modifier</strong> = your proficiency bonus + your Wisdom modifier</p>
+<h3 id='toc23'><span>Primeval Awareness</span></h3>
+<p>Beginning at 3rd level, your mastery of ranger lore allows you to establish a powerful link to beasts and to the land around you.</p>
+<p>You have an innate ability to communicate with beasts, and they recognize you as a kindred spirit. Through sounds and gestures, you can communicate simple ideas to a beast as an action, and can read its basic mood and intent. You learn its emotional state, whether it is affected by magic of any sort, its short-term needs (such as food or safety), and actions you can take (if any) to persuade it to not attack.</p>
+<p>You cannot use this ability against a creature that you have attacked within the past 10 minutes.</p>
+<p>Additionally, you can attune your senses to determine if any of your favored enemies lurk nearby. By spending 1 uninterrupted minute in concentration (as if you were concentrating on a spell), you can sense whether any of your favored enemies are present within 5 miles of you. This feature reveals which of your favored enemies are present, their numbers, and the creatures’ general direction and distance (in miles) from you.</p>
+<p>If there are multiple groups of your favored enemies within range, you learn this information for each group.</p>
+<h3 id='toc24'><span>Ranger Conclave</span></h3>
+<p>At 3rd level, you choose to emulate the ideals and training of a ranger conclave:<br/>
+• <a href='http://dnd5e.wikidot.com/ranger:beast-master'>Beast Master</a><br/>
+• <a href='http://dnd5e.wikidot.com/ranger:fey-wanderer'>Fey Wanderer (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/ranger:gloom-stalker'>Gloom Stalker</a><br/>
+• <a href='http://dnd5e.wikidot.com/ranger:horizon-walker'>Horizon Walker</a><br/>
+• <a href='http://dnd5e.wikidot.com/ranger:hunter'>Hunter</a><br/>
+• <a href='http://dnd5e.wikidot.com/ranger:monster-slayer'>Monster Slayer</a><br/>
+• <a href='http://dnd5e.wikidot.com/ranger:primeval-guardian'>Primeval Guardian (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/ranger:swarmkeeper'>Swarmkeeper (UA)</a></p>
+<p>Your choice grants you features at 3rd level and again at 7th, 11th, and 15th level.</p>
+<h3 id='toc25'><span>Ability Score Improvement</span></h3>
+<p>When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.</p>
+<h3 id='toc26'><span>Greater Favored Enemy</span></h3>
+<p>At 6th level, you are ready to hunt even deadlier game. Choose a type of greater favored enemy: aberrations, celestials, constructs, dragons, elementals, fiends, or giants. You gain all the benefits against this chosen enemy that you normally gain against your favored enemy, including an additional language. Your bonus to damage rolls against all your favored enemies increases to +4.</p>
+<p>Additionally, you have advantage on saving throws against the spells and abilities used by a greater favored enemy.</p>
+<h3 id='toc27'><span>Fleet of Foot</span></h3>
+<p>Beginning at 8th level, you can use the Dash action as a bonus action on your turn.</p>
+<h3 id='toc28'><span>Hide in Plain Sight</span></h3>
+<p>Starting at 10th level, you can remain perfectly still for long periods of time to set up ambushes.</p>
+<p>When you attempt to hide on your turn, you can opt to not move on that turn. If you avoid moving, creatures that attempt to detect you take a −10 penalty to their Wisdom (Perception) checks until the start of your next turn. You lose this benefit if you move or fall prone, either voluntarily or because of some external effect. You are still automatically detected if any effect or action causes you to no longer be hidden.</p>
+<p>If you are still hidden on your next turn, you can continue to remain motionless and gain this benefit until you are detected.</p>
+<h3 id='toc29'><span>Vanish</span></h3>
+<p>Starting at 14th level, you can use the Hide action as a bonus action on your turn. Also, you can't be tracked by nonmagical means, unless you choose to leave a trail.</p>
+<h3 id='toc30'><span>Feral Senses</span></h3>
+<p>At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you attack a creature you can't see, your inability to see it doesn't impose disadvantage on your attack rolls against it.</p>
+<p>You are also aware of the location of any invisible creature within 30 feet of you, provided that the creature isn't hidden from you and you aren't blinded or deafened.</p>
+<h3 id='toc31'><span>Foe Slayer</span></h3>
+<p>At 20th level, you become an unparalleled hunter of your enemies. Once on each of your turns, you can add your Wisdom modifier to the attack roll or the damage roll of an attack you make against one of your favored enemies. You can choose to use this feature before or after the roll, but before any effects of the roll are applied.</p>
+</div>
+</div>
+</div>
+</div>"
+"Wizard","<div id='page-content'>
+<p><strong><em>Wizards are supreme magic-users, defined and united as a class by the spells they cast. Drawing on the subtle weave of magic that permeates the cosmos, wizards cast spells of explosive fire, arcing lightning, subtle deception, brute-force mind control, and much more.</em></strong></p>
+<p><em>You must have an Intelligence score of 13 or higher in order to multiclass in or out of this class.</em></p>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='4'>The Wizard</th>
+<th colspan='9'>Spell Slots per Spell Level</th>
+</tr>
+<tr>
+<th>Level</th>
+<th>Proficiency Bonus</th>
+<th>Features</th>
+<th>Cantrips Known</th>
+<th>1st</th>
+<th>2nd</th>
+<th>3rd</th>
+<th>4th</th>
+<th>5th</th>
+<th>6th</th>
+<th>7th</th>
+<th>8th</th>
+<th>9th</th>
+</tr>
+<tr>
+<td>1st</td>
+<td>+2</td>
+<td>Spellcasting, Arcane Recovery</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>+2</td>
+<td>Arcane Tradition</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>+2</td>
+<td></td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>+2</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>+3</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6th</td>
+<td>+3</td>
+<td>Arcane Tradition feature</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>7th</td>
+<td>+3</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>8th</td>
+<td>+3</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>9th</td>
+<td>+4</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10th</td>
+<td>+4</td>
+<td>Arcane Tradition feature</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>11th</td>
+<td>+4</td>
+<td></td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>12th</td>
+<td>+4</td>
+<td>Ability Score Improvement</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>13th</td>
+<td>+5</td>
+<td></td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>14th</td>
+<td>+5</td>
+<td>Arcane Tradition feature</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>15th</td>
+<td>+5</td>
+<td></td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>16th</td>
+<td>+5</td>
+<td>Ability Score Improvement</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>17th</td>
+<td>+6</td>
+<td></td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>18th</td>
+<td>+6</td>
+<td>Spell Mastery</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>19th</td>
+<td>+6</td>
+<td>Ability Score Improvement</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>20th</td>
+<td>+6</td>
+<td>Signature Spells</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</table>
+<div class='feature'>
+<div class='row'>
+<h1 id='toc0'><span>Class Features</span></h1>
+<div class='col-lg-12'>
+<p>As a wizard, you gain the following class features.</p>
+<h5 id='toc1'><span>Hit Points</span></h5>
+<p><strong>Hit Dice:</strong> 1d6 per wizard level<br/>
+<strong>Hit Points at 1st Level:</strong> 6 + your Constitution modifier<br/>
+<strong>Hit Points at Higher Levels:</strong> 1d6 (or 4) + your Constitution modifier per wizard level after 1st</p>
+<h5 id='toc2'><span>Proficiencies</span></h5>
+<p><strong>Armor:</strong> None<br/>
+<strong>Weapons:</strong> Daggers, darts, slings, quarterstaffs, light crossbows<br/>
+<strong>Tools:</strong> None<br/>
+<strong>Saving Throws:</strong> Intelligence, Wisdom<br/>
+<strong>Skills:</strong> Choose two from Arcana, History, Insight, Investigation, Medicine, and Religion</p>
+<h5 id='toc3'><span>Equipment</span></h5>
+<p>You start with the following equipment, in addition to the equipment granted by your background:<br/>
+• (a) a quarterstaff or (b) a dagger<br/>
+• (a) a component pouch or (b) an arcane focus<br/>
+• (a) a scholar's pack or (b) an explorer's pack<br/>
+• A spellbook</p>
+<h3 id='toc4'><span>Spellcasting</span></h3>
+<p>As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.</p>
+<h5 id='toc5'><span>Cantrips</span></h5>
+<p>At 1st level, you know three cantrips of your choice from the <a href='http://dnd5e.wikidot.com/spells:wizard'>wizard spell list</a>. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table.</p>
+<h5 id='toc6'><span>Spellbook</span></h5>
+<p>At 1st level, you have a spellbook containing six 1st-level wizard spells of your choice.</p>
+<p>The spells that you add to your spellbook as you gain levels reflect the arcane research you conduct on your own, as well as intellectual breakthroughs you have had about the nature of the multiverse. You might find other spells during your adventures. You could discover a spell recorded on a scroll in an evil wizard's chest, for example, or in a dusty tome in an ancient library.</p>
+<p><strong><em>Copying a Spell into the Book.</em></strong> When you find a wizard spell of 1st level or higher, you can add it to your spellbook if it is of a level for which you have spell slots and if you can spare the time to decipher and copy it.<br/>
+Copying a spell into your spellbook involves reproducing the basic form of the spell, then deciphering the unique system of notation used by the wizard who wrote it. You must practice the spell until you understand the sounds or gestures required, then transcribe it into your spellbook using your own notation.<br/>
+For each level of the spell, the process takes 2 hours and costs 50 gp. The cost represents material components you expend as you experiment with the spell to master it, as well as the fine inks you need to record it. Once you have spent this time and money, you can prepare the spell just like your other spells.</p>
+<p><strong><em>Replacing the Book.</em></strong> You can copy a spell from your own spellbook into another book-for example, if you want<br/>
+to make a backup copy of your spellbook. This is just like copying a new spell into your spellbook, but faster and easier, since you understand your own notation and already know how to cast the spell. You need spend only 1 hour and 10 gp for each level of the copied spell.<br/>
+If you lose your spellbook, you can use the same procedure to transcribe the spells that you have prepared into a new spellbook. Filling out the remainder of your spellbook requires you to find new spells to do so, as normal. For this reason, many wizards keep backup spellbooks in a safe place.</p>
+<p><strong><em>The Book's Appearance.</em></strong> Your spellbook is a unique compilation of spells, with its own decorative flourishes and margin notes. It might be a plain, functional leather volume that you received as a gift from your master, a finely bound gilt-edged tome you found in an ancient library or even a loose collection of notes scrounged together after you lost your previous spellbook in a mishap.</p>
+<h5 id='toc7'><span>Preparing and Casting Spells</span></h5>
+<p>The Wizard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.</p>
+<p>You prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots.</p>
+<p>For example, if you're a 3rd-level wizard, you have four 1st-1evel and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from your spellbook. If you prepare the 1st-level spell <a href='http://dnd5e.wikidot.com/spell:magic-missile'>Magic Missile</a>, you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.</p>
+<p>You can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantiations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list.</p>
+<h5 id='toc8'><span>Spellcasting Ability</span></h5>
+<p>Intelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.</p>
+<p><strong>Spell save DC</strong> = 8 + your proficiency bonus + your Intelligence modifier</p>
+<p><strong>Spell attack modifier</strong> = your proficiency bonus + your Intelligence modifier</p>
+<h5 id='toc9'><span>Ritual Casting</span></h5>
+<p>You can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don't need to have the spell prepared.</p>
+<h5 id='toc10'><span>Spellcasting Focus</span></h5>
+<p>You can use an arcane focus as a spellcasting focus for your wizard spells.</p>
+<h5 id='toc11'><span>Learning Spells of 1st Level and Higher</span></h5>
+<p>Each time you gain a wizard level, you can add two wizard spells of your choice to your spellbook. Each of these spells must be of a level for which you have spell slots, as shown on the Wizard table. On your adventures, you might find other spells that you can add to your spellbook.</p>
+<h3 id='toc12'><span>Arcane Recovery</span></h3>
+<p>You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.</p>
+<p>For example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots.</p>
+<h3 id='toc13'><span>Arcane Tradition</span></h3>
+<p>When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of the following schools:<br/>
+• <a href='http://dnd5e.wikidot.com/wizard:abjuration'>Abjuration</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:bladesinger'>Bladesinger</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:chronurgy'>Chronurgy</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:conjuration'>Conjuration</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:divination'>Divination</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:enchantment'>Enchantment</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:evocation'>Evocation</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:illusion'>Illusion</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:invention'>Invention (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:lore-mastery'>Lore Mastery (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:necromancy'>Necromancy</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:school-of-onomancy-ua'>Onomancy (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:psionics'>Psionics (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:theurgy'>Theurgy (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:transmutation'>Transmutation</a><br/>
+• <a href='http://dnd5e.wikidot.com/wizard:war-magic'>War Magic</a><br/>
+Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.</p>
+<h3 id='toc14'><span>Ability Score Improvement</span></h3>
+<p>When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.</p>
+<h3 id='toc15'><span>Spell Mastery</span></h3>
+<p>At 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared. If you want to cast either spell at a higher level, you must expend a spell slot as normal.</p>
+<p>By spending 8 hours in study, you can exchange one or both of the spells you chose for different spells of the same levels.</p>
+<h3 id='toc16'><span>Signature Spells</span></h3>
+<p>When you reach 20th level, you gain mastery over two powerful spells and can cast them with little effort. Choose two 3rd-level wizard spells in your spellbook as your signature spells. You always have these spells prepared, they don't count against the number of spells you have prepared, and you can cast each of them once at 3rd level without expending a spell slot. When you do so, you can't do so again until you finish a short or long rest.</p>
+<p>If you want to cast either spell at a higher level, you must expend a spell slot as normal.</p>
+</div>
+</div>
+</div>
+</div>"
+"Paladin","<div id='page-content'>
+<p><strong><em>Whether sworn before a god's altar and the witness of a priest, in a sacred glade before nature spirits and fey beings, or in a moment of desperation and grief with the dead as the only witness, a paladin's oath is a powerful bond.</em></strong></p>
+<em>You must have a Charisma score and a Strength score of 13 or higher in order to multiclass in or out of this class.</em><br/>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='3'>The Paladin</th>
+<th colspan='9'>Spell Slots per Spell Level</th>
+</tr>
+<tr>
+<th>Level</th>
+<th>Proficiency Bonus</th>
+<th>Features</th>
+<th>1st</th>
+<th>2nd</th>
+<th>3rd</th>
+<th>4th</th>
+<th>5th</th>
+</tr>
+<tr>
+<td>1st</td>
+<td>+2</td>
+<td>Divine Sense, Lay on Hands</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>+2</td>
+<td>Fighting Style, Spellcasting, Divine Smite</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>+2</td>
+<td>Divine Health, Sacred Oath</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>+2</td>
+<td>Ability Score Improvement</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>+3</td>
+<td>Extra Attack</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6th</td>
+<td>+3</td>
+<td>Aura of Protection</td>
+<td>4</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>7th</td>
+<td>+3</td>
+<td>Sacred Oath feature</td>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>8th</td>
+<td>+3</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>9th</td>
+<td>+4</td>
+<td></td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10th</td>
+<td>+4</td>
+<td>Aura of Courage</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>11th</td>
+<td>+4</td>
+<td>Improved Divine Smite</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>12th</td>
+<td>+4</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>13th</td>
+<td>+5</td>
+<td></td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>14th</td>
+<td>+5</td>
+<td>Cleansing Touch</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>15th</td>
+<td>+5</td>
+<td>Sacred Oath feature</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>16th</td>
+<td>+5</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>17th</td>
+<td>+6</td>
+<td></td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>18th</td>
+<td>+6</td>
+<td>Aura improvements</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>19th</td>
+<td>+6</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>20th</td>
+<td>+6</td>
+<td>Sacred Oath feature</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</table>
+<div class='feature'>
+<div class='row'>
+<h1 id='toc0'><span>Class Features</span></h1>
+<div class='col-lg-12'>
+<p>As a paladin, you gain the following class features.</p>
+<h5 id='toc1'><span>Hit Points</span></h5>
+<p><strong>Hit Dice:</strong> 1d10 per paladin level<br/>
+<strong>Hit Points at 1st Level:</strong> 10 + your Constitution modifier<br/>
+<strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + your Constitution modifier per paladin level after 1st</p>
+<h5 id='toc2'><span>Proficiencies</span></h5>
+<p><strong>Armor:</strong> All armor, shields<br/>
+<strong>Weapons:</strong> Simple weapons, martial weapons<br/>
+<strong>Tools:</strong> None<br/>
+<strong>Saving Throws:</strong> Wisdom, Charisma<br/>
+<strong>Skills:</strong> Choose two from Athletics, Insight, Intimidation, Medicine, Persuasion, and Religion</p>
+<h5 id='toc3'><span>Equipment</span></h5>
+<p>You start with the following equipment, in addition to the equipment granted by your background:<br/>
+• (a) a martial weapon and a shield or (b) two martial weapons<br/>
+• (a) five javelins or (b) any simple melee weapon<br/>
+• (a) a priest's pack or (b) an explorer's pack<br/>
+• Chain mail and a holy symbol</p>
+<h3 id='toc4'><span>Divine Sense</span></h3>
+<p>The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity (the vampire Count Strahd von Zarovich, for instance). Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the <a href='http://dnd5e.wikidot.com/spell:hallow'>Hallow</a> spell.</p>
+<p>You can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses.</p>
+<h3 id='toc5'><span>Lay on Hands</span></h3>
+<p>Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level x 5.</p>
+<p>As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature. up to the maximum amount remaining in your pool.</p>
+<p>Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.</p>
+<p>This feature has no effect on undead and constructs.</p>
+<h3 id='toc6'><span>Fighting Style</span></h3>
+<p>You adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again.</p>
+<h6 id='toc7'><span>• Close Quarters Shooter (UA)</span></h6>
+<p>When making a ranged attack while you are within 5 feet of a hostile creature, you do not have disadvantage on the attack roll. Your ranged attacks ignore half cover and three-quarters cover against targets within 30 feet of you. You have a +1 bonus to attack rolls on ranged attacks.</p>
+<h6 id='toc8'><span>• Defense</span></h6>
+<p>While you are wearing armor, you gain a +1 bonus to AC.</p>
+<h6 id='toc9'><span>• Dueling</span></h6>
+<p>When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.</p>
+<h6 id='toc10'><span>• Great Weapon Fighting</span></h6>
+<p>When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll, even if the new roll is a 1 or a 2. The weapon must have the two-handed or versatile property for you to gain this benefit.</p>
+<h6 id='toc11'><span>• Mariner (UA)</span></h6>
+<p>As long as you not wearing heavy armor or using a shield, you have a swimming speed and a climbing speed equal to your normal speed, and you gain a +1 bonus to armor class.</p>
+<h6 id='toc12'><span>• Protection</span></h6>
+<p>When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield.</p>
+<h6 id='toc13'><span>• Tunnel Fighter (UA)</span></h6>
+<p>As a bonus action, you can enter a defensive stance that lasts until the start of your next turn. While in your defensive stance, you can make opportunity attacks without using your reaction, and you can use your reaction to make a melee attack against a creature that moves more than 5 feet while within your reach.</p>
+<h6 id='toc14'><span>• Blessed Warrior (UA)</span></h6>
+<p>You learn two cantrips of your choice from the cleric spell list. They count as paladin spells for you, and Charisma is your spellcasting ability for them. Whenever you gain a level in this class, you can replace one of these cantrips with another cantrip from the cleric spell list.</p>
+<h6 id='toc15'><span>• Blinding Fighting (UA)</span></h6>
+<p>Being unable to see a creature doesn’t impose disadvantage on your attack rolls against it, provided the creature isn’t hidden from you.</p>
+<h6 id='toc16'><span>• Interception(UA)</span></h6>
+<p>When a creature you can see hits a target that is within 5 feet of you with an attack, you can use your reaction to reduce the damage the target takes by 1d10 + your proficiency bonus (to a minimum of 0 damage). You must be wielding a shield or a simple or martial weapon to use this reaction.</p>
+<h6 id='toc17'><span>• Thrown Weapon Fighting (UA)</span></h6>
+<p>You can draw a weapon that has the thrown property as part of the attack you make with the weapon.<br/>
+In addition, when you hit with a ranged attack using a thrown weapon, you gain a +1 bonus to the damage roll.</p>
+<h6 id='toc18'><span>• Unarmed Fighting (UA)</span></h6>
+<p>Your unarmed strikes can deal bludgeoning damage equal to 1d6 + your Strength modifier. If you strike with two free hands, the d6 becomes a d8.<br/>
+When you successfully start a grapple, you can deal 1d4 bludgeoning damage to the grappled creature. Until the grapple ends, you can also deal this damage to the creature whenever you hit it with a melee attack.</p>
+<h3 id='toc19'><span>Spellcasting</span></h3>
+<p>By 2nd level, you have learned to draw on divine magic through meditation and prayer to cast spells as a cleric does.</p>
+<h5 id='toc20'><span>Preparing and Casting Spells</span></h5>
+<p>The Paladin table shows how many spell slots you have to cast your spells. To cast one of your paladin spells of 1st level or higher, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.</p>
+<p>You prepare the list of paladin spells that are available for you to cast, choosing from the <a href='http://dnd5e.wikidot.com/spells:paladin'>paladin spell list</a>. When you do so, choose a number of paladin spells equal to your Charisma modifier + half your paladin level, rounded down (minimum of one spell). The spells must be of a level for which you have spell slots.</p>
+<p>For example, if you are a 5th-level paladin, you have four 1st-level and two 2nd-level spell slots. With a Charisma of 14, your list of prepared spells can include four spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell <a href='http://dnd5e.wikidot.com/spell:cure-wounds'>Cure Wounds</a>, you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.</p>
+<p>You can change your list of prepared spells when you finish a long rest. Preparing a new list of paladin spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list.</p>
+<h5 id='toc21'><span>Spellcasting Ability</span></h5>
+<p>Charisma is your spellcasting ability for your paladin spells, since their power derives from the strength of your convictions. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a paladin spell you cast and when making an attack roll with one.</p>
+<p><strong>Spell save DC</strong> = 8 + your proficiency bonus + your Charisma modifier</p>
+<p><strong>Spell attack modifier</strong> = your proficiency bonus + your Charisma modifier</p>
+<h5 id='toc22'><span>Spellcasting Focus</span></h5>
+<p>You can use a holy symbol as a spellcasting focus for your paladin spells.</p>
+<h3 id='toc23'><span>Divine Smite</span></h3>
+<p>Starting at 2nd level, when you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is 2d8 for a 1st-level spell slot, plus 1d8 for each spell level higher than 1st, to a maximum of 5d8. The damage increases by 1d8 if the target is an undead or a fiend, to a maximum of 6d8.</p>
+<h3 id='toc24'><span>Divine Health</span></h3>
+<p>By 3rd level, the divine magic flowing through you makes you immune to disease.</p>
+<h3 id='toc25'><span>Sacred Oath</span></h3>
+<p>When you reach 3rd level, you swear the oath that binds you as a paladin forever. Up to this time you have been in a preparatory stage, committed to the path but not yet sworn to it. Now you choose one of the following oaths:<br/>
+• <a href='http://dnd5e.wikidot.com/paladin:ancients'>Ancients</a><br/>
+• <a href='http://dnd5e.wikidot.com/paladin:conquest'>Conquest</a><br/>
+• <a href='http://dnd5e.wikidot.com/paladin:crown'>Crown</a><br/>
+• <a href='http://dnd5e.wikidot.com/paladin:devotion'>Devotion</a><br/>
+• <a href='http://dnd5e.wikidot.com/paladin:heroism'>Heroism (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/paladin:treachery'>Treachery (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/paladin:vengeance'>Vengeance</a><br/>
+• <a href='http://dnd5e.wikidot.com/paladin:watcher'>Watchers (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/paladin:oathbreaker'>Oathbreaker</a><br/>
+Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level. Those features include oath spells and the Channel Divinity feature.</p>
+<h6 id='toc26'><span>Oath Spells</span></h6>
+<p>Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.</p>
+<p>If you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you.</p>
+<h6 id='toc27'><span>Channel Divinity</span></h6>
+<p>Your oath allows you to channel divine energy to fuel magical effects. Each Channel Divinity option provided by your oath explains how to use it.</p>
+<p>When you use your Channel Divinity, you choose which option to use. You must then finish a short or long rest to use your Channel Divinity again.</p>
+<p>Some Channel Divinity effects require saving throws. When you use such an effect from this class, the DC equals your paladin spell save DC.</p>
+<h3 id='toc28'><span>Ability Score Improvement</span></h3>
+<p>When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.</p>
+<h3 id='toc29'><span>Extra Attack</span></h3>
+<p>Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn.</p>
+<h3 id='toc30'><span>Aura of Protection</span></h3>
+<p>Starting at 6th level, whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving throw equal to your Charisma modifier (with a minimum bonus of +1). You must be conscious to grant this bonus.</p>
+<p>At 18th level, the range of this aura increases to 30 feet.</p>
+<h3 id='toc31'><span>Aura of Courage</span></h3>
+<p>Starting at 10th level, you and friendly creatures within 10 feet of you can't be frightened while you are conscious.</p>
+<p>At 18th level, the range of this aura increases to 30 feet.</p>
+<h3 id='toc32'><span>Improved Divine Smite</span></h3>
+<p>By 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra 1d8 radiant damage.</p>
+<h3 id='toc33'><span>Cleansing Touch</span></h3>
+<p>Beginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch.</p>
+<p>You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain expended uses when you finish a long rest.</p>
+</div>
+</div>
+</div>
+</div>"
+"Warlock","<div id='page-content'>
+<p><strong><em>Warlocks are seekers of the knowledge that lies hidden in the fabric of the multiverse. Through pacts made with mysterious beings of supernatural power, warlocks unlock magical effects both subtle and spectacular.</em></strong></p>
+<p><em>You must have a Charisma score of 13 or higher in order to multiclass in or out of this class.</em></p>
+<table class='wiki-content-table'>
+<tr>
+<th colspan='8'>The Warlock</th>
+</tr>
+<tr>
+<th>Level</th>
+<th>Proficiency Bonus</th>
+<th>Features</th>
+<th>Cantrips Known</th>
+<th>Spells Known</th>
+<th>Spell Slots</th>
+<th>Slot Level</th>
+<th>Invocations Known</th>
+</tr>
+<tr>
+<td>1st</td>
+<td>+2</td>
+<td>Otherworldly Patron, Pact Magic</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1st</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>+2</td>
+<td>Eldritch Invocations</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>1st</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>+2</td>
+<td>Pact Boon</td>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+<td>2nd</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>+2</td>
+<td>Ability Score Improvement</td>
+<td>3</td>
+<td>5</td>
+<td>2</td>
+<td>2nd</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>+3</td>
+<td></td>
+<td>3</td>
+<td>6</td>
+<td>2</td>
+<td>3rd</td>
+<td>3</td>
+</tr>
+<tr>
+<td>6th</td>
+<td>+3</td>
+<td>Otherworldly Patron feature</td>
+<td>3</td>
+<td>7</td>
+<td>2</td>
+<td>3rd</td>
+<td>3</td>
+</tr>
+<tr>
+<td>7th</td>
+<td>+3</td>
+<td></td>
+<td>3</td>
+<td>8</td>
+<td>2</td>
+<td>4th</td>
+<td>4</td>
+</tr>
+<tr>
+<td>8th</td>
+<td>+3</td>
+<td>Ability Score Improvement</td>
+<td>3</td>
+<td>9</td>
+<td>2</td>
+<td>4th</td>
+<td>4</td>
+</tr>
+<tr>
+<td>9th</td>
+<td>+4</td>
+<td></td>
+<td>3</td>
+<td>10</td>
+<td>2</td>
+<td>5th</td>
+<td>5</td>
+</tr>
+<tr>
+<td>10th</td>
+<td>+4</td>
+<td>Otherworldly Patron feature</td>
+<td>4</td>
+<td>10</td>
+<td>2</td>
+<td>5th</td>
+<td>5</td>
+</tr>
+<tr>
+<td>11th</td>
+<td>+4</td>
+<td>Mystic Arcanum (6th level)</td>
+<td>4</td>
+<td>11</td>
+<td>3</td>
+<td>5th</td>
+<td>5</td>
+</tr>
+<tr>
+<td>12th</td>
+<td>+4</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>11</td>
+<td>3</td>
+<td>5th</td>
+<td>6</td>
+</tr>
+<tr>
+<td>13th</td>
+<td>+5</td>
+<td>Mystic Arcanum (7th level)</td>
+<td>4</td>
+<td>12</td>
+<td>3</td>
+<td>5th</td>
+<td>6</td>
+</tr>
+<tr>
+<td>14th</td>
+<td>+5</td>
+<td>Otherworldly Patron feature</td>
+<td>4</td>
+<td>12</td>
+<td>3</td>
+<td>5th</td>
+<td>6</td>
+</tr>
+<tr>
+<td>15th</td>
+<td>+5</td>
+<td>Mystic Arcanum (8th level)</td>
+<td>4</td>
+<td>13</td>
+<td>3</td>
+<td>5th</td>
+<td>7</td>
+</tr>
+<tr>
+<td>16th</td>
+<td>+5</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>13</td>
+<td>3</td>
+<td>5th</td>
+<td>7</td>
+</tr>
+<tr>
+<td>17th</td>
+<td>+6</td>
+<td>Mystic Arcanum (9th level)</td>
+<td>4</td>
+<td>14</td>
+<td>4</td>
+<td>5th</td>
+<td>7</td>
+</tr>
+<tr>
+<td>18th</td>
+<td>+6</td>
+<td></td>
+<td>4</td>
+<td>14</td>
+<td>4</td>
+<td>5th</td>
+<td>8</td>
+</tr>
+<tr>
+<td>19th</td>
+<td>+6</td>
+<td>Ability Score Improvement</td>
+<td>4</td>
+<td>15</td>
+<td>4</td>
+<td>5th</td>
+<td>8</td>
+</tr>
+<tr>
+<td>20th</td>
+<td>+6</td>
+<td>Eldritch Master</td>
+<td>4</td>
+<td>15</td>
+<td>4</td>
+<td>5th</td>
+<td>8</td>
+</tr>
+</table>
+<div class='feature'>
+<div class='row'>
+<h1 id='toc0'><span>Class Features</span></h1>
+<div class='col-lg-12'>
+<p>As a warlock, you gain the following class features.</p>
+<h5 id='toc1'><span>Hit Points</span></h5>
+<p><strong>Hit Dice:</strong> 1d8 per warlock level<br/>
+<strong>Hit Points at 1st Level:</strong> 8 + your Constitution modifier<br/>
+<strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + your Constitution modifier per warlock level after 1st</p>
+<h5 id='toc2'><span>Proficiencies</span></h5>
+<p><strong>Armor:</strong> Light armor<br/>
+<strong>Weapons:</strong> Simple weapons<br/>
+<strong>Tools:</strong> None<br/>
+<strong>Saving Throws:</strong> Wisdom, Charisma<br/>
+<strong>Skills:</strong> Choose two from Arcana, Deception, History, Intimidation, Investigation, Nature, and Religion</p>
+<h5 id='toc3'><span>Equipment</span></h5>
+<p>You start with the following equipment, in addition to the equipment granted by your background:<br/>
+• (a) a light crossbow and 20 bolts or (b) any simple weapon<br/>
+• (a) a component pouch or (b) an arcane focus<br/>
+• (a) a scholar's pack or (b) a dungeoneer's pack<br/>
+• Leather armor, any simple weapon, and two daggers</p>
+<h3 id='toc4'><span>Otherworldly Patron</span></h3>
+<p>At 1st level, you have struck a bargain with an otherworldly being of your choice:<br/>
+• <a href='http://dnd5e.wikidot.com/warlock:archfey'>Archfey</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:celestial'>Celestial</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:fiend'>Fiend</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:great-old-one'>Great Old One</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:hexblade'>Hexblade</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:kraken'>Kraken (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:lurker-in-the-deep-ua'>Lurker in the Deep (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:the-noble-genie-ua'>Noble Genie (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:raven-queen'>Raven Queen (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:seeker'>Seeker (UA)</a><br/>
+• <a href='http://dnd5e.wikidot.com/warlock:undying'>Undying</a><br/>
+Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.</p>
+<h3 id='toc5'><span>Pact Magic</span></h3>
+<p>Your arcane research and the magic bestowed on you by your patron have given you facility with spells.</p>
+<h5 id='toc6'><span>Cantrips</span></h5>
+<p>You know two cantrips of your choice from the <a href='http://dnd5e.wikidot.com/spells:warlock'>warlock spell list</a>. You learn additional warlock cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Warlock table.</p>
+<h5 id='toc7'><span>Spell Slots</span></h5>
+<p>The Warlock table shows how many spell slots you have. The table also shows what the level of those slots is; all of your spell slots are the same level. To cast one of your warlock spells of 1st level or higher, you must expend a spell slot. You regain all expended spell slots when you finish a short or long rest.</p>
+<p>For example, when you are 5th level, you have two 3rd-level spell slots. To cast the 1st-level spell <a href='http://dnd5e.wikidot.com/spell:witch-bolt'>Witch Bolt</a>, you must spend one of those slots, and you cast it as a 3rd-level spell.</p>
+<h5 id='toc8'><span>Spells Known of 1st Level and Higher</span></h5>
+<p>At 1st level, you know two 1st-level spells of your choice from the <a href='http://dnd5e.wikidot.com/spells:warlock'>warlock spell list</a>.</p>
+<p>The Spells Known column of the Warlock table shows when you learn more warlock spells of your choice of 1st level or higher. A spell you choose must be of a level no higher than what's shown in the table's Slot Level column for your level. When you reach 6th level, for example, you learn a new warlock spell, which can be 1st, 2nd, or 3rd level.</p>
+<p>Additionally, when you gain a level in this class, you can choose one of the warlock spells you know and replace it with another spell from the warlock spell list, which also must be of a level for which you have spell slots.</p>
+<h5 id='toc9'><span>Spellcasting Ability</span></h5>
+<p>Charisma is your spellcasting ability for your warlock spells, so you use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a warlock spell you cast and when making an attack roll with one.</p>
+<p><strong>Spell save DC</strong> = 8 + your proficiency bonus + your Charisma modifier</p>
+<p><strong>Spell attack modifier</strong> = your proficiency bonus + your Charisma modifier</p>
+<h5 id='toc10'><span>Spellcasting Focus</span></h5>
+<p>You can use an arcane focus as a spellcasting focus for your warlock spells.</p>
+<h3 id='toc11'><span>Eldritch Invocations</span></h3>
+<p>In your study of occult lore, you have unearthed <a href='http://dnd5e.wikidot.com/warlock:eldritch-invocations'>eldritch invocations</a>, fragments of forbidden knowledge that imbue you with an abiding magical ability.</p>
+<p>At 2nd level, you gain two eldritch invocations of your choice. When you gain certain warlock levels, you gain additional invocations of your choice, as shown in the Invocations Known column of the Warlock table.</p>
+<p>Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level.</p>
+<p>A level prerequisite in an invocation refers to warlock level, not character level.</p>
+<h3 id='toc12'><span>Pact Boon</span></h3>
+<p>At 3rd level, your otherworldly patron bestows a gift upon you for your loyal service. You gain one of the following features of your choice.</p>
+<h6 id='toc13'><span>• Pact of the Blade</span></h6>
+<p>You can use your action to create a pact <a href='http://dnd5e.wikidot.com/weapons'>weapon</a> in your empty hand. You can choose the form that this melee weapon takes each time you create it. You are proficient with it while you wield it. This weapon counts as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.</p>
+<p>Your pact weapon disappears if it is more than 5 feet away from you for 1 minute or more. It also disappears if you use this feature again, if you dismiss the weapon (no action required), or if you die.</p>
+<p>You can transform one magic weapon into your pact weapon by performing a special ritual while you hold the weapon. You perform the ritual over the course of 1 hour, which can be done during a short rest.</p>
+<p>You can then dismiss the weapon, shunting it into an extradimensional space, and it appears whenever you create your pact weapon thereafter. You can't affect an artifact or a sentient weapon in this way. The weapon ceases being your pact weapon if you die, if you perform the 1-hour ritual on a different weapon, or if you use a 1-hour ritual to break your bond to it. The weapon appears at your feet if it is in the extradimensional space when the bond breaks.</p>
+<h6 id='toc14'><span>• Pact of the Chain</span></h6>
+<p>You learn the <a href='http://dnd5e.wikidot.com/spell:find-familiar'>Find Familiar</a> spell and can cast it as a ritual. The spell doesn't count against your number of spells known.</p>
+<p>When you cast the spell, you can choose one of the normal forms for your familiar or one of the following special forms: imp, pseudodragon, quasit, or sprite.</p>
+<p>Additionally, when you take the Attack action, you can forgo one of your own attacks to allow your familiar to use its reaction to make one attack of its own.</p>
+<h6 id='toc15'><span>• Pact of the Tome</span></h6>
+<p>Your patron gives you a grimoire called a Book of Shadows. When you gain this feature, choose three cantrips from any class's spell list. While the book is on your person, you can cast those cantrips at will. They are considered warlock spells for you, and they needn't be from the same spell list. They don't count against your number of cantrips known.</p>
+<p>If you lose your Book of Shadows, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and it destroys the previous book. The book turns to ash when you die.</p>
+<h6 id='toc16'><span>• Pact of the Star Chain (UA)</span></h6>
+<p><em><strong>Prerequisite: Seeker Patron</strong></em></p>
+<p>The Seeker grants you a chain forged from starlight, decorated with seven gleaming motes of brightness. While the chain is on your person, you know the <a href='http://dnd5e.wikidot.com/spell:augury'>Augury</a> spell and can cast it as a ritual. The spell doesn’t count against your number of spells known.</p>
+<p>Additionally, you can invoke the Seeker’s power to gain advantage on an Intelligence check while you carry this item. Once you use this ability, you cannot use it again until you complete a short or long rest.</p>
+<p>If you lose your Star Chain, you can perform a 1-hour ceremony to receive a replacement from the Seeker. The ceremony can be performed during a short or long rest, and it destroys the previous chain. The chain disappears in a flash of light when you die.</p>
+<p>The exact form of this item might be different depending on your patron. The Star Chain is inspired by the Greyhawk deity Celestian.</p>
+<h6 id='toc17'><span>• Pact of the Talisman (UA)</span></h6>
+<p>Your patron gives you a special amulet, a talisman that can aid you, or anyone else who wears it, when the need is great. When the wearer makes an ability check with a skill in which they lack proficiency, they can add a d4 to the roll.</p>
+<p>If you lose the talisman, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and it destroys the previous amulet.</p>
+<p>The talisman turns to ash when you die.</p>
+<h3 id='toc18'><span>Ability Score Improvement</span></h3>
+<p>When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.</p>
+<h3 id='toc19'><span>Mystic Arcanum</span></h3>
+<p>At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum.</p>
+<p>You can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.</p>
+<p>At higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th-level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest.</p>
+<h3 id='toc20'><span>Eldritch Master</span></h3>
+<p>At 20th level, you can draw on your inner reserve of mystical power while entreating your patron to regain expended spell slots. You can spend 1 minute entreating your patron for aid to regain all your expended spell slots from your Pact Magic feature. Once you regain spell slots with this feature, you must finish a long rest before you can do so again.</p>
+</div>
+</div>
+</div>
+</div>"

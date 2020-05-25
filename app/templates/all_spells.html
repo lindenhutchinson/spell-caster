@@ -1,6 +1,35 @@
 {% extends "base.html" %} {% block app_content %}
-<div class="container">
-  <table class="spell-table">
+<div class="container overflow-x:auto;">
+  <div class="form-group">
+    <input class="form-control" type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for spells..">
+  </div>
+  {{ table }}
+</div>
+  <script>
+    function searchFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("spell-table-id");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+  <!-- <input type="text" id="userSearch" onkeyup="search()" placeholder="Search for spells..">
+  <table class="spell-table" id="spellTable">
     <thead>
       <tr>
         <th>Name</th>
@@ -30,65 +59,6 @@
       </tr>
       {% endfor %}
     </tbody>
-  </table>
+  </table> -->
 </div>
-
-<script>
-  function myFunction() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[2];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
-  }
-
-  var getCellValue = function (tr, idx) {
-    return tr.children[idx].innerText || tr.children[idx].textContent;
-  };
-
-  var comparer = function (idx, asc) {
-    return function (a, b) {
-      return (function (v1, v2) {
-        return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
-          ? v1 - v2
-          : v1.toString().localeCompare(v2);
-      })(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-    };
-  };
-
-  // do the work...
-  Array.prototype.slice
-    .call(document.querySelectorAll("th"))
-    .forEach(function (th) {
-      th.addEventListener("click", function () {
-        var table = th.parentNode;
-        while (table.tagName.toUpperCase() != "TABLE") table = table.parentNode;
-        Array.prototype.slice
-          .call(table.querySelectorAll("tr:nth-child(n+2)"))
-          .sort(
-            comparer(
-              Array.prototype.slice.call(th.parentNode.children).indexOf(th),
-              (this.asc = !this.asc)
-            )
-          )
-          .forEach(function (tr) {
-            table.appendChild(tr);
-          });
-      });
-    });
-</script>
 {% endblock %}

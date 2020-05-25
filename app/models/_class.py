@@ -4,7 +4,7 @@ from app.db.db import db
 class _Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
-    desc = db.Column(db.String(5000))
+    desc = db.Column(db.Text(30000))
     # characters = db.relationship('Character', backref='_class', uselist=False)
     characters = db.relationship("Character", backref='_class', cascade="all, delete", passive_deletes=True)
 
