@@ -50,7 +50,7 @@ class PickClassForm(FlaskForm):
 class ClassForm(FlaskForm):
     """Create class form."""
     name = StringField('Name', [DataRequired()])
-    desc = TextAreaField('Description', [DataRequired()])
+    desc = TextAreaField('Description', [DataRequired()], render_kw={"rows": 50, "cols": 50})
     submit = SubmitField('Save')
 
 class PickNoteForm(FlaskForm):
@@ -62,7 +62,7 @@ class PickNoteForm(FlaskForm):
 class NoteForm(FlaskForm):
     """A General Notes Form""" 
     title = StringField('Title', [DataRequired()])
-    body = TextAreaField('Your thoughts...', [DataRequired()])
+    body = TextAreaField('Your thoughts...', [DataRequired()],render_kw={"rows": 50, "cols": 50})
     submit = SubmitField('Save')
 
 
@@ -73,8 +73,9 @@ class MultiCheckboxField(SelectMultipleField):
 
 
 class PickSpellForm(FlaskForm):
-    submit = SubmitField('Save')
-    spell_ids = MultiCheckboxField('Spells')
+    spell_ids = SelectField(u'Spells')
+    submit = SubmitField('Select')
+
 
 class SpellForm(FlaskForm):
     """Spell form."""
@@ -87,9 +88,9 @@ class SpellForm(FlaskForm):
     duration = StringField("Duration", [DataRequired()])
     school = StringField("School", [DataRequired()])
     info = TextAreaField("Description", [DataRequired()])
-    scaling = BooleanField("What does this spell do at higher levels?")
+    scaling = StringField("What does this spell do at higher levels?")
     from_book = StringField("What's your source?")
-    concentration = BooleanField("Requires Concentration")
+    concentration = BooleanField("Does this spell require concentration?")
     is_bard = BooleanField("Bard")
     is_cleric = BooleanField("Cleric")
     is_druid = BooleanField("Druid")

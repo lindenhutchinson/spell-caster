@@ -11,7 +11,7 @@ from app.models.spell import Spell
 
 from app.db.db import db
 
-from app.forms import SpellForm
+from app.forms import SpellForm, PickSpellForm
 
 from app.utils.model_helpers import *
 from app.tables.spell_table import SpellTable
@@ -41,9 +41,23 @@ def view_spell():
     if not spell:
         flash("Couldn't find that spell!")
         return redirect(url_for('index'))
-        
+    
+        # if the form isn't being submitted, the SelectField should show the currently selected spell
+    if request.method == 'GET':
+        form = PickSpellForm(formdata=MultiDict({'spell_ids': spell.id}))
+    else:
+        form = PickSpellForm()
 
-    return render_template('spell.html', spell=spell, title=spell.name)
+    spells = get_all_models(Spell)
+
+    # fill the SelectField with all the spells
+    form.spell_ids.choices = get_select_choices(Spell, 'name')
+
+        
+    if form.is_submitted():
+        return redirect(url_for('view_spell', id=form.spell_ids.data))
+
+    return render_template('spell.html', form=form, spell=spell, title=spell.name)
 
 def view_all_spells():
     spells = get_all_models(Spell)
