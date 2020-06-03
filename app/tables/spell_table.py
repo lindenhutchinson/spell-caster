@@ -8,7 +8,6 @@ class SpellTable(Table):
     name = LinkCol('Name', 'view_spell', url_kwargs=dict(id='id'), attr_list='name')
     level = Col('Level')
     concentration = BoolCol('Concentration')
-    ritual = BoolCol('Ritual')
     cast_time = Col('Cast Time')
     spell_range = Col('Range')
     duration = Col('Duration')

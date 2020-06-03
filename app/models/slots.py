@@ -4,8 +4,7 @@ from app.models._class import _Class
 
 
 class Slots(db.Model):
-    slot_id = db.Column(db.Integer, primary_key=True)
-    char_id = db.Column(db.Integer, db.ForeignKey('character.id'))
+    char_id = db.Column(db.Integer, db.ForeignKey('character.id'), primary_key=True)
 
     max_val = db.Column(db.Integer)
     cur_val = db.Column(db.Integer)

@@ -14,13 +14,13 @@ class SpellSeeder():
     def run(self):
         
         data = []
-        with open('app/db/seeds/data/spells.csv', encoding="utf8") as handle:
-            csv_reader = csv.reader(handle, delimiter='#')
-            line_count = 0
+        with open('app/db/seeds/data/spells.csv', encoding="utf-16") as handle:
+            csv_reader = csv.reader(handle, delimiter="#", quotechar='"')
             with self.app.app_context():
 
                 for row in csv_reader:
-
+                    if len(row) == 19:
+                        
                         insert_model(Spell(*row))
                         print("inserted a spell!")
 
@@ -32,13 +32,11 @@ class ClassSeeder():
     def run(self):
         
         data = []
-        with open('app/db/seeds/data/classes.csv', encoding="utf8") as handle:
-            csv_reader = csv.reader(handle, delimiter=',')
-            line_count = 0
+        with open('app/db/seeds/data/classes.csv', encoding="utf-16") as handle:
+            csv_reader = csv.reader(handle, delimiter=',', quotechar="'")
             with self.app.app_context():
 
                 for row in csv_reader:
                         insert_model(_Class(*row))
-                        print("inserted a spell!")
-
+                        print("inserted a class!")
         

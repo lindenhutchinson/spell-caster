@@ -2,7 +2,6 @@ import os
 
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Shell
-from flask_seeder import FlaskSeeder
 
 from app.app import create_app, register_extensions
 from app.config.config import DevelopmentConfig
