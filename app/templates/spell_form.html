@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
+app_content %}
+<style>
+    .form-inline > .checkbox {
+        width:20%;
+        padding: 5px;
+    }
+    .buttons {
+        padding-top:3em;
+        justify-content:center;
+        display:inline-block;
+    }
+</style>
+<h1>{% if title %}{{ title }}{% else %}Form{% endif %}</h1>
+<form class="form" method="post" role="form">
+  {{ form.hidden_tag() }} {{ wtf.form_errors(form, hiddens="only") }}
+
+  <div class="row">
+    <div class="col-md-6">
+      {{ wtf.form_field(form.name) }} {{ wtf.form_field(form.level) }} {{
+      wtf.form_field(form.cast_time) }} {{ wtf.form_field(form.spell_range) }}
+      {{ wtf.form_field(form.components) }} {{ wtf.form_field(form.duration) }}
+      {{ wtf.form_field(form.school) }} 
+    </div>
+    <div class="col-md-6">
+      {{ wtf.form_field(form.info) }}
+      {{ wtf.form_field(form.from_book) }}
+      {{ wtf.form_field(form.scaling) }}
+      {{ wtf.form_field(form.concentration) }} 
+      <div class="form-inline">
+        {{ wtf.form_field(form.is_bard)}}
+        {{ wtf.form_field(form.is_cleric) }} 
+        {{ wtf.form_field(form.is_druid)}} 
+        {{ wtf.form_field(form.is_paladin) }}
+      </div>
+      <div class="form-inline">
+        {{ wtf.form_field(form.is_ranger) }} 
+        {{ wtf.form_field(form.is_sorcerer) }} 
+        {{ wtf.form_field(form.is_warlock) }} 
+        {{ wtf.form_field(form.is_wizard) }}
+      </div>
+      <div class="buttons col-md-6">
+        {{wtf.form_field(form.submit) }}
+        <input
+          class="btn btn-danger"
+          action="action"
+          onclick="window.history.go(-1);"
+          type="button"
+          value="Cancel"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    
+
+
+  </div>
+</form>
+
+{% endblock %}

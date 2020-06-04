@@ -60,3 +60,10 @@ def get_default(model):
 def delete_model(model):
     model.query.filter_by(id=model.id).delete()
     db.session.commit()
+
+def delete_model_by_name(model, name):
+    model.query.filter_by(name=name).delete()
+
+
+def get_model_by_name(model, name):
+    return model.query.filter_by(name=name).first()

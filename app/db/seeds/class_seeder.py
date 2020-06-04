@@ -1,30 +1,23 @@
-from flask_seeder import Seeder, Faker, generator
+from app.models.spell import Spell
 from app.models._class import _Class
-from app.utils.model_helpers import insert_model
+from app.utils.model_helpers import insert_model, delete_model_by_name, get_model_by_name
 from app.app import create_app, register_extensions
 from app.config.config import DevelopmentConfig
+import csv
 
-# All seeders inherit from Seeder
+class ClassSeeder():
 
+    def __init__(self, app):
+        self.app = app
 
-class ClassSeeder(Seeder):
-
-    # run() will be called by Flask-Seeder
     def run(self):
-        self.app = create_app(DevelopmentConfig)
-        register_extensions(self.app)
+        with open('app/db/seeds/data/classes.csv', encoding="utf-8") as handle:
+            csv_reader = csv.reader(handle, delimiter=',', quotechar='"')
+            with self.app.app_context():
 
-        # Create a new Faker and tell it how to create Class objects
-        faker = Faker(
-            cls=_Class,
-            init={
-                "name": generator.Name(),
-                "desc": generator.Name()
-            }
-        )
-
-        # Create 5 class
-        with self.app.app_context():
-            for _class in faker.create(5):
-                print("Adding class: %s" % _class)
-                insert_model(_class)
+                for row in csv_reader:
+                    name = row[0]
+                    if get_model_by_name(_Class, name):
+                        delete_model_by_name(_Class, name)
+                    insert_model(_Class(*row))
+                    print("inserted a class!")

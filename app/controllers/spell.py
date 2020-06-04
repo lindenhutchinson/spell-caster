@@ -29,7 +29,7 @@ def create_spell():
         flash("Created spell!")
         return redirect(url_for('view_spell', id=spell.id))
 
-    return render_template('form.html', form=form, title="Create Spell")
+    return render_template('spell_form.html', form=form, title="Create Spell")
 
 def view_spell():
     default = get_default(Spell)
@@ -112,7 +112,7 @@ def edit_spell():
         flash("Updated spell!")
         return redirect(url_for('view_spell', id=spell.id))
 
-    return render_template('form.html', form=form, title="Edit Spell")
+    return render_template('spell_form.html', form=form, title="Edit Spell")
 
 
 
