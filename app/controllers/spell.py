@@ -31,19 +31,20 @@ def create_spell():
 
     return render_template('spell_form.html', form=form, title="Create Spell")
 
+
 def view_spell():
     default = get_default(Spell)
     if default is None:
         flash("No spells found!")
         return redirect(url_for('create_spell'))
 
-    spell = get_model(Spell, request.args.get('id', default = default.id, type = int))
+    spell = get_model(Spell, request.args.get(
+        'id', default=default.id, type=int))
     if not spell:
         flash("Couldn't find that spell!")
         return redirect(url_for('index'))
-        
 
-        # if the form isn't being submitted, the SelectField should show the currently selected spell
+    # if the form isn't being submitted, the SelectField should show the currently selected spell
     if request.method == 'GET':
         form = PickSpellForm(formdata=MultiDict({'spell_ids': spell.id}))
     else:
@@ -54,15 +55,19 @@ def view_spell():
     # fill the SelectField with all the spells
     form.spell_ids.choices = get_select_choices(Spell, 'name')
 
-        
     if form.is_submitted():
         return redirect(url_for('view_spell', id=form.spell_ids.data))
 
-    return render_template('spell.html',form=form, spell=spell, title=spell.name)
+    return render_template('spell.html', form=form, spell=spell, title=spell.name)
+
 
 def view_all_spells():
+    # get the url parameter
     filt = request.args.get('filter', default='', type=str)
 
+    # check if the url parameter is a valid class
+    # if it is, get the list of spells that are available to that class
+    # otherwise, just get a list of all spells
     if filt == 'Bard':
         spells = get_filtered_models(Spell, is_bard=1)
     elif filt == 'Cleric':
@@ -81,8 +86,8 @@ def view_all_spells():
         spells = get_filtered_models(Spell, is_wizard=1)
     else:
         spells = get_all_models(Spell)
-        filt= 'All'
 
+    # Find the class model associated with the filter
     _class = get_model_by_name(_Class, filt)
 
     if not spells:
@@ -91,29 +96,37 @@ def view_all_spells():
 
     table = SpellTable(spells)
 
+    # intialize the Class form
     form = PickClassForm()
+
+    # If we have a class object, that means the filter is valid
     if _class:
         if request.method == 'GET':
+            # If we have a valid filter and we aren't submitting a form, show the class name as the selected class
             form = PickClassForm(formdata=MultiDict({'class_id': _class.id}))
+    # If we don't have a valid filter and we aren't submitting a form, show 'All' as the selected class
     elif request.method == 'GET':
         form = PickClassForm(formdata=MultiDict({'class_id': 0}))
 
+    # Add the option for 'All' into the select choices
     form.class_id.choices = [(0, 'All')]
+    # Combine the class choices
     form.class_id.choices = form.class_id.choices + get_select_choices(_Class, 'name')
     if form.is_submitted():
         if form.class_id.data == '0':
             return redirect(url_for('view_all_spells', filter='All'))
-        else:   
+        else:
             return redirect(url_for('view_all_spells', filter=get_model(_Class, form.class_id.data).name))
 
     return render_template('all_spells.html', form=form, table=table, title="Spells")
+
 
 def edit_spell():
     if not current_user.is_authenticated:
         flash("Please login first!")
         return redirect(url_for('login'))
 
-    spell = get_model(Spell, request.args.get('id', type = int))
+    spell = get_model(Spell, request.args.get('id', type=int))
     if not spell:
         flash("Couldn't find that spell!")
         return redirect(url_for('view_spell'))
@@ -141,7 +154,6 @@ def edit_spell():
             'is_wizard': spell.is_wizard
         }))
 
-
     else:
         form = SpellForm()
 
@@ -154,21 +166,17 @@ def edit_spell():
     return render_template('spell_form.html', form=form, title="Edit Spell")
 
 
-
-
-
-
 def delete_spell():
     if not current_user.is_authenticated:
         flash("Please login first!")
         return redirect(url_for('login'))
-    
-    spell = get_model(Spell, request.args.get('id', type = int))
+
+    spell = get_model(Spell, request.args.get('id', type=int))
     if not spell:
         flash("Couldn't find that spell!")
         return redirect(url_for('view_spell'))
 
     delete_model(spell)
-    
+
     flash("Spell deleted!")
     return redirect(url_for('view_spell')) if get_default(Spell) else redirect(url_for('index'))

@@ -45,11 +45,6 @@ margin-left: 2.5em
 }
 
 
-.spell-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-
 
 
 .spell-table tr {

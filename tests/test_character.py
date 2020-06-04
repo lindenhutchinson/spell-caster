@@ -47,18 +47,18 @@ class TestFunction(flask_testing.TestCase):
             follow_redirects=True
         )
 
-    def create_char(self, name, race, level, saving_throw, ability_score, class_id):
+    def create_char(self, name, race, level, casting_ability, ability_score, class_id):
         return self.client.post(
             '/char/create',
-            data=dict(name=name, race=race, level=level, saving_throw=saving_throw,
+            data=dict(name=name, race=race, level=level, casting_ability=casting_ability,
                       ability_score=ability_score, class_id=class_id),
             follow_redirects=True
         )
 
-    def edit_char(self, name, race, level, saving_throw, ability_score, class_id):
+    def edit_char(self, name, race, level, casting_ability, ability_score, class_id):
         return self.client.post(
             '/char/edit',
-            data=dict(name=name, race=race, level=level, saving_throw=saving_throw,
+            data=dict(name=name, race=race, level=level, casting_ability=casting_ability,
                       ability_score=ability_score, class_id=class_id),
             follow_redirects=True
         )

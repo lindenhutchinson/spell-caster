@@ -89,13 +89,12 @@ class SpellScraper:
 
 class MakeSpell:
     def __init__(self, spell_soup, filename):
-        self.soup = spell_soup
-        self.data = self.get_data()
+        self.data = self.get_data(spell_soup)
         self.fn = filename
         self.class_list = []
 
-    def get_data(self):
-        unclean = [s.get_text() for s in self.soup.find_all("p")]
+    def get_data(self, soup):
+        unclean = [s.get_text() for s in soup.find_all("p")]
         data = []
         for d in unclean:
             d = d.strip('\r\n ')

@@ -61,6 +61,13 @@ def delete_model(model):
     model.query.filter_by(id=model.id).delete()
     db.session.commit()
 
+def kw_delete_model(model, **kwargs):
+    model.query.filter_by(**kwargs).delete()
+    db.session.commit()
+
+
+    
+
 def delete_model_by_name(model, name):
     model.query.filter_by(name=name).delete()
 

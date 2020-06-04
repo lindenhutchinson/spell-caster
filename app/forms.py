@@ -26,7 +26,7 @@ class CharacterForm(FlaskForm):
     name = StringField('Name', [DataRequired()])
     race = StringField('Race', [DataRequired()])
     level = IntegerField('Level', [DataRequired()])
-    saving_throw = StringField('Saving Throw', [DataRequired()])
+    casting_ability = StringField('Spell Casting Ability', [DataRequired()])
     ability_score = IntegerField('Ability Score', [DataRequired()])
 
     class_id = SelectField(u'Class')
@@ -49,9 +49,9 @@ class PickClassForm(FlaskForm):
 
 class ClassForm(FlaskForm):
     """Create class form."""
+    submit = SubmitField('Save')
     name = StringField('Name', [DataRequired()])
     desc = TextAreaField('Description', [DataRequired()], render_kw={"rows": 50, "cols": 50})
-    submit = SubmitField('Save')
 
 class PickNoteForm(FlaskForm):
     """Select a note form."""
@@ -61,9 +61,9 @@ class PickNoteForm(FlaskForm):
 
 class NoteForm(FlaskForm):
     """A General Notes Form""" 
+    submit = SubmitField('Save')
     title = StringField('Title', [DataRequired()])
     body = TextAreaField('Your thoughts...', [DataRequired()],render_kw={"rows": 50, "cols": 50})
-    submit = SubmitField('Save')
 
 
 
@@ -90,7 +90,7 @@ class SpellForm(FlaskForm):
     info = TextAreaField("Description", [DataRequired()])
     scaling = StringField("What does this spell do at higher levels?")
     from_book = StringField("What's your source?")
-    concentration = BooleanField("Does this spell require concentration?")
+    concentration = BooleanField("Concentration Spell")
     is_bard = BooleanField("Bard")
     is_cleric = BooleanField("Cleric")
     is_druid = BooleanField("Druid")

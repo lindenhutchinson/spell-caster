@@ -7,7 +7,7 @@ class Character(db.Model):
     race = db.Column(db.String(128))
     level = db.Column(db.Integer)
     class_resource = db.Column(db.Integer)
-    saving_throw = db.Column(db.String(128))
+    casting_ability = db.Column(db.String(128))
     ability_score = db.Column(db.Integer)
     spell_save = db.Column(db.Integer)
     spell_attack = db.Column(db.Integer)
@@ -22,12 +22,12 @@ class Character(db.Model):
     spellbook = db.relationship('Spellbook', backref='character')
     
 
-    def __init__(self, name, race, level, saving_throw, ability_score, class_id, user):
+    def __init__(self, name, race, level, casting_ability, ability_score, class_id, user):
         self.name = name
         self.race = race
         self.level = level
         self.class_resource = 2
-        self.saving_throw = saving_throw
+        self.casting_ability = casting_ability
         self.ability_score =  ability_score
         self.prof_bonus = self.get_prof_bonus()
         self.spell_save = 8 + self.ability_score + self.prof_bonus
@@ -47,6 +47,8 @@ class Character(db.Model):
             return 5
         else:
             return 6
+
+
 
     def __repr__(self):
         return '<Character {}>'.format(self.name) 

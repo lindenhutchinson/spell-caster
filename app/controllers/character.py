@@ -7,6 +7,7 @@ from werkzeug.datastructures import MultiDict
 from app.models.user import User
 from app.models.character import Character
 from app.models._class import _Class
+from app.models.slots import Slots
 
 from app.db.db import db
 
@@ -33,7 +34,7 @@ def view_char():
 
     # char = get_current_char()
     char = get_model(Character, session['char_id'])
-
+    slots = get_char_child_default(Slots)
     # the SelectField should show the currently selected character
     if request.method == 'GET':
         form = PickCharacterForm(formdata=MultiDict({'character': char.id}))
@@ -46,7 +47,7 @@ def view_char():
         session['char_id'] = form.character.data
         return redirect(url_for('view_char'))
 
-    return render_template('char.html', char=char, form=form, title=char.name)
+    return render_template('char.html', slots=slots,char=char, form=form, title=char.name)
 
 
 
@@ -61,7 +62,8 @@ def create_char():
 
     if form.is_submitted():
         char = insert_form(Character, form, current_user)
- 
+        # If a character is created, we should create some slots for them as well!
+        insert_model(Slots(char))
         flash("Created a character!")
         session['char_id'] = char.id
         return redirect(url_for('view_char'))
@@ -88,7 +90,7 @@ def edit_char():
             'name': char.name,
             'race': char.race,
             'level': char.level,
-            'saving_throw': char.saving_throw,
+            'casting_ability': char.casting_ability,
             'ability_score': char.ability_score,
             'class_id': char.class_id
         }))
@@ -98,7 +100,14 @@ def edit_char():
     form.class_id.choices = get_select_choices(_Class, 'name')
 
     if form.is_submitted():
+        # If a character's level is changed, then we should update their slots
+        slot_work=False
+        if int(form.level.data) != int(char.level):
+            slot_work=True
         update_form(char, form)
+        if slot_work:
+            kw_delete_model(Slots, char_id=char.id)
+            insert_model(Slots(get_current_char()))
         flash("Updated character!")
         return redirect(url_for('view_char'))
 
