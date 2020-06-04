@@ -27,6 +27,7 @@ def insert_seeded_model(model, data, *args):
     
 # updates a model object via the values passed in a form
 def update_form(obj, form):
+    # idk why but removing these two lines makes this break
     inspect.getmembers(obj)
     inspect.getmembers(form)
 
@@ -66,12 +67,11 @@ def kw_delete_model(model, **kwargs):
     db.session.commit()
 
 
-    
-
+# delete_model_by_name should be replaced with kw_delete_model wherever it's being used
 def delete_model_by_name(model, name):
     model.query.filter_by(name=name).delete()
 
-
+# get_model_by_name should be replaced with a kw_get_model
 def get_model_by_name(model, name):
     return model.query.filter_by(name=name).first()
 

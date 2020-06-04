@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} 
-{% block app_content %}
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
+app_content %}
 <div class="row page-head">
   <div class="col-md-6">
     <h1>{{ char.name }}</h1>
@@ -36,13 +36,21 @@
   </div>
 </div>
 <div class="container">
-  {{slots.lvl_1}}
-  {{slots.lvl_2}}
-  {{slots.lvl_3}}
-  {{slots.lvl_4}}
-  {{slots.lvl_5}}
-  {{slots.lvl_6}}
-    <p>A level {{ char.level }} {{ char.race }} {{ char._class.name }}</p>
+  {{slots.lvl_1}} {{slots.lvl_2}} {{slots.lvl_3}} {{slots.lvl_4}}
+  {{slots.lvl_5}} {{slots.lvl_6}}
+  <p>A level {{ char.level }} {{ char.race }} {{ char._class.name }}</p>
+
+  <div class="row">
+    <ul>
+      <li>Race: <strong>{{ char.race }}</strong></li>
+      <li>Level: <strong>{{ char.level }}</strong></li>
+      <li>Proficiency Bonus: <strong>+{{ char.prof_bonus }}</strong></li>
+      <li>Spell Casting Ability: <strong>{{ char.casting_ability }}</strong></li>
+      <li>Abiliy modifier: <strong>+{{ char.ability_score }}</strong></li>
+      <li>Spell Attack Bonus: <strong>{{ char.spell_attack }}</strong></li>
+      <li>Spell Save DC: <strong>{{ char.spell_save }}</strong></li>
+    </ul>
+  </div>
 </div>
 
 {% endblock %}

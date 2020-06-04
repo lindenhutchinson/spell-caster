@@ -34,7 +34,10 @@ def view_char():
 
     # char = get_current_char()
     char = get_model(Character, session['char_id'])
+
+    # get the character's spell slots 
     slots = get_char_child_default(Slots)
+    
     # the SelectField should show the currently selected character
     if request.method == 'GET':
         form = PickCharacterForm(formdata=MultiDict({'character': char.id}))

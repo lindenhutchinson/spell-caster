@@ -38,3 +38,26 @@ def logout():
     session['char_id'] = 0
     logout_user()
     return redirect(url_for('index'))
+
+'''
+    def view_user():
+        take a look at controllers/character.py - view_char()
+        we won't need most of the checks because the user is required for everything.
+        we only need to make sure the user is authenticated 
+        But it should give an idea of what controllers are doing
+
+        utils/model_helpers.py will be your friend when working with controllers 
+        
+
+    def edit_user():
+
+    view user will need a new 'view' - user.html
+    it could show the user name and their number of characters.
+    take a look at note.html for reference
+
+    for edit_user, we can use a form to easily create the edit form for a user
+    check out forms.py and form.html
+
+
+
+'''
