@@ -36,7 +36,7 @@ def routes(app):
     app.add_url_rule('/spell/edit', view_func=spell.edit_spell, methods=['GET', 'POST'])
     app.add_url_rule('/spell/delete', view_func=spell.delete_spell, methods=['GET'])
     app.add_url_rule('/spell', view_func=spell.view_spell, methods=['GET', 'POST'])
-    app.add_url_rule('/spell/all', view_func=spell.view_all_spells, methods=['GET'])
+    app.add_url_rule('/spell/all', view_func=spell.view_all_spells, methods=['GET', 'POST'])
 
     app.add_url_rule('/notes', view_func=note.view_note, methods=['GET','POST'])
     app.add_url_rule('/notes/create', view_func=note.create_note, methods=['GET','POST'])

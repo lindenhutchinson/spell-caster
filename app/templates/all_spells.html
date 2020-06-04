@@ -1,64 +1,47 @@
-{% extends "base.html" %} {% block app_content %}
-<div class="container overflow-x:auto;">
-  <div class="form-group">
-    <input class="form-control" type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for spells..">
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
+app_content %}
+<!-- <div class="container overflow-x:auto;"> -->
+<!-- <div class="container"> -->
+  <div class="row" style="padding-bottom: 1em;">
+    <div class="col-md-4">
+      {{ wtf.quick_form(form) }}
+    </div>
   </div>
-  {{ table }}
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="text"
+      id="searchInput"
+      onkeyup="searchFunction()"
+      placeholder="Search for spells.."
+    />
+  </div>
+  <div class="row" style="min-width:1000px">
+    {{ table }}
+  </div>
 </div>
-  <script>
-    function searchFunction() {
-      // Declare variables
-      var input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("searchInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("spell-table-id");
-      tr = table.getElementsByTagName("tr");
-    
-      // Loop through all table rows, and hide those who don't match the search query
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
+<script>
+  function searchFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("spell-table-id");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
         }
       }
     }
-    </script>
-  <!-- <input type="text" id="userSearch" onkeyup="search()" placeholder="Search for spells..">
-  <table class="spell-table" id="spellTable">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Level</th>
-        <th>Concentration</th>
-        <th>Ritual</th>
-        <th>Cast Time</th>
-        <th>Range</th>
-        <th>Duration</th>
-        <th>Components</th>
-        <th>School</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for spell in spells %}
-      <tr onclick = >
-        
-          <td><a href="{{ url_for('view_spell', id=spell.id) }}" target="_blank">{{spell.name}}</a></td>
-          <td>{{spell.level}}</td>
-          <td>{{spell.concentration}}</td>
-          <td>{{spell.ritual}}</td>
-          <td>{{spell.cast_time}}</td>
-          <td>{{spell.spell_range}}</td>
-          <td>{{spell.duration}}</td>
-          <td>{{spell.components}}</td>
-          <td>{{spell.school}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table> -->
-</div>
+  }
+</script>
+
 {% endblock %}

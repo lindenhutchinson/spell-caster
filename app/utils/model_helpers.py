@@ -67,3 +67,6 @@ def delete_model_by_name(model, name):
 
 def get_model_by_name(model, name):
     return model.query.filter_by(name=name).first()
+
+def get_filtered_models(model, **kwargs):
+    return model.query.filter_by(**kwargs).all()

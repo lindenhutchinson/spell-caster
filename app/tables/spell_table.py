@@ -5,7 +5,7 @@ from flask import url_for
 class SpellTable(Table):
     classes = ['spell-table']
     html_attrs = {'id':'spell-table-id'}
-    name = LinkCol('Name', 'view_spell', url_kwargs=dict(id='id'), attr_list='name')
+    name = LinkCol('Name', 'view_spell', url_kwargs=dict(id='id'), anchor_attrs={'target':'_blank'}, attr_list='name')
     level = Col('Level')
     concentration = BoolCol('Concentration')
     cast_time = Col('Cast Time')

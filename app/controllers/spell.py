@@ -11,7 +11,7 @@ from app.models.spell import Spell
 
 from app.db.db import db
 
-from app.forms import SpellForm, PickSpellForm
+from app.forms import SpellForm, PickSpellForm, PickClassForm
 
 from app.utils.model_helpers import *
 from app.tables.spell_table import SpellTable
@@ -41,7 +41,8 @@ def view_spell():
     if not spell:
         flash("Couldn't find that spell!")
         return redirect(url_for('index'))
-    
+        
+
         # if the form isn't being submitted, the SelectField should show the currently selected spell
     if request.method == 'GET':
         form = PickSpellForm(formdata=MultiDict({'spell_ids': spell.id}))
@@ -57,17 +58,55 @@ def view_spell():
     if form.is_submitted():
         return redirect(url_for('view_spell', id=form.spell_ids.data))
 
-    return render_template('spell.html', form=form, spell=spell, title=spell.name)
+    return render_template('spell.html',form=form, spell=spell, title=spell.name)
 
 def view_all_spells():
-    spells = get_all_models(Spell)
-    
-    table = SpellTable(spells)
+    filt = request.args.get('filter', default='', type=str)
+
+    if filt == 'Bard':
+        spells = get_filtered_models(Spell, is_bard=1)
+    elif filt == 'Cleric':
+        spells = get_filtered_models(Spell, is_cleric=1)
+    elif filt == 'Druid':
+        spells = get_filtered_models(Spell, is_druid=1)
+    elif filt == 'Paladin':
+        spells = get_filtered_models(Spell, is_paladin=1)
+    elif filt == 'Ranger':
+        spells = get_filtered_models(Spell, is_ranger=1)
+    elif filt == 'Sorcerer':
+        spells = get_filtered_models(Spell, is_sorcerer=1)
+    elif filt == 'Warlock':
+        spells = get_filtered_models(Spell, is_warlock=1)
+    elif filt == 'Wizard':
+        spells = get_filtered_models(Spell, is_wizard=1)
+    else:
+        spells = get_all_models(Spell)
+        filt= 'All'
+
+    _class = get_model_by_name(_Class, filt)
+
     if not spells:
         flash("No spells found!")
         return redirect(url_for('create_spell'))
 
-    return render_template('all_spells.html', table=table, title="Spells")
+    table = SpellTable(spells)
+
+    form = PickClassForm()
+    if _class:
+        if request.method == 'GET':
+            form = PickClassForm(formdata=MultiDict({'class_id': _class.id}))
+    elif request.method == 'GET':
+        form = PickClassForm(formdata=MultiDict({'class_id': 0}))
+
+    form.class_id.choices = [(0, 'All')]
+    form.class_id.choices = form.class_id.choices + get_select_choices(_Class, 'name')
+    if form.is_submitted():
+        if form.class_id.data == '0':
+            return redirect(url_for('view_all_spells', filter='All'))
+        else:   
+            return redirect(url_for('view_all_spells', filter=get_model(_Class, form.class_id.data).name))
+
+    return render_template('all_spells.html', form=form, table=table, title="Spells")
 
 def edit_spell():
     if not current_user.is_authenticated:
