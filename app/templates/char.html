@@ -51,7 +51,32 @@ app_content %}
       <li>Spell Save DC: <strong>{{ char.spell_save }}</strong></li>
     </ul>
   </div>
-  {{char_spells}}
+  {% for lvl, spells in lvls.items() %}
+  {% if spells|length > 0 %}
+  
+<div class="row" style="padding-bottom: 1em;">
+  <h3>Level {{lvl}} spells</h3>
+<table class="spell-table" id="spell-table-id">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Level</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for spell in spells %}
+    <tr href="{{ url_for('view_spell', id=spell.id) }}">
+      <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
+      <td>{{spell.level}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+
 </div>
 
 

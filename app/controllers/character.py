@@ -7,6 +7,7 @@ from werkzeug.datastructures import MultiDict
 from app.models.user import User
 from app.models.character import Character
 from app.models._class import _Class
+from app.models.spell import Spell
 from app.models.slots import Slots
 from app.models.spellbook import Spellbook
 from app.db.db import db
@@ -51,9 +52,24 @@ def view_char():
         return redirect(url_for('view_char'))
 
     spellbooks = get_all_char_child(Spellbook, 'id')
-    char_spells = [sb.spell for sb in spellbooks]
+    spellbook = get_all_char_child(Spellbook, 'id')
+    prep_spells = []
 
-    return render_template('char.html', char_spells=char_spells, slots=slots,char=char, form=form, title=char.name)
+    
+    for sb in spellbook:
+        if sb.prepared:
+            prep_spells.append(sb.spell)
+
+    
+
+    if len(prep_spells) == 0:
+        flash("Try preparing some spells!")
+
+    lvls = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
+    
+    for s in prep_spells:
+        lvls[s.level].append(s)
+    return render_template('char.html', lvls=lvls, slots=slots,char=char, form=form, title=char.name)
 
 
 
@@ -68,6 +84,18 @@ def create_char():
 
     if form.is_submitted():
         char = insert_form(Character, form, current_user)
+
+        if get_model(_Class, char.class_id).name == 'Druid':
+            for s in kw_get_models(Spell, is_druid=1):
+                if int(s.level) == 0:
+                    continue
+                insert_model(Spellbook(char.id, s))
+        elif get_model(_Class, char.class_id).name == 'Cleric':
+            for s in kw_get_models(Spell, is_cleric=1): 
+                if int(s.level) == 0:
+                    continue
+                insert_model(Spellbook(char.id, s))
+
         # If a character is created, we should create some slots for them as well!
         insert_model(Slots(char))
         flash("Created a character!")

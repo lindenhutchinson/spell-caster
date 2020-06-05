@@ -62,11 +62,15 @@ def prepare_spells():
     spellbook = get_all_char_child(Spellbook, 'id')
     prep_spells = []
     spells = []
+    
     for sb in spellbook:
+        if sb.spell.level == 0:
+            update_model(sb, {'prepared':True})
         spells.append(sb.spell)
         if sb.prepared:
             prep_spells.append(sb.spell.id)
 
+    
 
     if not spells:
         flash("No spells found!")

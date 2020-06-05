@@ -23,8 +23,8 @@
         {% for lvl, spells in lvls.items() %}
         {% if spells|length > 0 %}
       <div class="row" style="padding-bottom: 1em;">
-        <h3>Level {{lvl}} spells</h3>
-      <table class="spell-table" id="spell-table-id">
+      <h3 class="btn btn-default" onclick="collapse_table('{{lvl}}')">Level {{lvl}} spells</h3>
+<table style="display:none" class="spell-table" id="{{lvl}}">
         <thead>
           <tr>
             <th>Known</th>
@@ -123,7 +123,14 @@
           }
         }
     
-    
+    function collapse_table(table_id){
+        var table = document.getElementById(table_id);
+        if(table.style.display == 'none'){
+            table.style.display = 'contents'
+        } else {
+            table.style.display = 'none';
+        }
+    }
       </script>
     
       {% endblock %}
