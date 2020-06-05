@@ -30,22 +30,73 @@ def learn_spell():
         sb = Spellbook(char_id, spell)
         insert_model(sb)
         return "Added Spellbook"
+        
+def prepare_spell():
+    char_id = session['char_id']
+    spell_id = request.json['spell_id']
+    spell = get_model(Spell, spell_id)
 
-def learn_spells():
+    sb = kw_get_model(Spellbook, spell_id=spell_id,char_id=char_id)
+    update_model(sb, {'prepared':not sb.prepared})
+    return "Toggled prepared"
+
+def prepare_spells():
     # check user is authenticated
     if not current_user.is_authenticated:
-        flash("Please login first!")
+        flash('Please login first!')
         return redirect(url_for('login'))
 
     # check user has characters
     if not user_has_characters():
-        flash("Please create a character first!")
+        flash('Create a character to prepare spells')
         return redirect(url_for('create_char'))
+
         
     # check user has a selected character
     if not is_char_id_set():
-        flash("Please select a character first!")  
+        flash('Select a character to prepare spells')
         return redirect(url_for('view_char'))
+
+
+    char = get_model(Character, session['char_id'])
+    spellbook = get_all_char_child(Spellbook, 'id')
+    prep_spells = []
+    spells = []
+    for sb in spellbook:
+        spells.append(sb.spell)
+        if sb.prepared:
+            prep_spells.append(sb.spell.id)
+
+
+    if not spells:
+        flash("No spells found!")
+        return redirect(url_for('create_spell'))
+
+    lvls = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
+    
+    for s in spells:
+        lvls[s.level].append(s)
+
+    return render_template('prep_spells.html', prep_spells=prep_spells, char=char, lvls=lvls, title="Prepare Spells")
+
+
+def learn_spells():
+    # check user is authenticated
+    if not current_user.is_authenticated:
+        flash('Create an account to see more!')
+        return redirect(url_for('view_all_spells'))
+
+    # check user has characters
+    if not user_has_characters():
+        flash('Create a character to learn spells')
+        return redirect(url_for('view_all_spells'))
+
+        
+    # check user has a selected character
+    if not is_char_id_set():
+        flash('Select a character to learn spells')
+        return redirect(url_for('view_all_spells'))
+
 
     char = get_model(Character, session['char_id'])
 

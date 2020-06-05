@@ -135,6 +135,6 @@ def delete_char():
         session['char_id'] = get_default_char_id()
         return redirect(url_for('view_char'))
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('view_all_spells'))
 
     

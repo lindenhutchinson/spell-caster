@@ -1,12 +1,40 @@
 {% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
 app_content %}
+<style>
+  .opt {
+    width:51%;
+    float:right;
+  }
+  .opts {
+    padding: 1.5em;
+  }
+</style>
+  <div class="container">
 
+      <h2>Picking spells for <strong>{{char.name}}</strong></h2>
+  
+
+  
+
+   
+
+  </div>
 <div class="container">
-  <h2>Picking spells for {{char.name}}</h2>
 
-  <div class="row" style="padding-bottom: 1em;">
+  <div class="row" style="padding-bottom: 2em;">
     <div class="col-md-4">
       {{ wtf.quick_form(classForm) }}
+    </div>
+    <div class="col-md-8">
+      <div class="opts">
+        <a class="opt btn btn-block btn-default" href="{{url_for('prepare_spells') }}">Prepare spells</a>
+      </div>
+      <div class="opts">
+        <a class="opt btn btn-block btn-default" href="{{url_for('view_all_spells')}}">Take a better look at spells</a>
+      </div>
+      <div class="opts">
+        <a class="opt btn btn-block btn-default" href="{{url_for('view_char') }}">Change character</a>
+      </div>
     </div>
   </div>
 <div class="form-group">
@@ -30,8 +58,8 @@ app_content %}
     <tbody>
       {% for spell in spells %}
       <tr href="{{ url_for('view_spell', id=spell.id) }}">
-        <td><button id="{{spell.id}}" onclick="learnSpell('{{spell.id}}')" {% if spell.id in spellbook %} class="btn btn-warning" >Forget{% else %} class="btn btn-primary" >Learn{% endif %}</button></td>
-        <!-- <td><button class="btn btn-warning">Forget</button></td> -->
+        <td><button id="{{spell.id}}" onclick="learnSpell('{{spell.id}}')" {% if spell.id in spellbook %} class="btn btn-success" >Forget{% else %} class="btn btn-primary" >Learn{% endif %}</button></td>
+        <!-- <td><button class="btn btn-success">Forget</button></td> -->
         <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
         <td>{{spell.level}}</td>
       </tr>
@@ -110,7 +138,7 @@ app_content %}
       var btn = document.getElementById(spell_id);
       if(btn.innerHTML == 'Learn') {
         btn.innerHTML = 'Forget'
-        btn.classList = 'btn btn-warning'
+        btn.classList = 'btn btn-success'
       } else {
         btn.innerHTML = 'Learn'
         btn.classList = 'btn btn-primary'

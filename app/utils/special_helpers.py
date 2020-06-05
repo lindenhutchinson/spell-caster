@@ -29,3 +29,7 @@ def get_filtered_spells(filter):
 
     # Find the class model associated with the filter
     return spells
+
+def toggle_prepared_sb(sb):
+    obj.query.filter_by(id=sb.id).update({'prepared':not sb.prepared})
+    db.session.commit()

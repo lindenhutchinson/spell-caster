@@ -17,7 +17,9 @@ def routes(app):
     app.register_error_handler(500, home.error_pages)
 
     # Add your Url rules here
-    app.add_url_rule('/', view_func=home.index)
+    # app.add_url_rule('/', view_func=home.index)
+    app.add_url_rule('/', view_func=spell.view_all_spells, methods=['GET', 'POST'])
+
     app.add_url_rule('/register', view_func=user.register, methods=['GET','POST'])
     app.add_url_rule('/login', view_func=user.login, methods=['GET','POST'])
     app.add_url_rule('/logout', view_func=user.logout)
@@ -42,6 +44,8 @@ def routes(app):
     app.add_url_rule('/spell', view_func=spell.view_spell, methods=['GET', 'POST'])
     app.add_url_rule('/spell/all', view_func=spell.view_all_spells, methods=['GET', 'POST'])
 
+    app.add_url_rule('/spell/prepare', view_func=spellbook.prepare_spells, methods=['GET', 'POST'])
+    app.add_url_rule('/spell/prepare/add', view_func=spellbook.prepare_spell, methods=['POST'])
     app.add_url_rule('/spell/learn', view_func=spellbook.learn_spells, methods=['GET', 'POST'])
     app.add_url_rule('/spell/learn/add', view_func=spellbook.learn_spell, methods=['POST'])
 

@@ -40,7 +40,9 @@ def update_form(obj, form):
     obj.query.filter_by(id=obj.id).update(updates)
     db.session.commit()
 
-
+def update_model(obj, updates):
+    obj.query.filter_by(id=obj.id).update(updates)
+    db.session.commit()
 # returns a list of ids and names to be used in a SelectField
 def get_select_choices(model, orderby):
     return [(g.id, g.name) for g in model.query.order_by(orderby).all()]

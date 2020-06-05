@@ -20,7 +20,7 @@ def register():
 
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('view_all_spells'))
     form = LoginForm()
     if form.is_submitted():
         user = User.query.filter_by(username=form.username.data).first()
@@ -30,14 +30,14 @@ def login():
         
         login_user(user, remember=form.remember_me.data)
         session['char_id'] = 0
-        return redirect(url_for('index'))
+        return redirect(url_for('view_all_spells'))
 
     return render_template('form.html', form=form, title="Login")
 
 def logout():
     session['char_id'] = 0
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('view_all_spells'))
 
 '''
     def view_user():
