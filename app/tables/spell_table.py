@@ -12,5 +12,6 @@ class SpellTable(Table):
     spell_range = Col('Range')
     duration = Col('Duration')
     school = Col('School')
+    
 
     

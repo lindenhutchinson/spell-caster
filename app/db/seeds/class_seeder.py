@@ -1,6 +1,6 @@
 from app.models.spell import Spell
 from app.models._class import _Class
-from app.utils.model_helpers import insert_model, delete_model_by_name, get_model_by_name
+from app.utils.model_helpers import insert_model, kw_delete_model, kw_get_model
 from app.app import create_app, register_extensions
 from app.config.config import DevelopmentConfig
 import csv
@@ -17,7 +17,7 @@ class ClassSeeder():
 
                 for row in csv_reader:
                     name = row[0]
-                    if get_model_by_name(_Class, name):
-                        delete_model_by_name(_Class, name)
+                    if kw_get_model(_Class, name=name):
+                        kw_delete_model(_Class, name=name)
                     insert_model(_Class(*row))
                     print("inserted a class!")

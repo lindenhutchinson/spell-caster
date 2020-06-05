@@ -28,13 +28,15 @@ margin-left: 1em
 margin-left: 2.5em
 }
 .spell-table {
+  table-layout:fixed;
   height: 1em;
   border-collapse: collapse; /* Collapse borders */
-  min-width: 100%; /* Full-width */
+  width: 100%; /* Full-width */
   border: 1px solid #ddd; /* Add a grey border */
   font-size: 18px; /* Increase font-size */
 }
 .spell-table th{
+  cursor: pointer;
   text-align: center;
   padding: 16px;
 }

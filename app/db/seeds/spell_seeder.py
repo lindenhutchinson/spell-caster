@@ -21,8 +21,8 @@ class SpellSeeder():
                 for row in csv_reader:
                     if len(row) == 19:
                         name = row[0]
-                        if get_model_by_name(Spell, name):
-                            delete_model_by_name(Spell, name)
+                        if kw_get_model(Spell, name=name):
+                            kw_delete_model(Spell, name=name)
 
                         insert_model(Spell(*row))
                         print("inserted a spell!")

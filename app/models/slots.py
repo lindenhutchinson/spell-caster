@@ -31,7 +31,6 @@ class Slots(db.Model):
 
     def get_slots(self):
         lvl = int(self.character.level)
-        print(lvl)
         if lvl <= 1:
             return [2,0,0,0,0,0,0,0,0]
         

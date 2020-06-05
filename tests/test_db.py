@@ -38,7 +38,7 @@ class TestFunction(unittest.TestCase):
             insert_model(spell)
             spellbook = Spellbook(char, spell)
             insert_model(spellbook)
-            slot = Slots(1, 4, char)
+            slot = Slots(char)
             insert_model(slot)
             note = Note("this is a title", "this is a body", char.id)
             insert_model(note)

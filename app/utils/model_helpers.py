@@ -66,14 +66,10 @@ def kw_delete_model(model, **kwargs):
     model.query.filter_by(**kwargs).delete()
     db.session.commit()
 
+def kw_get_model(model, **kwargs):
+    return model.query.filter_by(**kwargs).first()
 
-# delete_model_by_name should be replaced with kw_delete_model wherever it's being used
-def delete_model_by_name(model, name):
-    model.query.filter_by(name=name).delete()
 
-# get_model_by_name should be replaced with a kw_get_model
-def get_model_by_name(model, name):
-    return model.query.filter_by(name=name).first()
 
-def get_filtered_models(model, **kwargs):
+def kw_get_models(model, **kwargs):
     return model.query.filter_by(**kwargs).all()

@@ -1,0 +1,124 @@
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
+app_content %}
+
+<div class="container">
+  <h2>Picking spells for {{char.name}}</h2>
+
+  <div class="row" style="padding-bottom: 1em;">
+    <div class="col-md-4">
+      {{ wtf.quick_form(classForm) }}
+    </div>
+  </div>
+<div class="form-group">
+  <input
+    class="form-control"
+    type="text"
+    id="searchInput"
+    onkeyup="searchFunction()"
+    placeholder="Search for spells.."
+  />
+</div>
+<!-- <div class="row" style="min-width:1000px"> -->
+  <table class="spell-table" id="spell-table-id">
+    <thead>
+      <tr>
+        <th>Known</th>
+        <th>Name</th>
+        <th>Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for spell in spells %}
+      <tr href="{{ url_for('view_spell', id=spell.id) }}">
+        <td><button id="{{spell.id}}" onclick="learnSpell('{{spell.id}}')" {% if spell.id in spellbook %} class="btn btn-warning" >Forget{% else %} class="btn btn-primary" >Learn{% endif %}</button></td>
+        <!-- <td><button class="btn btn-warning">Forget</button></td> -->
+        <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
+        <td>{{spell.level}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+  <script>
+    function searchFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("spell-table-id");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    $("th").click(function () {
+      var table = $(this).parents("table").eq(0);
+      var rows = table
+        .find("tr:gt(0)")
+        .toArray()
+        .sort(comparer($(this).index()));
+      this.asc = !this.asc;
+      if (!this.asc) {
+        rows = rows.reverse();
+      }
+      for (var i = 0; i < rows.length; i++) {
+        table.append(rows[i]);
+      }
+    });
+    function comparer(index) {
+      return function (a, b) {
+        var valA = getCellValue(a, index),
+          valB = getCellValue(b, index);
+        return $.isNumeric(valA) && $.isNumeric(valB)
+          ? valA - valB
+          : valA.toString().localeCompare(valB);
+      };
+    }
+    function getCellValue(row, index) {
+      return $(row).children("td").eq(index).text();
+    }
+
+
+
+
+
+    function learnSpell(spell_id) {
+      data = {spell_id:spell_id}
+      $.ajax({
+      type : "POST",
+      url : "{{ url_for('learn_spell') }}",
+      data: JSON.stringify(data, null, '\t'),
+      contentType: 'application/json;charset=UTF-8',
+      success: function(result) {
+          console.log(result);
+      }
+      });
+      var btn = document.getElementById(spell_id);
+      if(btn.innerHTML == 'Learn') {
+        btn.innerHTML = 'Forget'
+        btn.classList = 'btn btn-warning'
+      } else {
+        btn.innerHTML = 'Learn'
+        btn.classList = 'btn btn-primary'
+      }
+    }
+
+
+  </script>
+
+  {% endblock %}
+</div>

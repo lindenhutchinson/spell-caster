@@ -8,7 +8,7 @@ from app.models.user import User
 from app.models.character import Character
 from app.models._class import _Class
 from app.models.slots import Slots
-
+from app.models.spellbook import Spellbook
 from app.db.db import db
 
 from app.forms import CharacterForm
@@ -50,7 +50,10 @@ def view_char():
         session['char_id'] = form.character.data
         return redirect(url_for('view_char'))
 
-    return render_template('char.html', slots=slots,char=char, form=form, title=char.name)
+    spellbooks = get_all_char_child(Spellbook, 'id')
+    char_spells = [sb.spell for sb in spellbooks]
+
+    return render_template('char.html', char_spells=char_spells, slots=slots,char=char, form=form, title=char.name)
 
 
 

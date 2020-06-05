@@ -69,26 +69,26 @@ def view_all_spells():
     # if it is, get the list of spells that are available to that class
     # otherwise, just get a list of all spells
     if filt == 'Bard':
-        spells = get_filtered_models(Spell, is_bard=1)
+        spells = kw_get_models(Spell, is_bard=1)
     elif filt == 'Cleric':
-        spells = get_filtered_models(Spell, is_cleric=1)
+        spells = kw_get_models(Spell, is_cleric=1)
     elif filt == 'Druid':
-        spells = get_filtered_models(Spell, is_druid=1)
+        spells = kw_get_models(Spell, is_druid=1)
     elif filt == 'Paladin':
-        spells = get_filtered_models(Spell, is_paladin=1)
+        spells = kw_get_models(Spell, is_paladin=1)
     elif filt == 'Ranger':
-        spells = get_filtered_models(Spell, is_ranger=1)
+        spells = kw_get_models(Spell, is_ranger=1)
     elif filt == 'Sorcerer':
-        spells = get_filtered_models(Spell, is_sorcerer=1)
+        spells = kw_get_models(Spell, is_sorcerer=1)
     elif filt == 'Warlock':
-        spells = get_filtered_models(Spell, is_warlock=1)
+        spells = kw_get_models(Spell, is_warlock=1)
     elif filt == 'Wizard':
-        spells = get_filtered_models(Spell, is_wizard=1)
+        spells = kw_get_models(Spell, is_wizard=1)
     else:
         spells = get_all_models(Spell)
 
     # Find the class model associated with the filter
-    _class = get_model_by_name(_Class, filt)
+    _class = kw_get_model(_Class, name=filt)
 
     if not spells:
         flash("No spells found!")
