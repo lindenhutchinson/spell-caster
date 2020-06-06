@@ -17,7 +17,7 @@ from app.forms import PickCharacterForm
 from app.forms import ResetSlotsForm
 from app.utils.character_helpers import *
 from app.utils.model_helpers import *
-from app.utils.special_helpers import reset_slots
+from app.utils.special_helpers import reset_slots, get_slots
 
 
 def change_slot_val():
@@ -81,9 +81,14 @@ def view_char():
     # Split prepared spells by level so they can be separated on the page
     lvls = {0: [], 1: [], 2: [], 3: [], 4: [],
             5: [], 6: [], 7: [], 8: [], 9: []}
-        
+
+
+    spaces = get_slots(char.level)
     for s in prep_spells:
+        if spaces[s.level-1] == 0 and s.level != 0:
+            continue
         lvls[s.level].append(s)
+
 
     # get the character's spell slots
     slots = get_char_child_default(Slots)

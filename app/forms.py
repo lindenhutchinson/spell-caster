@@ -81,10 +81,10 @@ class SpellForm(FlaskForm):
     """Spell form."""
 
     name = StringField('Name', [DataRequired()])
-    level = IntegerField("Level", [DataRequired()])
+    level = IntegerField("Level")
     cast_time = StringField("Cast time", [DataRequired()])
     spell_range = StringField("Range", [DataRequired()])
-    components = StringField("Components", [DataRequired()])
+    components = StringField("Components")
     duration = StringField("Duration", [DataRequired()])
     school = StringField("School", [DataRequired()])
     info = TextAreaField("Description", [DataRequired()])

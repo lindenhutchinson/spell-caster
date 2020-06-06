@@ -16,7 +16,7 @@ from app.forms import SpellForm, PickSpellForm, PickClassForm
 
 from app.utils.character_helpers import *
 from app.utils.model_helpers import *
-from app.utils.special_helpers import get_filtered_spells
+from app.utils.special_helpers import get_filtered_spells, get_slots
 from app.tables.spell_table import SpellTable
 
 def learn_spell():
@@ -78,12 +78,16 @@ def prepare_spells():
         return redirect(url_for('create_spell'))
 
     lvls = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
+    spaces = get_slots(char.level)
     
     for s in spells:
+        if spaces[s.level-1] == 0:
+            continue
         lvls[s.level].append(s)
 
     p_spells = [s for s in kw_get_models(Spellbook, char_id=char.id, prepared=1) if s.spell.level > 0]
     p_lvls = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
+    
     for p in p_spells:
         p_lvls[p.spell.level].append(p.spell)
     
