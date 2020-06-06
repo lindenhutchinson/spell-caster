@@ -49,7 +49,6 @@ def view_char():
 
     # the SelectField should show the currently selected character
     if request.method == 'GET':
-        
         form1 = PickCharacterForm(character=char.id, prefix="form1")
     else:
         form1 = PickCharacterForm(prefix="form1")

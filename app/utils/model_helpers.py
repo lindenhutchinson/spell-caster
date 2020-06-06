@@ -14,6 +14,7 @@ def insert_form(model, form, *args):
         if item.data and item is not form.csrf_token and item is not form.submit:
             items.append(item.data)
 
+    print(items)
     obj = model(*items, *args)
     db.session.add(obj)
     db.session.commit()

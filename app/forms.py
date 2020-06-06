@@ -76,7 +76,6 @@ class PickSpellForm(FlaskForm):
     spell_ids = SelectField(u'Spells')
     submit = SubmitField('Select')
 
-
 class SpellForm(FlaskForm):
     """Spell form."""
 
@@ -104,3 +103,22 @@ class SpellForm(FlaskForm):
 class ResetSlotsForm(FlaskForm):
     submit = SubmitField('Reset Slots')
 
+class RandomForm(FlaskForm):
+    submit = SubmitField('Randomize!')
+
+class DeckForm(FlaskForm):
+    name = StringField("Deck name")
+    is_com = BooleanField("Commander deck")
+    submit = SubmitField('Save')
+
+class PickMPlayerForm(FlaskForm):
+    player_id = SelectField("Players")
+    submit = SubmitField("Delete")
+
+class PickDeckForm(FlaskForm):
+    deck_id = SelectField("Decks")
+    submit = SubmitField("Delete")
+
+class MPlayerForm(FlaskForm):
+    name = StringField("Name")
+    submit = SubmitField('Save')

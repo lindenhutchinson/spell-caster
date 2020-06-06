@@ -1,0 +1,160 @@
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
+    app_content %}
+
+<style>
+    .rnd {
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+</style>
+
+
+<a href="{{ url_for('create_deck') }}" class="col-md-3 btn btn-primary">New Deck</a>
+<a href="{{ url_for('delete_decks') }}" class="col-md-3 btn btn-default">Delete Decks</a>
+<a href="{{ url_for('create_player') }}" class="col-md-3 btn btn-primary">New Player</a>
+<a href="{{ url_for('delete_players') }}" class="col-md-3 btn btn-default">Delete Players</a>
+<hr>
+<form method="POST" action="{{url_for('view_magic')}}">
+    <div>{{ form.submit(class="btn-block btn-danger rnd") }}</div>
+</form>
+<hr>
+{% if playing|length > 0 %}
+<table class="spell-table">
+    <tr>
+        <th>
+            Player
+        </th>
+        <th>
+            Deck
+        </th>
+    </tr>
+    {% for player, deck in playing.items() %}
+    <tr>
+        <td>
+            {{player}}
+        </td>
+        <td>
+            {{deck}}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<hr>
+{% endif %}
+<div class="row">
+    <div class="col-md-6">
+        <table class="spell-table">
+            <thead>
+                <tr>
+                    <th>Active</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                <tr>
+                    <td><button id="{{player.id}}" onclick="toggleActivePlayer('{{player.id}}')"
+                            {% if player.id in active_players %} class="btn btn-success">Playing{% else %} class="btn
+                            btn-warning" >Not Playing{% endif %}</button></td>
+                    <td>{{ player.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="spell-table">
+            <thead>
+                <tr>
+                    <th>Active</th>
+                    <th>Name</th>
+                    <th>Commander</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deck in decks %}
+                <tr>
+                    <td><button id="deck-{{deck.id}}" onclick="toggleActiveDeck('{{deck.id}}')"
+                            {% if deck.id in active_decks %} class="btn btn-success">Using{% else %} class="btn
+                            btn-warning" >Not Using{% endif %}</button></td>
+
+                    <td>{{ deck.name }}</td>
+                    <td>{{ deck.is_com }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+    $("th").click(function () {
+        var table = $(this).parents("table").eq(0);
+        var rows = table
+            .find("tr:gt(0)")
+            .toArray()
+            .sort(comparer($(this).index()));
+        this.asc = !this.asc;
+        if (!this.asc) {
+            rows = rows.reverse();
+        }
+        for (var i = 0; i < rows.length; i++) {
+            table.append(rows[i]);
+        }
+    });
+    function comparer(index) {
+        return function (a, b) {
+            var valA = getCellValue(a, index),
+                valB = getCellValue(b, index);
+            return $.isNumeric(valA) && $.isNumeric(valB)
+                ? valA - valB
+                : valA.toString().localeCompare(valB);
+        };
+    }
+    function getCellValue(row, index) {
+        return $(row).children("td").eq(index).text();
+    }
+
+    function toggleActivePlayer(player_id) {
+        data = { id: player_id };
+        $.post({
+            url: "{{ url_for('toggle_active_player') }}",
+            data: JSON.stringify(data, null, "\t"),
+            contentType: "application/json;charset=UTF-8",
+            success: function (result) {
+                console.log(result);
+            },
+        });
+        var btn = document.getElementById(player_id);
+        if (btn.innerHTML == "Not Playing") {
+            btn.innerHTML = "Playing";
+            btn.classList = "btn btn-success";
+        } else {
+            btn.innerHTML = "Not Playing";
+            btn.classList = "btn btn-warning";
+        }
+    }
+    function toggleActiveDeck(deck_id) {
+        data = { id: deck_id };
+        $.post({
+            url: "{{ url_for('toggle_active_deck') }}",
+            data: JSON.stringify(data, null, "\t"),
+            contentType: "application/json;charset=UTF-8",
+            success: function (result) {
+                console.log(result);
+            },
+        });
+        var btn = document.getElementById('deck-' + deck_id);
+        if (btn.innerHTML == "Not Using") {
+            btn.innerHTML = "Using";
+            btn.classList = "btn btn-success";
+        } else {
+            btn.innerHTML = "Not Using";
+            btn.classList = "btn btn-warning";
+        }
+    }
+</script>
+{% endblock %}

@@ -1,4 +1,4 @@
-from .controllers import home, user, character, _class, spell, note, spellbook
+from .controllers import home, user, character, _class, spell, note, spellbook, magic
 
 
 def routes(app):
@@ -54,6 +54,15 @@ def routes(app):
     app.add_url_rule('/notes/create', view_func=note.create_note, methods=['GET','POST'])
     app.add_url_rule('/notes/edit', view_func=note.edit_note, methods=['GET','POST'])
     app.add_url_rule('/notes/delete', view_func=note.delete_note, methods=['GET'])
+
+
+    app.add_url_rule('/magic/', view_func=magic.view_magic, methods=['GET','POST'])
+    app.add_url_rule('/magic/player/delete', view_func=magic.delete_players, methods=['GET','POST'])
+    app.add_url_rule('/magic/player/create', view_func=magic.create_player, methods=['GET','POST'])
+    app.add_url_rule('/magic/player/activate', view_func=magic.toggle_active_player, methods=['POST'])
+    app.add_url_rule('/magic/deck/activate', view_func=magic.toggle_active_deck, methods=['POST'])
+    app.add_url_rule('/magic/deck/create', view_func=magic.create_deck, methods=['GET','POST'])
+    app.add_url_rule('/magic/deck/delete', view_func=magic.delete_decks, methods=['GET','POST'])
 
 
 
