@@ -11,11 +11,20 @@ app_content %}
     margin-bottom: 10px;
   }
 </style>
+
 <div class="row page-head">
-  <div class="col-md-6">
+  <div class="col-md-5">
     <h1>{{ char.name }}</h1>
     <h3>A level {{ char.level }} {{ char.race }} {{ char._class.name }}</h3>
   </div>
+  <div class="col-md-3">
+    <div class="opts">
+        <a class="opt btn btn-block btn-default" href="{{url_for('learn_spells') }}">Learn spells</a>
+    </div>
+    <div class="opts">
+        <a class="opt btn btn-block btn-default" href="{{url_for('prepare_spells')}}">Prepare spells</a>
+    </div>
+</div>
   <div class="col-md-4">
     <div class="row">
       <a href="{{ url_for('create_char') }}" class="crud btn btn-success">New</a>

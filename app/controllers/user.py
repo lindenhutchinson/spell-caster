@@ -6,10 +6,14 @@ from app.db.db import db
 
 from app.forms import RegisterForm
 from app.forms import LoginForm
-
+from app.utils.model_helpers import *
 def register():
     form = RegisterForm()
     if form.is_submitted():
+        if kw_get_model(User, username=form.username.data):
+            flash("Username taken! Please try with something different")
+            return redirect(url_for('register'))
+
         user = User(form.username.data, form.password.data)
         db.session.add(user)
         db.session.commit()

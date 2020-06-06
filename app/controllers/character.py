@@ -41,7 +41,8 @@ def view_char():
         return redirect(url_for('create_char'))
 
     # check user has selected a character
-    if not is_char_id_set():
+    # if not is_char_id_set():
+    if not session['char_id']:
         session['char_id'] = get_default_char_id()
 
     # get the current character
@@ -140,7 +141,8 @@ def edit_char():
         flash("Please create a character first!")
         return redirect(url_for('create_char'))
 
-    if not is_char_id_set():
+    # if not is_char_id_set():
+    if not session['char_id']:
         flash("Please select a character first!")
         return redirect(url_for('view_char'))
 

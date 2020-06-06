@@ -6,19 +6,27 @@
         padding-top: 1em;
         padding-bottom: 1em;
     }
+    tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 </style>
 
 
-<a href="{{ url_for('create_deck') }}" class="col-md-3 btn btn-primary">New Deck</a>
-<a href="{{ url_for('delete_decks') }}" class="col-md-3 btn btn-default">Delete Decks</a>
-<a href="{{ url_for('create_player') }}" class="col-md-3 btn btn-primary">New Player</a>
-<a href="{{ url_for('delete_players') }}" class="col-md-3 btn btn-default">Delete Players</a>
-<hr>
+<a href="{{ url_for('create_deck') }}" class="col-md-3 col-sm-3 btn btn-primary">New Deck</a>
+<a href="{{ url_for('delete_decks') }}" class="col-md-3 col-sm-3 btn btn-default">Delete Decks</a>
+<a href="{{ url_for('create_player') }}" class="col-md-3 col-sm-3 btn btn-primary">New Player</a>
+<a href="{{ url_for('delete_players') }}" class="col-md-3 col-sm-3 btn btn-default">Delete Players</a>
+<hr style="padding-bottom:3em">
 <form method="POST" action="{{url_for('view_magic')}}">
     <div>{{ form.submit(class="btn-block btn-danger rnd") }}</div>
 </form>
 <hr>
 {% if playing|length > 0 %}
+<div style="text-align:center">
+    <h3>Your Randomized Decks</h3>
+</div>
+<div class='table-responsive'>
 <table class="spell-table">
     <tr>
         <th>
@@ -39,11 +47,13 @@
     </tr>
     {% endfor %}
 </table>
+</div>
 <hr>
 {% endif %}
-<div class="row">
-    <div class="col-md-6">
-        <table class="spell-table">
+<div class="row" style="padding-bottom:5em">
+    <div class="table-responsive col-md-6">
+        <h3 class="rnd btn btn-block btn-default" onclick="collapse_table('1')">Players</h3>
+        <table style="display:none" class="spell-table" id="table-1">
             <thead>
                 <tr>
                     <th>Active</th>
@@ -62,8 +72,10 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-6">
-        <table class="spell-table">
+    <div class="table-responsive col-md-6">
+        <h3 class="rnd btn btn-block btn-default" onclick="collapse_table('2')">Decks</h3>
+
+        <table style="display:none" class="spell-table" id="table-2">
             <thead>
                 <tr>
                     <th>Active</th>
@@ -156,5 +168,11 @@
             btn.classList = "btn btn-warning";
         }
     }
+
+    function collapse_table(id) {
+    var table = document.getElementById('table-' + id);
+    table.style.display = (table.style.display == '' ? 'none' : '');
+
+  }
 </script>
 {% endblock %}
