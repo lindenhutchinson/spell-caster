@@ -1,138 +1,252 @@
 {% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
-    app_content %}
-    
-    <div class="container">
-        
-  <div class="row" style="padding-bottom: 2em;">
-    <div class="col-md-4">
-        <h2>Preparing spells for <strong>{{char.name}}</strong></h2>
+app_content %}
+<style>
+    #prep_count {
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        background-color: #fff;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        text-align: center;
+        margin-left: calc(50% - 50vw);
+        width: 100vw;
+        border-top: 2px solid lightgrey;
+        border-bottom: 2px solid lightgrey;
+
+
+    }
+
+    .propertyTitle {
+        display: block;
+        width: auto;
+    }
+
+    .titleWrap {
+        display: inline-block;
+    }
+
+    .propertyValue {
+        display: block;
+        width: auto;
+    }
+
+    .valueWrap {
+        display: inline-block;
+    }
+
+    /* .prep-stats>label,
+    p {
+        font-size: 1.2em;
+        display: inline-block;
+        vertical-align: middle;
+    } */
+</style>
+<div class="container">
+    <div class="row" style="padding-bottom: 2em;">
+        <div class="col-md-4">
+            <h2>Preparing spells for <strong>{{char.name}}</strong></h2>
+        </div>
+        <div class="col-md-8">
+            <div class="opts">
+                <a class="opt btn btn-block btn-default" href="{{url_for('learn_spells') }}">Learn spells</a>
+            </div>
+            <div class="opts">
+                <a class="opt btn btn-block btn-default" href="{{url_for('view_all_spells')}}">Take a better look at
+                    spells</a>
+            </div>
+            <div class="opts">
+                <a class="opt btn btn-block btn-default" href="{{url_for('view_char') }}">Change character</a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-8">
-      <div class="opts">
-        <a class="opt btn btn-block btn-default" href="{{url_for('learn_spells') }}">Learn spells</a>
-      </div>
-      <div class="opts">
-        <a class="opt btn btn-block btn-default" href="{{url_for('view_all_spells')}}">Take a better look at spells</a>
-      </div>
-      <div class="opts">
-        <a class="opt btn btn-block btn-default" href="{{url_for('view_char') }}">Change character</a>
-      </div>
-    
+</div>
+<div id="prep_count">
+    You have {{total}} spells prepared
+</div>
+<div class="container">
+
+
+    {% for lvl, spells in lvls.items() %} {% if spells|length > 0 %}
+    <div class="row" style="padding-bottom: 1em;">
+        <h3 class="btn btn-default" onclick="collapse_table(this)">
+            {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}} spells{% endif %}
+        </h3>
+        <div class="row">
+            <div class="titleWrap">
+                <label class="propertyTitle" for="prep-{{lvl}}">Prepared: </label>
+                <label class="propertyTitle" for="total-{{lvl}}">Total: </label>
+            </div>
+            <div class="valueWrap">
+                <label class="propertyValue" id="prep-{{lvl}}">{{p_lvls[lvl]|length}}</label>
+                <label class="propertyValue" id="total-{{lvl}}">{{spells|length}}</label>
+            </div>
+        </div>
+
+
+
+        <table style="display: none;" class="spell-table" id="spell-table-id">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Level</th>
+                    <th>Concentration</th>
+                    <th>Cast Time</th>
+                    <th>Range</th>
+                    <th>Duration</th>
+                    <th>School</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for spell in spells %}
+                <tr href="{{ url_for('view_spell', id=spell.id) }}">
+                    <td>
+                        <button id="{{spell.id}}" onclick="prepareSpell('{{spell.id}}', '{{lvl}}')" {%
+                if
+                spell.id
+                in
+                prep_spells
+                %} class="btn btn-success">Unprepare{% else %} class="btn btn-primary">Prepare{% endif %}</button>
+                    </td>
+                    <td>
+                        <a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a>
+                    </td>
+                    <td>{{spell.level}}</td>
+                    <td>{{spell.concentration}}</td>
+                    <td>{{spell.cast_time}}</td>
+                    <td>{{spell.spell_range}}</td>
+                    <td>{{spell.duration}}</td>
+                    <td>{{spell.school}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    
-        {% for lvl, spells in lvls.items() %}
-        {% if spells|length > 0 %}
-      <div class="row" style="padding-bottom: 1em;">
-      <h3 class="btn btn-default" onclick="collapse_table('{{lvl}}')">Level {{lvl}} spells</h3>
-<table style="display:none" class="spell-table" id="{{lvl}}">
-        <thead>
-          <tr>
-            <th>Known</th>
-            <th>Name</th>
-            <th>Level</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for spell in spells %}
-          <tr href="{{ url_for('view_spell', id=spell.id) }}">
-            <td><button id="{{spell.id}}" onclick="prepareSpell('{{spell.id}}')" {% if spell.id in prep_spells %} class="btn btn-success" >Unprepare{% else %} class="btn btn-primary" >Prepare{% endif %}</button></td>
-            <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
-            <td>{{spell.level}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    {% endif %}
-    {% endfor %}
-    </div>
-      <script>
-        function searchFunction() {
-          // Declare variables
-          var input, filter, table, tr, td, i, txtValue;
-          input = document.getElementById("searchInput");
-          filter = input.value.toUpperCase();
-          table = document.getElementById("spell-table-id");
-          tr = table.getElementsByTagName("tr");
-    
-          // Loop through all table rows, and hide those who don't match the search query
-          for (i = 0; i < tr.length; i++) {
+    {% endif %} {% endfor %}
+</div>
+<script>
+    function searchFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("spell-table-id");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[1];
             if (td) {
-              txtValue = td.textContent || td.innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-              } else {
-                tr[i].style.display = "none";
-              }
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
             }
-          }
         }
-      </script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <script>
-        $("th").click(function () {
-          var table = $(this).parents("table").eq(0);
-          var rows = table
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $("th").click(function () {
+        var table = $(this).parents("table").eq(0);
+        var rows = table
             .find("tr:gt(0)")
             .toArray()
             .sort(comparer($(this).index()));
-          this.asc = !this.asc;
-          if (!this.asc) {
+        this.asc = !this.asc;
+        if (!this.asc) {
             rows = rows.reverse();
-          }
-          for (var i = 0; i < rows.length; i++) {
+        }
+        for (var i = 0; i < rows.length; i++) {
             table.append(rows[i]);
-          }
-        });
-        function comparer(index) {
-          return function (a, b) {
+        }
+    });
+    function comparer(index) {
+        return function (a, b) {
             var valA = getCellValue(a, index),
-              valB = getCellValue(b, index);
+                valB = getCellValue(b, index);
             return $.isNumeric(valA) && $.isNumeric(valB)
-              ? valA - valB
-              : valA.toString().localeCompare(valB);
-          };
+                ? valA - valB
+                : valA.toString().localeCompare(valB);
+        };
+    }
+    function getCellValue(row, index) {
+        return $(row).children("td").eq(index).text();
+    }
+
+    function updatePrepCount(result) {
+        el = document.getElementById('prep_count');
+        el.innerHTML = "You have " + result + " spells prepared";
+    }
+
+    function updateLvlTotal(lvl, dec) {
+        el = document.getElementById('prep-' + lvl);
+        total = Number(el.innerHTML)
+        console.log(total);
+        if (dec) {
+            total -= 1;
         }
-        function getCellValue(row, index) {
-          return $(row).children("td").eq(index).text();
+        else {
+            total += 1;
         }
-    
-    
-    
-    
-    
-        function prepareSpell(spell_id) {
-          data = {spell_id:spell_id}
-          $.ajax({
-          type : "POST",
-          url : "{{ url_for('prepare_spell') }}",
-          data: JSON.stringify(data, null, '\t'),
-          contentType: 'application/json;charset=UTF-8',
-          success: function(result) {
-              console.log(result);
-          }
-          });
-          var btn = document.getElementById(spell_id);
-          if(btn.innerHTML == 'Prepare') {
-            btn.innerHTML = 'Unpreprare'
-            btn.classList = 'btn btn-success'
-          } else {
-            btn.innerHTML = 'Prepare'
-            btn.classList = 'btn btn-primary'
-          }
-        }
-    
-    function collapse_table(table_id){
-        var table = document.getElementById(table_id);
-        if(table.style.display == 'none'){
-            table.style.display = 'contents'
+        el.innerHTML = total;
+    }
+
+    function prepareSpell(spell_id, lvl) {
+        data = { spell_id: spell_id };
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('prepare_spell') }}",
+            data: JSON.stringify(data, null, "\t"),
+            contentType: "application/json;charset=UTF-8",
+            success: function (result) {
+                updatePrepCount(result);
+            },
+        });
+        var btn = document.getElementById(spell_id);
+        if (btn.innerHTML == "Prepare") {
+            btn.innerHTML = "Unpreprare";
+            btn.classList = "btn btn-success";
+            updateLvlTotal(lvl, false)
+
         } else {
-            table.style.display = 'none';
+            btn.innerHTML = "Prepare";
+            btn.classList = "btn btn-primary";
+            updateLvlTotal(lvl, true)
+
         }
     }
-      </script>
-    
-      {% endblock %}
-    </div>
-    
+
+    function collapse_table(el) {
+        var table = $(el).siblings("table")[0];
+        if (table.style.display == "none") {
+            table.style.display = "";
+        } else {
+            table.style.display = "none";
+        }
+    }
+
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function () { stick_header() };
+
+    // Get the header
+    var header = document.getElementById("prep_count");
+
+    // Get the offset position of the navbar
+    var sticky = header.offsetTop;
+
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function stick_header() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+    } 
+</script>
+
+{% endblock %}
+</div>

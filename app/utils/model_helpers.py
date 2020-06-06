@@ -40,6 +40,10 @@ def update_form(obj, form):
     obj.query.filter_by(id=obj.id).update(updates)
     db.session.commit()
 
+def kw_update_model(obj, updates, **kwargs):
+    obj.query.filter_by(**kwargs).update(updates)
+    db.session.commit()
+
 def update_model(obj, updates):
     obj.query.filter_by(id=obj.id).update(updates)
     db.session.commit()

@@ -11,33 +11,19 @@ app_content %}
   <div class="col-md-2">
     <div class="inline">
       <li>
-        <a
-          href="{{ url_for('create_char') }}"
-          class="list-inline-item btn btn-block btn-success"
-          >New</a
-        >
+        <a href="{{ url_for('create_char') }}" class="list-inline-item btn btn-block btn-success">New</a>
       </li>
       <li>
-        <a
-          href="{{ url_for('edit_char') }}"
-          class="list-inline-item btn-block btn btn-default"
-          >Edit</a
-        >
+        <a href="{{ url_for('edit_char') }}" class="list-inline-item btn-block btn btn-default">Edit</a>
       </li>
       <li>
-        <a
-          href="{{ url_for('delete_char') }}"
-          class="list-inline-item btn-block btn btn-danger"
-          onclick="return confirm('Are you sure you want to delete this character? You cannot get them back!')"
-          >Delete</a
-        >
+        <a href="{{ url_for('delete_char') }}" class="list-inline-item btn-block btn btn-danger"
+          onclick="return confirm('Are you sure you want to delete this character? You cannot get them back!')">Delete</a>
       </li>
     </div>
   </div>
 </div>
 <div class="container">
-  {{slots.lvl_1}} {{slots.lvl_2}} {{slots.lvl_3}} {{slots.lvl_4}}
-  {{slots.lvl_5}} {{slots.lvl_6}}
   <p>A level {{ char.level }} {{ char.race }} {{ char._class.name }}</p>
 
   <div class="row">
@@ -51,33 +37,121 @@ app_content %}
       <li>Spell Save DC: <strong>{{ char.spell_save }}</strong></li>
     </ul>
   </div>
+  <div>
+    {{ wtf.quick_form(resetSlotsForm)}}
+  </div>
   {% for lvl, spells in lvls.items() %}
   {% if spells|length > 0 %}
-  
-<div class="row" style="padding-bottom: 1em;">
-  <h3>Level {{lvl}} spells</h3>
-<table class="spell-table" id="spell-table-id">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Level</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for spell in spells %}
-    <tr href="{{ url_for('view_spell', id=spell.id) }}">
-      <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
-      <td>{{spell.level}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-</div>
-{% endif %}
-{% endfor %}
+  <div class="row" style="padding-bottom: 1em;">
+    <h3 class="btn btn-default" onclick="collapse_table(this)">{% if lvl == 0 %}Cantrips{% else %}Level {{lvl}}
+      spells{% endif %}</h3>
+    {% if lvl > 0 %}
+    <div style="display:flex;" class="pb-2 align-items-baseline">
+      <button class="btn btn-secondary" type="button" onclick="decrementValue('lvl_{{lvl}}')">-</button>
+      <input name="lvl_{{lvl}}" id="lvl_{{lvl}}" style="width:50px; text-align:center;" class="form-control"
+        value="{{slots[lvl-1]}}" />
+      <button class="btn btn-secondary" type="button" onclick="incrementValue('lvl_{{lvl}}')">+</button>
+    </div>
+    {% endif %}
+    <table style="display:none" class="spell-table" id="spell-table-id">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Level</th>
+          <th>Concentration</th>
+          <th>Cast Time</th>
+          <th>Range</th>
+          <th>Duration</th>
+          <th>School</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for spell in spells %}
+        <tr href="{{ url_for('view_spell', id=spell.id) }}">
+          <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
+          <td>{{spell.level}}</td>
+          <td>{{spell.concentration}}</td>
+          <td>{{spell.cast_time}}</td>
+          <td>{{spell.spell_range}}</td>
+          <td>{{spell.duration}}</td>
+          <td>{{spell.school}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+  {% endfor %}
 </div>
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+<script>
+  $("th").click(function () {
+    var table = $(this).parents("table").eq(0);
+    var rows = table
+      .find("tr:gt(0)")
+      .toArray()
+      .sort(comparer($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc) {
+      rows = rows.reverse();
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i]);
+    }
+  });
+  function comparer(index) {
+    return function (a, b) {
+      var valA = getCellValue(a, index),
+        valB = getCellValue(b, index);
+      return $.isNumeric(valA) && $.isNumeric(valB)
+        ? valA - valB
+        : valA.toString().localeCompare(valB);
+    };
+  }
+  function getCellValue(row, index) {
+    return $(row).children("td").eq(index).text();
+  }
+
+  function collapse_table(el) {
+    var table = $(el).siblings("table")[0]
+    if (table.style.display == 'none') {
+      table.style.display = ''
+    } else {
+      table.style.display = 'none';
+    }
+  }
+
+  function incrementValue(id) {
+    var value = parseInt(document.getElementById(id).value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById(id).value = value;
+    changeSlot(id, value);
+  }
+  function decrementValue(id) {
+    var value = parseInt(document.getElementById(id).value, 10);
+    value = isNaN(value) ? 0 : value;
+    if (value != 0) {
+      value--;
+      document.getElementById(id).value = value;
+      changeSlot(id, value);
+    }
+  }
+  function changeSlot(lvl, res) {
+    data = { slot_lvl: lvl, slot_res: res };
+    $.post({
+      url: "{{ url_for('change_slot_val') }}",
+      data: JSON.stringify(data, null, "\t"),
+      contentType: "application/json;charset=UTF-8",
+      success: function (result) {
+        console.log(result);
+      },
+    });
+  }
+
+</script>
 
 {% endblock %}

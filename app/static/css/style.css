@@ -22,35 +22,31 @@
   margin-bottom: 1rem;
 }
 .tab {
-margin-left: 1em
+  margin-left: 1em;
 }
 .double-tab {
-margin-left: 2.5em
+  margin-left: 2.5em;
 }
 .spell-table {
-  table-layout:fixed;
+  table-layout: fixed;
   height: 1em;
   border-collapse: collapse; /* Collapse borders */
   width: 100%; /* Full-width */
   border: 1px solid #ddd; /* Add a grey border */
   font-size: 18px; /* Increase font-size */
 }
-.spell-table th{
+.spell-table th {
   cursor: pointer;
   text-align: center;
   padding: 16px;
 }
-.spell-table th:hover{
-  background-color:lightgrey;
+.spell-table th:hover {
+  background-color: lightgrey;
 }
 .spell-table td {
   text-align: center;
   padding: 16px;
-
 }
-
-
-
 
 .spell-table tr {
   /* Add a bottom border to all table rows */
@@ -62,9 +58,3 @@ tr:hover {
   /* Add a grey background color to the table header and on hover */
   background-color: #f1f1f1;
 }
-
-
-
-
-
-

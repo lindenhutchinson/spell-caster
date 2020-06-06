@@ -38,7 +38,8 @@ def prepare_spell():
 
     sb = kw_get_model(Spellbook, spell_id=spell_id,char_id=char_id)
     update_model(sb, {'prepared':not sb.prepared})
-    return "Toggled prepared"
+    total = len([s for s in kw_get_models(Spellbook, char_id=char_id, prepared=1) if s.spell.level > 0])
+    return str(total)
 
 def prepare_spells():
     # check user is authenticated
@@ -81,7 +82,14 @@ def prepare_spells():
     for s in spells:
         lvls[s.level].append(s)
 
-    return render_template('prep_spells.html', prep_spells=prep_spells, char=char, lvls=lvls, title="Prepare Spells")
+    p_spells = [s for s in kw_get_models(Spellbook, char_id=char.id, prepared=1) if s.spell.level > 0]
+    p_lvls = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
+    for p in p_spells:
+        p_lvls[p.spell.level].append(p.spell)
+    
+    total = len(p_spells)
+
+    return render_template('prep_spells.html', total=total, prep_spells=prep_spells, char=char, p_lvls=p_lvls, lvls=lvls, title="Prepare Spells")
 
 
 def learn_spells():

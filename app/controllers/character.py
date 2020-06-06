@@ -14,8 +14,19 @@ from app.db.db import db
 
 from app.forms import CharacterForm
 from app.forms import PickCharacterForm
+from app.forms import ResetSlotsForm
 from app.utils.character_helpers import *
 from app.utils.model_helpers import *
+from app.utils.special_helpers import reset_slots
+
+
+def change_slot_val():
+    char_id = session['char_id']
+    lvl = request.json['slot_lvl']
+    res = request.json['slot_res']
+    slot = kw_get_model(Slots, char_id=char_id)
+    kw_update_model(slot, {lvl: res}, char_id=char_id)
+    return "Updated a {} slot!".format(lvl)
 
 
 def view_char():
@@ -29,48 +40,59 @@ def view_char():
         flash("Please create a character first!")
         return redirect(url_for('create_char'))
 
-    # check user has selected a character  
+    # check user has selected a character
     if not is_char_id_set():
         session['char_id'] = get_default_char_id()
 
-    # char = get_current_char()
+    # get the current character
     char = get_model(Character, session['char_id'])
 
-    # get the character's spell slots 
-    slots = get_char_child_default(Slots)
-    
     # the SelectField should show the currently selected character
     if request.method == 'GET':
-        form = PickCharacterForm(formdata=MultiDict({'character': char.id}))
+        
+        form1 = PickCharacterForm(character=char.id, prefix="form1")
     else:
-        form = PickCharacterForm()
+        form1 = PickCharacterForm(prefix="form1")
 
-    form.character.choices = get_select_characters('name')
+    form1.character.choices = get_select_characters('name')
 
-    if form.is_submitted():
-        session['char_id'] = form.character.data
+    if form1.is_submitted() and form1.submit.data:
+        session['char_id'] = form1.character.data
         return redirect(url_for('view_char'))
 
+    form2 = ResetSlotsForm(prefix="form2")
+    if form2.is_submitted() and form2.submit.data:
+        reset_slots(char)
+        return redirect(url_for('view_char'))
+
+
+    # get all spellbooks owned by the character
     spellbooks = get_all_char_child(Spellbook, 'id')
-    spellbook = get_all_char_child(Spellbook, 'id')
     prep_spells = []
 
-    
-    for sb in spellbook:
+    # curate a list of prepared spellbooks
+    for sb in spellbooks:
         if sb.prepared:
             prep_spells.append(sb.spell)
-
-    
 
     if len(prep_spells) == 0:
         flash("Try preparing some spells!")
 
-    lvls = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
-    
+    # Split prepared spells by level so they can be separated on the page
+    lvls = {0: [], 1: [], 2: [], 3: [], 4: [],
+            5: [], 6: [], 7: [], 8: [], 9: []}
+        
     for s in prep_spells:
         lvls[s.level].append(s)
-    return render_template('char.html', lvls=lvls, slots=slots,char=char, form=form, title=char.name)
 
+    # get the character's spell slots
+    slots = get_char_child_default(Slots)
+    # put the slot info into an easy to access array that can be accessed by the page
+    slots = [slots.lvl_1, slots.lvl_2, slots.lvl_3, slots.lvl_4,
+             slots.lvl_5, slots.lvl_6, slots.lvl_7, slots.lvl_8, slots.lvl_9]
+
+
+    return render_template('char.html', lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
 
 
 def create_char():
@@ -91,7 +113,7 @@ def create_char():
                     continue
                 insert_model(Spellbook(char.id, s))
         elif get_model(_Class, char.class_id).name == 'Cleric':
-            for s in kw_get_models(Spell, is_cleric=1): 
+            for s in kw_get_models(Spell, is_cleric=1):
                 if int(s.level) == 0:
                     continue
                 insert_model(Spellbook(char.id, s))
@@ -104,6 +126,7 @@ def create_char():
 
     return render_template('form.html', form=form, title="Create Character")
 
+
 def edit_char():
     if not current_user.is_authenticated:
         flash("Please login first!")
@@ -112,9 +135,9 @@ def edit_char():
     if not user_has_characters():
         flash("Please create a character first!")
         return redirect(url_for('create_char'))
-        
+
     if not is_char_id_set():
-        flash("Please select a character first!")  
+        flash("Please select a character first!")
         return redirect(url_for('view_char'))
 
     char = get_current_char()
@@ -135,9 +158,9 @@ def edit_char():
 
     if form.is_submitted():
         # If a character's level is changed, then we should update their slots
-        slot_work=False
+        slot_work = False
         if int(form.level.data) != int(char.level):
-            slot_work=True
+            slot_work = True
         update_form(char, form)
         if slot_work:
             kw_delete_model(Slots, char_id=char.id)
@@ -147,13 +170,14 @@ def edit_char():
 
     return render_template('form.html', form=form, title="Edit Character")
 
+
 def delete_char():
     if not current_user.is_authenticated:
         flash("Please login first!")
         return redirect(url_for('login'))
 
     if not is_char_id_set():
-        flash("Please select a character first!")  
+        flash("Please select a character first!")
         return redirect(url_for('view_char'))
 
     char = get_model(Character, session['char_id'])
@@ -164,5 +188,3 @@ def delete_char():
         return redirect(url_for('view_char'))
     else:
         return redirect(url_for('view_all_spells'))
-
-    
