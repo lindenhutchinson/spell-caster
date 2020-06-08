@@ -11,7 +11,8 @@ def insert_model(model):
 def insert_form(model, form, *args):
     items = []
     for item in form:
-        if item.data and item is not form.csrf_token and item is not form.submit:
+        # if item.data and item is not form.csrf_token and item is not form.submit:
+        if item is not form.csrf_token and item is not form.submit:
             items.append(item.data)
 
     print(items)

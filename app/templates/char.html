@@ -19,12 +19,12 @@ app_content %}
   </div>
   <div class="col-md-3">
     <div class="opts">
-        <a class="opt btn btn-block btn-default" href="{{url_for('learn_spells') }}">Learn spells</a>
+      <a class="opt btn btn-block btn-default" href="{{url_for('learn_spells') }}">Learn spells</a>
     </div>
     <div class="opts">
-        <a class="opt btn btn-block btn-default" href="{{url_for('prepare_spells')}}">Prepare spells</a>
+      <a class="opt btn btn-block btn-default" href="{{url_for('prepare_spells')}}">Prepare spells</a>
     </div>
-</div>
+  </div>
   <div class="col-md-4">
     <div class="row">
       <a href="{{ url_for('create_char') }}" class="crud btn btn-success">New</a>
@@ -38,48 +38,49 @@ app_content %}
 </div>
 <hr>
 
-<div class="row">
-  <div class="col-md-4 stats">
-    <h3 style="text-align:center">Stats</h3>
-    <hr>
-    <ul>
-      <li>Race: <strong>{{ char.race }}</strong></li>
-      <li>Level: <strong>{{ char.level }}</strong></li>
-      <li>Proficiency Bonus: <strong>+{{ char.prof_bonus }}</strong></li>
-      <li>Spell Casting Ability: <strong>{{ char.casting_ability }}</strong></li>
-      <li>Ability modifier: <strong>+{{ char.ability_score }}</strong></li>
-      <li>Spell Attack Bonus: <strong>{{ char.prof_bonus + char.ability_score }}</strong></li>
-      <li>Spell Save DC: <strong>{{ char.level + char.prof_bonus + char.ability_score }}</strong></li>
-    </ul>
-    <div>
-      {{ wtf.quick_form(resetSlotsForm)}}
-    </div>
+<div class="row stats">
+  <!-- <div class="col-md-4 stats"> -->
+  <h3 style="text-align:center">Stats</h3>
+  <hr>
+  <ul>
+    <li>Race: <strong>{{ char.race }}</strong></li>
+    <li>Level: <strong>{{ char.level }}</strong></li>
+    <li>Proficiency Bonus: <strong>+{{ char.prof_bonus }}</strong></li>
+    <li>Spell Casting Ability: <strong>{{ char.casting_ability }}</strong></li>
+    <li>Ability modifier: <strong>+{{ char.ability_score }}</strong></li>
+    <li>Spell Attack Bonus: <strong>{{ char.prof_bonus + char.ability_score }}</strong></li>
+    <li>Spell Save DC: <strong>{{ char.level + char.prof_bonus + char.ability_score }}</strong></li>
+  </ul>
+  <div>
+    {{ wtf.quick_form(resetSlotsForm)}}
   </div>
+  <!-- </div> -->
 
-  <div class="col-md-8" style="padding-bottom: 1em;">
-    <div class="row">
-      {% for lvl, spells in lvls.items() %}
-      {% if spells|length > 0 %}
-      <div class="col-md-3">
-        <h3 class="btn btn-default" onclick="collapse_table('{{lvl}}')">{% if lvl == 0 %}Cantrips{% else %}Level {{lvl}}
-          spells{% endif %}</h3>
-        {% if lvl > 0 %}
-        <div style="display:flex;" class="pb-2 align-items-baseline">
-          <button class="btn btn-secondary" type="button" onclick="decrementValue('lvl_{{lvl}}')">-</button>
-          <input name="lvl_{{lvl}}" id="lvl_{{lvl}}" style="width:50px; text-align:center;" class="form-control"
-            value="{{slots[lvl-1]}}" />
-          <button class="btn btn-secondary" type="button" onclick="incrementValue('lvl_{{lvl}}')">+</button>
-        </div>
-        {% endif %}
-      </div>
-      {% endif %}
-      {% endfor %}
-    </div>
-  </div>
 </div>
-<hr>
+
 
 <div class="container" style="padding-bottom:2em">
+  <div class="row">
+    {% for lvl, spells in lvls.items() %}
+    {% if spells|length > 0 %}
+    <div class="col-md-3">
+      <h3 id="btn-{{lvl}}" class="but btn btn-default" onclick="collapse_table('{{lvl}}')">
+        {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}}
+        spells{% endif %}</h3>
+      {% if lvl > 0 %}
+      <div style="display:flex;" class="pb-2 align-items-baseline">
+        <button class="btn btn-secondary" type="button" onclick="decrementValue('lvl_{{lvl}}')">-</button>
+        <input name="lvl_{{lvl}}" id="lvl_{{lvl}}" style="width:50px; text-align:center;" class="form-control"
+          value="{{slots[lvl-1]}}" />
+        <button class="btn btn-secondary" type="button" onclick="incrementValue('lvl_{{lvl}}')">+</button>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <hr>
   {% for lvl, spells in lvls.items() %}
   {% if spells|length > 0 %}
   <table style="display:none" class="spell-table" id="spell-table-{{lvl}}">
@@ -146,12 +147,21 @@ app_content %}
 
   function collapse_table(id) {
     var table = document.getElementById('spell-table-' + id);
+    var but = document.getElementById("btn-" + id)
+
     var toggle = (table.style.display == '' ? 'none' : '');
+    var but_toggle = (but.classList.contains('btn-info') ? 'btn-default' : 'btn-info');
     var tables = document.getElementsByClassName('spell-table');
+    var buts = document.getElementsByClassName('but');
     for (var i = 0; i < tables.length; i++) {
       tables[i].style.display = 'none';
     }
+    for (var i = 0; i < buts.length; i++) {
+      buts[i].classList.remove('btn-info')
+      buts[i].classList.add('btn-default')
+    }
     table.style.display = toggle;
+    but.classList.add(but_toggle)
   }
 
   function incrementValue(id) {

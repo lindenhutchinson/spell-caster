@@ -1,54 +1,44 @@
 {% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
 app_content %}
 <style>
-
-
-    #prep_count {
+    .show_prep {
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
         padding: 10px;
         background-color: #fff;
         position: sticky;
         top: 0;
         z-index: 10;
-        text-align: center;
         margin-left: calc(50% - 50vw);
         width: 100vw;
         border-top: 2px solid lightgrey;
         border-bottom: 2px solid lightgrey;
-
-
     }
 
-    .propertyTitle {
-        display: block;
-        width: auto;
+    .total_prep {
+        text-align: left;
+        padding-left: 10px;
+        padding-right: 2em;
     }
 
-    .titleWrap {
-        display: inline-block;
+    .lvl_prep {
+        text-align: center;
+        padding-right: 10px;
+        padding-left: 10px;
     }
-
-    .propertyValue {
-        display: block;
-        width: auto;
-    }
-
-    .valueWrap {
-        display: inline-block;
-    }
-
-    /* .prep-stats>label,
-    p {
-        font-size: 1.2em;
-        display: inline-block;
-        vertical-align: middle;
-    } */
 </style>
 
 <div class="container">
     <div class="row" style="padding-bottom: 2em;">
         <div class="col-md-4">
             <h2>Preparing spells for <strong>{{char.name}}</strong></h2>
+            <div class="form-group">
+                <form onsubmit="return confirm('Are you sure you want to do this?')"
+                    action="{{url_for('prepare_spells')}}" method="post" class="form" role="form">
+                    {{ form.csrf_token() }}
+                    {{ wtf.form_field(form.submit, class='form-control btn-warning', 
+                   placeholder=form.submit.placeholder) }}
+                </form>
+            </div>
         </div>
         <div class="col-md-8">
             <div class="opts">
@@ -64,72 +54,72 @@ app_content %}
         </div>
     </div>
 </div>
-<div id="prep_count">
-    You have {{total}} spells prepared
+<div class="row show_prep">
+    <span class="total_prep" id="prep_count">You have {{total}} total spells prepared</span>
+
+    {% for lvl, spells in lvls.items() %}
+    {% if lvl > 0 and spells|length > 0 %}
+    <span id="lvl_prep-{{lvl}}" {% if p_lvls[lvl]|length == 0 %} style="display:none" {% endif %}
+        class="lvl_prep"><strong>Level {{lvl}}:
+        </strong> <span id="prep-{{lvl}}">{{p_lvls[lvl]|length}}</span></span>
+    {% endif %}
+    {% endfor %}
 </div>
-<div class="container">
+<div class="row">
+    {% for lvl, spells in lvls.items() %}
+    {% if spells|length > 0 and lvl > 0 %}
+    <div class="col-md-2">
+        <h3 id="btn-{{lvl}}" class="but btn btn-default" onclick="collapse_table('{{lvl}}')">Level {{lvl}} spells</h3>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+<hr>
 
-
-    {% for lvl, spells in lvls.items() %} {% if spells|length > 0 %}
-    <div class="row" style="padding-bottom: 1em;">
-        <h3 class="btn btn-default" onclick="collapse_table(this)">
-            {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}} spells{% endif %}
-        </h3>
-        {% if lvl > 0 %}
-        <div class="row">
-            <div class="titleWrap">
-                <label class="propertyTitle" for="prep-{{lvl}}">Prepared: </label>
-                <label class="propertyTitle" for="total-{{lvl}}">Total: </label>
-            </div>
-            <div class="valueWrap">
-                <label class="propertyValue" id="prep-{{lvl}}">{{p_lvls[lvl]|length}}</label>
-                <label class="propertyValue" id="total-{{lvl}}">{{spells|length}}</label>
-            </div>
-        </div>
-        {% endif %}
-
-
-
-        <table style="display: none;" class="spell-table" id="spell-table-id">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Level</th>
-                    <th>Concentration</th>
-                    <th>Cast Time</th>
-                    <th>Range</th>
-                    <th>Duration</th>
-                    <th>School</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for spell in spells %}
-                <tr href="{{ url_for('view_spell', id=spell.id) }}">
-                    <td>
-                        <button id="{{spell.id}}" onclick="prepareSpell('{{spell.id}}', '{{lvl}}')" {%
+<div class="container" style="padding-bottom:2em">
+    {% for lvl, spells in lvls.items() %}
+    {% if spells|length > 0 %}
+    <table style="display:none" class="spell-table" id="spell-table-{{lvl}}">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Concentration</th>
+                <th>Cast Time</th>
+                <th>Range</th>
+                <th>Duration</th>
+                <th>School</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for spell in spells %}
+            <tr href="{{ url_for('view_spell', id=spell.id) }}">
+                <td>
+                    <button id="{{spell.id}}" onclick="prepareSpell('{{spell.id}}', '{{lvl}}')" {%
                 if
                 spell.id
                 in
                 prep_spells
                 %} class="btn btn-success">Unprepare{% else %} class="btn btn-primary">Prepare{% endif %}</button>
-                    </td>
-                    <td>
-                        <a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a>
-                    </td>
-                    <td>{{spell.level}}</td>
-                    <td>{{spell.concentration}}</td>
-                    <td>{{spell.cast_time}}</td>
-                    <td>{{spell.spell_range}}</td>
-                    <td>{{spell.duration}}</td>
-                    <td>{{spell.school}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% endif %} {% endfor %}
+                </td>
+                <td>
+                    <a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a>
+                </td>
+                <td>{{spell.level}}</td>
+                <td>{{spell.concentration}}</td>
+                <td>{{spell.cast_time}}</td>
+                <td>{{spell.spell_range}}</td>
+                <td>{{spell.duration}}</td>
+                <td>{{spell.school}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {% endfor %}
 </div>
+
 <script>
     function searchFunction() {
         // Declare variables
@@ -198,6 +188,12 @@ app_content %}
             total += 1;
         }
         el.innerHTML = total;
+        s = document.getElementById('lvl_prep-' + lvl);
+        if (total > 0) {
+            s.style.display = "";
+        } else {
+            s.style.display = "none";
+        }
     }
 
     function prepareSpell(spell_id, lvl) {
@@ -213,7 +209,7 @@ app_content %}
         });
         var btn = document.getElementById(spell_id);
         if (btn.innerHTML == "Prepare") {
-            btn.innerHTML = "Unpreprare";
+            btn.innerHTML = "Unprepare";
             btn.classList = "btn btn-success";
             updateLvlTotal(lvl, false)
 
@@ -225,13 +221,23 @@ app_content %}
         }
     }
 
-    function collapse_table(el) {
-        var table = $(el).siblings("table")[0];
-        if (table.style.display == "none") {
-            table.style.display = "";
-        } else {
-            table.style.display = "none";
+    function collapse_table(id) {
+        var table = document.getElementById('spell-table-' + id);
+        var but = document.getElementById("btn-" + id)
+
+        var toggle = (table.style.display == '' ? 'none' : '');
+        var but_toggle = (but.classList.contains('btn-info') ? 'btn-default' : 'btn-info');
+        var tables = document.getElementsByClassName('spell-table');
+        var buts = document.getElementsByClassName('but');
+        for (var i = 0; i < tables.length; i++) {
+            tables[i].style.display = 'none';
         }
+        for (var i = 0; i < buts.length; i++) {
+            buts[i].classList.remove('btn-info')
+            buts[i].classList.add('btn-default')
+        }
+        table.style.display = toggle;
+        but.classList.add(but_toggle)
     }
 
     // When the user scrolls the page, execute myFunction

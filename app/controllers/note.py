@@ -95,7 +95,7 @@ def view_note():
         form = PickNoteForm()
 
     # get a list of all notes owned by the current character
-    notes = get_all_char_child(Note, 'title')
+    notes = get_all_char_child(Note, 'created_at')
 
     # fill the SelectField with all notes owned by the current character
     form.note_id.choices = [(g.id, g.title) for g in notes]

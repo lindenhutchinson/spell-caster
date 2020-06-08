@@ -17,7 +17,7 @@ from app.forms import PickCharacterForm
 from app.forms import ResetSlotsForm
 from app.utils.character_helpers import *
 from app.utils.model_helpers import *
-from app.utils.special_helpers import reset_slots, get_slots
+from app.utils.special_helpers import reset_slots, get_slots, get_prof_bonus
 
 
 def change_slot_val():
@@ -41,8 +41,7 @@ def view_char():
         return redirect(url_for('create_char'))
 
     # check user has selected a character
-    # if not is_char_id_set():
-    if not session['char_id']:
+    if not is_char_id_set():
         session['char_id'] = get_default_char_id()
 
     # get the current character
@@ -95,6 +94,10 @@ def view_char():
     # put the slot info into an easy to access array that can be accessed by the page
     slots = [slots.lvl_1, slots.lvl_2, slots.lvl_3, slots.lvl_4,
              slots.lvl_5, slots.lvl_6, slots.lvl_7, slots.lvl_8, slots.lvl_9]
+
+    char.prof_bonus = get_prof_bonus(char.level)
+    char.spell_save = 8 + char.ability_score + char.prof_bonus
+    char.spell_attack = char.ability_score + char.prof_bonus
 
 
     return render_template('char.html', lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)

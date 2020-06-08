@@ -9,9 +9,6 @@ class Character(db.Model):
     class_resource = db.Column(db.Integer)
     casting_ability = db.Column(db.String(128))
     ability_score = db.Column(db.Integer)
-    spell_save = db.Column(db.Integer)
-    spell_attack = db.Column(db.Integer)
-    prof_bonus = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     class_id = db.Column(db.Integer, db.ForeignKey('class.id', ondelete="CASCADE"))
@@ -29,25 +26,8 @@ class Character(db.Model):
         self.class_resource = 2
         self.casting_ability = casting_ability
         self.ability_score =  ability_score
-        self.prof_bonus = self.get_prof_bonus()
-        self.spell_save = 8 + self.ability_score + self.prof_bonus
-        self.spell_attack = self.ability_score + self.prof_bonus
         self.user = user
         self.class_id = class_id
-
-    def get_prof_bonus(self):
-        x = self.level/4
-        if x <=1:
-            return 2
-        elif x<=2:
-            return 3
-        elif x<=3:
-            return 4
-        elif x<=4:
-            return 5
-        else:
-            return 6
-
 
 
     def __repr__(self):

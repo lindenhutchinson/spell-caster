@@ -12,7 +12,7 @@ from app.models.spellbook import Spellbook
 
 from app.db.db import db
 
-from app.forms import SpellForm, PickSpellForm, PickClassForm
+from app.forms import SpellForm, PickSpellForm, PickClassForm, UnprepareAllForm
 
 from app.utils.character_helpers import *
 from app.utils.model_helpers import *
@@ -58,12 +58,20 @@ def prepare_spells():
         flash('Select a character to prepare spells')
         return redirect(url_for('view_char'))
 
-
     char = get_model(Character, session['char_id'])
     spellbook = get_all_char_child(Spellbook, 'id')
     prep_spells = []
     spells = []
     
+    form = UnprepareAllForm()
+    if form.is_submitted():
+        for sb in spellbook:
+            if sb.spell.level != 0 and sb.prepared == 1:
+                update_model(sb, {'prepared':False})
+
+        spellbook = get_all_char_child(Spellbook, 'id')
+
+
     for sb in spellbook:
         if sb.spell.level == 0:
             update_model(sb, {'prepared':True})
@@ -71,11 +79,9 @@ def prepare_spells():
         if sb.prepared:
             prep_spells.append(sb.spell.id)
 
-    
-
     if not spells:
-        flash("No spells found!")
-        return redirect(url_for('create_spell'))
+        flash("No spells found. Try learning some!")
+        return redirect(url_for('learn_spells'))
 
     lvls = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
     spaces = get_slots(char.level)
@@ -93,7 +99,7 @@ def prepare_spells():
     
     total = len(p_spells)
 
-    return render_template('prep_spells.html', total=total, prep_spells=prep_spells, char=char, p_lvls=p_lvls, lvls=lvls, title="Prepare Spells")
+    return render_template('prep_spells.html', form=form, total=total, prep_spells=prep_spells, char=char, p_lvls=p_lvls, lvls=lvls, title="Prepare Spells")
 
 
 def learn_spells():

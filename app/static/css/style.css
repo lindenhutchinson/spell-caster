@@ -84,6 +84,7 @@
   margin-left: 2.5em;
 }
 .spell-table {
+  min-width:1000px;
   table-layout: fixed;
   height: 1em;
   border-collapse: collapse; /* Collapse borders */

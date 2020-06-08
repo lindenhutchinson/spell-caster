@@ -19,14 +19,15 @@
 
 
   <div id="myTopnav" class="topnav">
-    <a class="" href="{{ url_for('view_all_spells') }}">Spell Caster</a>
+    <a href="{{ url_for('view_all_spells') }}">Spell Caster</a>
 
-    <a href="{{ url_for('view_all_spells') }}">Home</a>
-    <a href="{{ url_for('learn_spells') }}">Spells</a>
+    <a href="{{ url_for('view_all_spells') }}">Spells</a>
     {% if current_user.is_anonymous %}
     <a href="{{ url_for('register') }}">Register</a>
     <a href="{{ url_for('login') }}">Login</a>
     {% else %}
+    <a href="{{ url_for('learn_spells') }}">Learn Spells</a>
+    <a href="{{ url_for('prepare_spells') }}">Prepare Spells</a>
     <a href="{{ url_for('view_char') }}">Characters</a>
     <a href="{{ url_for('view_note') }}">Notes</a>
     <a href="{{ url_for('view_class') }}">Classes</a>

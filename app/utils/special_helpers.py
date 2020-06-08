@@ -45,9 +45,10 @@ def reset_slots(char):
     for i in range(0, 9):
         lvl = 'lvl_{}'.format(i+1)
         res = vals[i]
-        updates.update({lvl:res})
+        updates.update({lvl: res})
 
     kw_update_model(slots, updates, char_id=char.id)
+
 
 def get_slots(char_lvl):
     lvl = int(char_lvl)
@@ -110,3 +111,17 @@ def get_slots(char_lvl):
 
     if lvl >= 20:
         return [4, 3, 3, 3, 3, 2, 2, 1, 1]
+
+
+def get_prof_bonus(char_lvl):
+    x = int(char_lvl)/4
+    if x <= 1:
+        return 2
+    elif x <= 2:
+        return 3
+    elif x <= 3:
+        return 4
+    elif x <= 4:
+        return 5
+    else:
+        return 6

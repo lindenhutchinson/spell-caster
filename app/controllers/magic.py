@@ -98,9 +98,9 @@ def view_magic():
         # random.shuffle(chosen_players)
         random.shuffle(chosen_decks)
         if len(chosen_decks) < len(chosen_players):
-            flash("You don't have enough decks for that number of players!")
+            flash("You don't have enough decks selected!")
         elif len(chosen_players) == 0:
-            flash("You're going to need some players to do that!")
+            flash("You don't have enough players selected!")
         else:
             for p in chosen_players:
                 d = random.choice(chosen_decks)

@@ -27,7 +27,7 @@ class Spell(db.Model):
     def __init__(self, name, level, school, cast_time, spell_range, components, duration, text, from_book, scaling=' ', concentration=0,is_bard=0, is_cleric=0, is_druid=0, is_paladin=0, is_ranger=0, is_sorcerer=0, is_warlock=0, is_wizard=0):
     
         self.name = name
-        self.level = int(level)
+        self.level = level
         self.cast_time=cast_time
         self.spell_range=spell_range
         self.components = components

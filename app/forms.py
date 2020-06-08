@@ -100,9 +100,12 @@ class SpellForm(FlaskForm):
     is_wizard = BooleanField("Wizard")
     submit = SubmitField('Save')
 
+
+class UnprepareAllForm(FlaskForm):
+    submit = SubmitField('Unprepare All Spells')
+
 class ResetSlotsForm(FlaskForm):
     submit = SubmitField('Reset Slots')
-
 class RandomForm(FlaskForm):
     submit = SubmitField('Randomize!')
 
