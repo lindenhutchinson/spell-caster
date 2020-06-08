@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block
+    app_content %}
+<div class="form-group">
+    <input class="form-control" type="text" id="searchInput" onkeyup="searchFunction()"
+        placeholder="Search for spells.." />
+</div>
+<div class="container">
+    <table class="spell-table" id="monster-table-id">
+        <tr>
+            <th>Name</th>
+        </tr>
+        {% for monster in monsters %}
+        <tr>
+            <td><a target="_blank" href="{{monster.url}}">{{monster.name}}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<script>
+    function searchFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("monster-table-id");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{% endblock %}

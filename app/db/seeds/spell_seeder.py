@@ -1,6 +1,6 @@
 from app.models.spell import Spell
 from app.models._class import _Class
-from app.utils.model_helpers import insert_model, delete_model_by_name, get_model_by_name
+from app.utils.model_helpers import *
 from app.app import create_app, register_extensions
 from app.config.config import DevelopmentConfig
 import csv

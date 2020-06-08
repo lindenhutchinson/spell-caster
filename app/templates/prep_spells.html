@@ -68,7 +68,7 @@ app_content %}
 <div class="row">
     {% for lvl, spells in lvls.items() %}
     {% if spells|length > 0 and lvl > 0 %}
-    <div class="col-md-2">
+    <div class="col-md-2 col-xs-3" style="margin:1em">
         <h3 id="btn-{{lvl}}" class="but btn btn-default" onclick="collapse_table('{{lvl}}')">Level {{lvl}} spells</h3>
     </div>
     {% endif %}

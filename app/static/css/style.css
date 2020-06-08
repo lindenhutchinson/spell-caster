@@ -51,7 +51,12 @@
 }
 
 
-
+.crud {
+  min-width: 3em;
+  float: right;
+  margin-left: 1em;
+  margin-right: 1em;
+}
 
 
 .error-body {
