@@ -10,14 +10,18 @@ from app.models._class import _Class
 from app.models.spell import Spell
 from app.models.slots import Slots
 from app.models.spellbook import Spellbook
+from app.models.stats import Stats
 from app.db.db import db
 
 from app.forms import CharacterForm
 from app.forms import PickCharacterForm
 from app.forms import ResetSlotsForm
+from app.forms import StatsForm
 from app.utils.character_helpers import *
 from app.utils.model_helpers import *
 from app.utils.special_helpers import reset_slots, get_slots, get_prof_bonus
+
+# needs updating
 
 
 def change_slot_val():
@@ -64,7 +68,6 @@ def view_char():
         reset_slots(char)
         return redirect(url_for('view_char'))
 
-
     # get all spellbooks owned by the character
     spellbooks = get_all_char_child(Spellbook, 'id')
     prep_spells = []
@@ -81,13 +84,11 @@ def view_char():
     lvls = {0: [], 1: [], 2: [], 3: [], 4: [],
             5: [], 6: [], 7: [], 8: [], 9: []}
 
-
     spaces = get_slots(char.level)
     for s in prep_spells:
         if spaces[s.level-1] == 0 and s.level != 0:
             continue
         lvls[s.level].append(s)
-
 
     # get the character's spell slots
     slots = get_char_child_default(Slots)
@@ -96,11 +97,85 @@ def view_char():
              slots.lvl_5, slots.lvl_6, slots.lvl_7, slots.lvl_8, slots.lvl_9]
 
     char.prof_bonus = get_prof_bonus(char.level)
-    char.spell_save = 8 + char.ability_score + char.prof_bonus
-    char.spell_attack = char.ability_score + char.prof_bonus
+
+    stats = get_char_child_default(Stats)
+
+    return render_template('char.html', stats=stats, lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
 
 
-    return render_template('char.html', lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
+def edit_stats():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
+        return redirect(url_for('login'))
+
+    if not user_has_characters():
+        flash("Please create a character first!")
+        return redirect(url_for('create_char'))
+
+    if not session['char_id']:
+        flash("Please select a character first!")
+        return redirect(url_for('view_char'))
+
+    char = get_model(Character, session['char_id'])
+    stats = get_char_child_default(Stats)
+    if request.method == 'GET':
+        form = StatsForm(formdata=MultiDict({
+            'wis_': stats.wis_,
+            'str_': stats.str_,
+            'int_': stats.int_,
+            'dex_': stats.dex_,
+            'con_': stats.con_,
+            'chr_': stats.chr_,
+            'ac': stats.ac,
+            'max_hp': stats.max_hp,
+            'spell_save': stats.spell_save if stats.spell_save else 0,
+            'spell_attack': stats.spell_attack if stats.spell_attack else 0,
+        }))
+    else:
+        form = StatsForm()
+
+    if form.validate_on_submit():
+        kw_update_form(stats, form, char_id=char.id)
+        # f_stats = form.stats.data
+        # f_stats.pop('csrf_token')
+        # stat = kw_get_model(Stats, char_id=char.id)
+        # kw_update_model(stat, f_stats, char_id=char.id)
+        return redirect(url_for('view_char'))
+
+    return render_template('form.html', form=form, title="Edit Stats")
+    
+
+def create_stats():
+    if not current_user.is_authenticated:
+        flash("Please login first!")
+        return redirect(url_for('login'))
+
+    if not user_has_characters():
+        flash("Please create a character first!")
+        return redirect(url_for('create_char'))
+
+    if not session['char_id']:
+        flash("Please select a character first!")
+        return redirect(url_for('view_char'))
+
+    char = get_model(Character, session['char_id'])
+    form = StatsForm()
+
+    if form.is_submitted():
+        insert_form(Stats, form, character=char)
+        flash("Added stats to character!")
+        return redirect(url_for('view_char'))
+
+    return render_template('form.html', form=form, title="Create Stats")
+        # stats = form.stats.data
+        # stats.pop('csrf_token')
+        # delattr(form, 'stats')
+        # if get_char_child_default(Stats):
+        #     stats = kw_get_model(Stats, char_id=char.id)
+        #     kw_update_model(stats, *stats.values(), char_id=char.id)
+        # else:
+        #     stats = Stats(char, *stats.values())
+        #     insert_model(stats)
 
 
 def create_char():
@@ -111,9 +186,10 @@ def create_char():
     form = CharacterForm()
 
     form.class_id.choices = get_select_choices(_Class, 'name')
+    # form.race_id.choices = get_select_choices(Race, 'name')
 
     if form.is_submitted():
-        char = insert_form(Character, form, current_user)
+        char = insert_form(Character, form, user=current_user)
 
         if get_model(_Class, char.class_id).name == 'Druid':
             for s in kw_get_models(Spell, is_druid=1):
@@ -150,15 +226,12 @@ def edit_char():
         return redirect(url_for('view_char'))
 
     char = get_current_char()
-
     if request.method == 'GET':
         form = CharacterForm(formdata=MultiDict({
             'name': char.name,
-            'race': char.race,
             'level': char.level,
-            'casting_ability': char.casting_ability,
-            'ability_score': char.ability_score,
-            'class_id': char.class_id
+            'class_id': char.class_id,
+            'is_npc': char.is_npc,
         }))
     else:
         form = CharacterForm()
@@ -170,7 +243,9 @@ def edit_char():
         slot_work = False
         if int(form.level.data) != int(char.level):
             slot_work = True
+
         update_form(char, form)
+
         if slot_work:
             kw_delete_model(Slots, char_id=char.id)
             insert_model(Slots(get_current_char()))

@@ -1,0 +1,15 @@
+{% macro stats_div(char, stats) %}
+
+<div class="row stats">
+  <h3 style="text-align:center">Stats</h3>
+  <hr>
+  <ul>
+    <li>Level: <strong>{{ char.level }}</strong></li>
+    <li>Proficiency Bonus: <strong>+{{ char.prof_bonus }}</strong></li>
+    <li>AC: <strong>{{ stats.ac }}</strong></li>
+    <li>Max HP: <strong>{{ stats.max_hp }}</strong></li>
+    <li>Current HP: <strong>{{ stats.hp }}</strong></li>
+    <li>Temp HP: <strong>{{ stats.temp_hp }}</strong></li>
+  </ul>
+</div>
+{% endmacro %}

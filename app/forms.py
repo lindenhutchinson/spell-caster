@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import widgets, SelectMultipleField, SelectField, StringField, TextField, TextAreaField, SubmitField, PasswordField, BooleanField, IntegerField
+from wtforms import widgets, FormField, SelectMultipleField, SelectField, StringField, TextField, TextAreaField, SubmitField, PasswordField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, Length
 
 
@@ -19,17 +19,26 @@ class LoginForm(FlaskForm):
 
     submit = SubmitField('Submit')
 
+class StatsForm(FlaskForm):
+    str_ = IntegerField("Strength")
+    con_ = IntegerField("Constitution")
+    dex_ = IntegerField("Dexterity")
+    wis_ = IntegerField("Wisdom")
+    int_ = IntegerField("Intelligence")
+    chr_ = IntegerField("Charisma")
+    ac = IntegerField("Armour Class")
+    max_hp = IntegerField("Hit Point Maximum")
+    spell_save = IntegerField("Spell Save DC")
+    spell_attack = IntegerField("Spell Attack Modifier")
+    submit = SubmitField('Save')
 
 class CharacterForm(FlaskForm):
     """Create character form."""
-
+    
     name = StringField('Name', [DataRequired()])
-    race = StringField('Race', [DataRequired()])
     level = IntegerField('Level', [DataRequired()])
-    casting_ability = StringField('Spell Casting Ability', [DataRequired()])
-    ability_score = IntegerField('Ability Score', [DataRequired()])
-
     class_id = SelectField(u'Class')
+    is_npc = BooleanField('This is an NPC')
     submit = SubmitField('Save')
 
 
@@ -106,6 +115,7 @@ class UnprepareAllForm(FlaskForm):
 
 class ResetSlotsForm(FlaskForm):
     submit = SubmitField('Reset Slots')
+
 class RandomForm(FlaskForm):
     submit = SubmitField('Randomize!')
 
@@ -125,3 +135,5 @@ class PickDeckForm(FlaskForm):
 class MPlayerForm(FlaskForm):
     name = StringField("Name")
     submit = SubmitField('Save')
+
+

@@ -8,10 +8,10 @@ class Spellbook(db.Model):
     prepared = db.Column(db.Boolean)
 
 
-    def __init__(self, char_id, spell):
+    def __init__(self, char_id, spell, is_prepared=False):
         self.char_id = char_id
         self.spell = spell
-        self.prepared = False
+        self.prepared = is_prepared
 
 
     def __repr__(self):

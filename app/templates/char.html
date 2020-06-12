@@ -1,8 +1,8 @@
-{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
-app_content %}
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% from 'macros/stats.html' import stats_div %}
+{% block app_content %}
 <style>
-
-
   .stats {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
     padding: 15px;
@@ -34,32 +34,29 @@ app_content %}
   </div>
 </div>
 <hr>
-
-<div class="row stats">
-  <!-- <div class="col-md-4 stats"> -->
-  <h3 style="text-align:center">Stats</h3>
-  <hr>
-  <ul>
-    <li>Race: <strong>{{ char.race }}</strong></li>
-    <li>Level: <strong>{{ char.level }}</strong></li>
-    <li>Proficiency Bonus: <strong>+{{ char.prof_bonus }}</strong></li>
-    <li>Spell Casting Ability: <strong>{{ char.casting_ability }}</strong></li>
-    <li>Ability modifier: <strong>+{{ char.ability_score }}</strong></li>
-    <li>Spell Attack Bonus: <strong>{{ char.prof_bonus + char.ability_score }}</strong></li>
-    <li>Spell Save DC: <strong>{{ char.level + char.prof_bonus + char.ability_score }}</strong></li>
-  </ul>
-  <div>
-    {{ wtf.quick_form(resetSlotsForm)}}
-  </div>
-  <!-- </div> -->
-
+{% if stats %}
+{{ stats_div(char, stats) }}
+<div>
+  <a href="{{url_for('edit_stats')}}" class="btn btn-default">Edit your stats here</a>
+  {% else %}
+  <a href="{{url_for('create_stats')}}" class="btn btn-default">Create stats for your character here!</a>
 </div>
+
+{% endif %}
+<div>
+  {{ wtf.quick_form(resetSlotsForm)}}
+</div>
+<!-- </div> -->
+
+
+
+
 
 
 <div class="container" style="padding-bottom:2em">
   <div class="row">
     {% for lvl, spells in lvls.items() %}
-    {% if spells|length > 0 or lvl == 0 %}
+    {% if spells|length > 0 or (lvl == 0 and spells|length > 0) %}
     <div class="col-xs-3" style="margin:1em">
       <h3 id="btn-{{lvl}}" class="but btn btn-default" onclick="collapse_table('{{lvl}}')">
         {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}}
@@ -83,6 +80,7 @@ app_content %}
   <table style="display:none" class="spell-table" id="spell-table-{{lvl}}">
     <thead>
       <tr>
+        <th></th>
         <th>Name</th>
         <th>Level</th>
         <th>Concentration</th>
@@ -95,6 +93,9 @@ app_content %}
     <tbody>
       {% for spell in spells %}
       <tr href="{{ url_for('view_spell', id=spell.id) }}">
+        <td>
+          <button class="btn btn-primary" type="button" onclick="decrementValue('lvl_{{lvl}}')">Cast!</button>
+        </td>
         <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
         <td>{{spell.level}}</td>
         <td>{{spell.concentration}}</td>
@@ -141,6 +142,16 @@ app_content %}
   function getCellValue(row, index) {
     return $(row).children("td").eq(index).text();
   }
+  function toggle_button(btn) {
+    console.log("toggling button");
+    if (btn.classList.contains("btn-primary")) {
+      btn.classList.remove("btn-primary");
+      btn.classList.add("btn-info");
+    } else {
+      btn.classList.remove("btn-info");
+      btn.classList.add("btn-primary");
+    }
+  }
 
   function collapse_table(id) {
     var table = document.getElementById('spell-table-' + id);
@@ -169,12 +180,14 @@ app_content %}
     changeSlot(id, value);
   }
   function decrementValue(id) {
-    var value = parseInt(document.getElementById(id).value, 10);
-    value = isNaN(value) ? 0 : value;
-    if (value != 0) {
-      value--;
-      document.getElementById(id).value = value;
-      changeSlot(id, value);
+    if (id != 'lvl_0') {
+      var value = parseInt(document.getElementById(id).value, 10);
+      value = isNaN(value) ? 0 : value;
+      if (value != 0) {
+        value--;
+        document.getElementById(id).value = value;
+        changeSlot(id, value);
+      }
     }
   }
   function changeSlot(lvl, res) {

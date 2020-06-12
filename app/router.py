@@ -33,6 +33,8 @@ def routes(app):
     app.add_url_rule('/char/delete', view_func=character.delete_char, methods=['GET'])
     app.add_url_rule('/char', view_func=character.view_char, methods=['GET','POST'])
     app.add_url_rule('/char/slot', view_func=character.change_slot_val, methods=['POST'])
+    app.add_url_rule('/char/stats/create', view_func=character.create_stats, methods=['GET', 'POST'])
+    app.add_url_rule('/char/stats/edit', view_func=character.edit_stats, methods=['GET', 'POST'])
 
     app.add_url_rule('/class/create', view_func=_class.create_class, methods=['GET','POST'])
     app.add_url_rule('/class', view_func=_class.view_class, methods=['GET','POST'])

@@ -8,15 +8,16 @@ def insert_model(model):
     db.session.commit()
 
 # inserts a model object into the database, getting the model values via a passed form
-def insert_form(model, form, *args):
-    items = []
+def insert_form(model, form, **kwargs):
+    items = {}
     for item in form:
+        # print(item.name)
         # if item.data and item is not form.csrf_token and item is not form.submit:
         if item is not form.csrf_token and item is not form.submit:
-            items.append(item.data)
+            items.update({item.name:item.data})
 
     print(items)
-    obj = model(*items, *args)
+    obj = model(**items, **kwargs)
     db.session.add(obj)
     db.session.commit()
 
@@ -34,12 +35,24 @@ def update_form(obj, form):
     inspect.getmembers(form)
 
     updates = {}
-    for key  in obj.__dict__.keys():
-        if hasattr(form, key):
+    for key in obj.__dict__.keys():
+        if hasattr(form, key) and type(form[key].data) is not dict:
             updates.update({key:form[key].data})
 
-
     obj.query.filter_by(id=obj.id).update(updates)
+    db.session.commit()
+
+def kw_update_form(obj, form, **kwargs):
+    # idk why but removing these two lines makes this break
+    inspect.getmembers(obj)
+    inspect.getmembers(form)
+
+    updates = {}
+    for key in obj.__dict__.keys():
+        if hasattr(form, key) and type(form[key].data) is not dict:
+            updates.update({key:form[key].data})
+
+    obj.query.filter_by(**kwargs).update(updates)
     db.session.commit()
 
 def kw_update_model(obj, updates, **kwargs):

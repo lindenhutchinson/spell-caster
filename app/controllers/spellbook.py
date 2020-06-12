@@ -27,7 +27,11 @@ def learn_spell():
         kw_delete_model(Spellbook, char_id=char_id, spell=spell)
         return "Deleted Spellbook"
     else:
-        sb = Spellbook(char_id, spell)
+        if spell.level == 0:
+            sb = Spellbook(char_id, spell, True)
+        else:
+            sb = Spellbook(char_id, spell)
+
         insert_model(sb)
         return "Added Spellbook"
         
