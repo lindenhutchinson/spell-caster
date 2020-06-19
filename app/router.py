@@ -1,4 +1,4 @@
-from .controllers import home, user, character, _class, spell, note, spellbook, magic, monster
+from .controllers import home, user, character, _class, spell, note, spellbook, magic, monster, action, npc
 
 
 def routes(app):
@@ -26,6 +26,15 @@ def routes(app):
 
     # app.add_url_rule('/user', view_func=user.view_user, methods=['GET'])
     # app.add_url_rule('/user/edit', view_func=user.edit_user, methods=['GET','POST'])
+
+    app.add_url_rule('/npc', view_func=npc.view_npcs, methods=['GET'])
+
+
+    app.add_url_rule('/action/edit', view_func=action.edit_action, methods=['GET','POST'])
+    app.add_url_rule('/action/delete', view_func=action.delete_action, methods=['POST'])
+    app.add_url_rule('/action/create', view_func=action.create_action, methods=['GET','POST'])
+    app.add_url_rule('/action', view_func=action.view_action, methods=['GET','POST'])
+    app.add_url_rule('/action/res', view_func=action.change_action_res, methods=['POST'])
 
 
     app.add_url_rule('/char/create', view_func=character.create_char, methods=['GET','POST'])
@@ -58,7 +67,7 @@ def routes(app):
     app.add_url_rule('/notes/delete', view_func=note.delete_note, methods=['GET'])
 
 
-    app.add_url_rule('/monster/', view_func=monster.view_monster, methods=['GET'])
+    app.add_url_rule('/monsters', view_func=monster.view_monster, methods=['GET'])
 
     app.add_url_rule('/magic/', view_func=magic.view_magic, methods=['GET','POST'])
     app.add_url_rule('/magic/player/delete', view_func=magic.delete_players, methods=['GET','POST'])

@@ -42,7 +42,7 @@ def view_spell():
         'id', default=default.id, type=int))
     if not spell:
         flash("Couldn't find that spell!")
-        return redirect(url_for('index'))
+        return redirect(url_for('view_all_spells'))
 
     # if the form isn't being submitted, the SelectField should show the currently selected spell
     if request.method == 'GET':
@@ -179,4 +179,4 @@ def delete_spell():
     delete_model(spell)
 
     flash("Spell deleted!")
-    return redirect(url_for('view_spell')) if get_default(Spell) else redirect(url_for('index'))
+    return redirect(url_for('view_spell')) if get_default(Spell) else redirect(url_for('view_all_spells'))

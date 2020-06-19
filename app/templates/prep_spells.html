@@ -1,5 +1,7 @@
 {% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block
 app_content %}
+{% from 'macros/spell_navigation.html' import spell_navigation %}
+
 <style>
     .show_prep {
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
@@ -41,16 +43,7 @@ app_content %}
             </div>
         </div>
         <div class="col-md-8">
-            <div class="opts">
-                <a class="opt btn btn-block btn-default" href="{{url_for('learn_spells') }}">Learn spells</a>
-            </div>
-            <div class="opts">
-                <a class="opt btn btn-block btn-default" href="{{url_for('view_all_spells')}}">Take a better look at
-                    spells</a>
-            </div>
-            <div class="opts">
-                <a class="opt btn btn-block btn-default" href="{{url_for('view_char') }}">Change character</a>
-            </div>
+            {{spell_navigation(0, 0)}}
         </div>
     </div>
 </div>

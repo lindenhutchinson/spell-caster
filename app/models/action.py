@@ -2,7 +2,8 @@ from app.db.db import db
 
 
 class Action(db.Model):
-    char_id = db.Column(db.Integer, db.ForeignKey('character.id', ondelete="CASCADE"), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    char_id = db.Column(db.Integer, db.ForeignKey('character.id', ondelete="CASCADE"))
     name = db.Column(db.String(128))
     desc = db.Column(db.String(5000))
     res = db.Column(db.Integer)

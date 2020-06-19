@@ -1,4 +1,3 @@
-
 .topnav {
   overflow: hidden;
   background-color: #333;
@@ -20,7 +19,7 @@
 }
 
 .topnav a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -29,7 +28,9 @@
 }
 
 @media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
+  .topnav a:not(:first-child) {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
@@ -37,7 +38,9 @@
 }
 
 @media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -50,14 +53,12 @@
   }
 }
 
-
 .crud {
   min-width: 3em;
   float: right;
   margin-left: 1em;
   margin-right: 1em;
 }
-
 
 .error-body {
   padding: 10%;
@@ -89,7 +90,7 @@
   margin-left: 2.5em;
 }
 .spell-table {
-  min-width:1000px;
+  min-width: 1000px;
   table-layout: fixed;
   height: 1em;
   border-collapse: collapse; /* Collapse borders */
@@ -152,3 +153,11 @@ tr:hover {
 .opts {
   padding: 1.5em;
 }
+
+.stats {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 10px;
+  height: 30em;
+}
+

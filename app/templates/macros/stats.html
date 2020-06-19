@@ -1,15 +1,40 @@
 {% macro stats_div(char, stats) %}
 
-<div class="row stats">
-  <h3 style="text-align:center">Stats</h3>
-  <hr>
-  <ul>
-    <li>Level: <strong>{{ char.level }}</strong></li>
-    <li>Proficiency Bonus: <strong>+{{ char.prof_bonus }}</strong></li>
-    <li>AC: <strong>{{ stats.ac }}</strong></li>
-    <li>Max HP: <strong>{{ stats.max_hp }}</strong></li>
-    <li>Current HP: <strong>{{ stats.hp }}</strong></li>
-    <li>Temp HP: <strong>{{ stats.temp_hp }}</strong></li>
-  </ul>
+<div class="stats">
+  <div style="margin-bottom:2em" class="row">
+    <div class="col-md-2">
+      <h3 style="text-align:center">Stats</h3>
+    </div>
+    <div class="col-md-2">
+      <a style="margin-top:1.25em" href="{{url_for('edit_stats')}}" class="center btn btn-default">Edit your stats
+        here</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <ul>
+        <li>Armor Class: <strong>{{ stats.ac }}</strong></li>
+        <li>Hit Points: <strong>{{ stats.hp }}</strong></li>
+        <li>Spell Save DC: <strong>{{ stats.spell_save }}</strong></li>
+        <li>Spell Attack Modifier: <strong>{{ stats.spell_attack }}</strong></li>
+      </ul>
+    </div>
+    <div class='col-md-6'>
+      <ul>
+        <li>Strength: <strong>{{ stats.str_ }}</strong>
+          ({% if stats.str_ > 11 %}+{% endif %}{{ (stats.str_  - 10 )// 2}})</li>
+        <li>Dexterity: <strong>{{ stats.dex_ }}</strong>
+          ({% if stats.dex_ > 11 %}+{% endif %}{{ (stats.dex_  - 10 )// 2}})</li>
+        <li>Constitution: <strong>{{ stats.con_ }}</strong>
+          ({% if stats.con_ > 11 %}+{% endif %}{{ (stats.con_  - 10 )// 2}})</li>
+        <li>Intelligence: <strong>{{ stats.int_ }}</strong>
+          ({% if stats.int_ > 11 %}+{% endif %}{{ (stats.int_  - 10 )// 2}})</li>
+        <li>Wisdom: <strong>{{ stats.wis_ }}</strong> ({% if stats.wis_ > 11 %}+{% endif %}{{ (stats.wis_  - 10 )// 2}})
+        </li>
+        <li>Charisma: <strong>{{ stats.chr_ }}</strong>
+          ({% if stats.chr_ > 11 %}+{% endif %}{{ (stats.chr_  - 10 )// 2}})</li>
+      </ul>
+    </div>
+  </div>
 </div>
 {% endmacro %}

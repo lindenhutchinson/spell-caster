@@ -10,6 +10,7 @@ from app.db.db import db
 from app.db.seeds.spell_seeder import SpellSeeder
 from app.db.seeds.class_seeder import ClassSeeder
 from app.db.seeds.monster_seeder import MonsterSeeder
+from app.db.seeds.char_seeder import CharSeeder
 
 
 app = create_app(DevelopmentConfig)
@@ -19,6 +20,7 @@ migrate = Migrate(app, db)
 c_seeder = ClassSeeder(app)
 s_seeder = SpellSeeder(app)
 m_seeder = MonsterSeeder(app)
+ch_seeder = CharSeeder(app)
 
 @manager.command
 def _class():
@@ -31,6 +33,10 @@ def spell():
 @manager.command
 def monster():
 	m_seeder.run()
+
+@manager.command
+def guh():
+	ch_seeder.run()
 
 if __name__ == '__main__':
 	manager.run()

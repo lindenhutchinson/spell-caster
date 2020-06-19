@@ -48,6 +48,20 @@ class PickCharacterForm(FlaskForm):
     character = SelectField(u'Characters')
     submit = SubmitField('Select')
 
+class ActionForm(FlaskForm):
+    """Create an action form """
+    name = StringField('Name')
+    desc = TextAreaField('Description')
+    max_res = IntegerField('How many times can you use this?')
+    submit = SubmitField('Save')
+
+class PickActionForm(FlaskForm):
+    """Select an action form."""
+
+    id = SelectField(u'Actions')
+    submit = SubmitField('Select')
+
+
 
 class PickClassForm(FlaskForm):
     """Select a class form."""

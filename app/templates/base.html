@@ -1,4 +1,6 @@
 {% extends 'bootstrap/base.html' %}
+{% from 'macros/CED_buttons.html' import CED_buttons %}
+{% from 'macros/CED_id.html' import CED_id %}
 
 {% block title %}
 {% if title %}{{ title }} - SpellCaster{% else %}Welcome to SpellCaster{% endif %}
@@ -22,6 +24,7 @@
     <a href="{{ url_for('view_all_spells') }}">Spell Caster</a>
 
     <a href="{{ url_for('view_all_spells') }}">Spells</a>
+    <a href="{{ url_for('view_monster') }}">Monsters</a>
     {% if current_user.is_anonymous %}
     <a href="{{ url_for('register') }}">Register</a>
     <a href="{{ url_for('login') }}">Login</a>

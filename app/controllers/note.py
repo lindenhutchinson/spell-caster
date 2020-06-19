@@ -42,7 +42,7 @@ def create_note():
 
     # insert the created note into the database after the user has submitted the form
     if form.is_submitted():
-        note = insert_form(Note, form, char.id)
+        note = insert_form(Note, form, char_id=char.id)
         flash("Created a note!")
         return redirect(url_for('view_note', id=note.id))
 

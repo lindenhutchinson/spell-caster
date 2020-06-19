@@ -1,32 +1,18 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 {% from 'macros/stats.html' import stats_div %}
+{% from 'macros/spell_navigation.html' import spell_navigation %}
+
 {% block app_content %}
-<style>
-  .stats {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    margin-bottom: 10px;
-  }
-</style>
-<div class="row">
-  <a href="{{ url_for('delete_char') }}" class="crud btn btn-danger"
-    onclick="return confirm('Are you sure you want to delete this character? You cannot get them back!')">Delete</a>
-  <a href="{{ url_for('edit_char') }}" class="crud btn btn-default">Edit</a>
-  <a href="{{ url_for('create_char') }}" class="crud btn btn-success">New</a>
-</div>
+
+{{ CED_buttons('char')}}
 <div class="row page-head">
   <div class="col-md-5">
     <h1>{{ char.name }}</h1>
     <h3>A level {{ char.level }} {{ char.race }} {{ char._class.name }}</h3>
   </div>
   <div class="col-md-3">
-    <div class="opts">
-      <a class="opt btn btn-block btn-default" href="{{url_for('learn_spells') }}">Learn spells</a>
-    </div>
-    <div class="opts">
-      <a class="opt btn btn-block btn-default" href="{{url_for('prepare_spells')}}">Prepare spells</a>
-    </div>
+    {{spell_navigation(1)}}
   </div>
   <div class="col-md-4">
     <br />
@@ -34,39 +20,47 @@
   </div>
 </div>
 <hr>
-{% if stats %}
-{{ stats_div(char, stats) }}
-<div>
-  <a href="{{url_for('edit_stats')}}" class="btn btn-default">Edit your stats here</a>
-  {% else %}
-  <a href="{{url_for('create_stats')}}" class="btn btn-default">Create stats for your character here!</a>
+<div class="row">
+  <div class="col-md-6">
+    {% if stats %}
+    {{ stats_div(char, stats) }}
+    {% else %}
+    <a href="{{url_for('create_stats')}}" class="btn btn-default">Create stats for your character here!</a>
+    {% endif %}
+  </div>
+
+  <div class="stats col-md-6">
+    <h3>Actions</h3>
+    Actions go here!
+  </div>
 </div>
-
-{% endif %}
-<div>
-  {{ wtf.quick_form(resetSlotsForm)}}
-</div>
-<!-- </div> -->
-
-
-
 
 
 
 <div class="container" style="padding-bottom:2em">
   <div class="row">
+    <div class="col-xs-6">
+      <h3>Spell Casting</h3>
+    </div>
+    <div class="col-xs-3">
+      {{ wtf.quick_form(resetSlotsForm)}}
+
+    </div>
+
+  </div>
+  <div class="row">
     {% for lvl, spells in lvls.items() %}
     {% if spells|length > 0 or (lvl == 0 and spells|length > 0) %}
-    <div class="col-xs-3" style="margin:1em">
+    <div class="col-md-2 col-xs-4">
       <h3 id="btn-{{lvl}}" class="but btn btn-default" onclick="collapse_table('{{lvl}}')">
         {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}}
         spells{% endif %}</h3>
       {% if lvl > 0 %}
-      <div style="display:flex;" class="pb-2 align-items-baseline">
-        <button class="btn btn-secondary" type="button" onclick="decrementValue('lvl_{{lvl}}')">-</button>
+      <div style="display:flex;" class="align-items-baseline">
+        <button class="btn btn-default" type="button" onclick="decrementValue('lvl_{{lvl}}')">-</button>
         <input name="lvl_{{lvl}}" id="lvl_{{lvl}}" style="width:50px; text-align:center;" class="form-control"
           value="{{slots[lvl-1]}}" />
-        <button class="btn btn-secondary" type="button" onclick="incrementValue('lvl_{{lvl}}')">+</button>
+        <button class="btn btn-default" type="button" onclick="incrementValue('lvl_{{lvl}}')">+</button>
       </div>
       {% endif %}
     </div>

@@ -1,0 +1,21 @@
+{% macro spell_navigation(char=0,learn=0, prepare=0) %}
+
+{% if not char %}
+<div class="opts">
+    <a class="opt btn btn-block btn-default" href="{{url_for('view_char') }}">Change character</a>
+</div>
+{% endif %}
+<div class="opts">
+    <a class="opt btn btn-block btn-default" href="{{url_for('view_all_spells') }}">Find spells</a>
+</div>
+{% if not learn %}
+<div class="opts">
+    <a class="opt btn btn-block btn-default" href="{{url_for('learn_spells') }}">Learn spells</a>
+</div>
+{% endif %}
+{% if not prepare %}
+<div class="opts">
+    <a class="opt btn btn-block btn-default" href="{{url_for('prepare_spells')}}">Prepare spells</a>
+</div>
+{% endif %}
+{% endmacro %}

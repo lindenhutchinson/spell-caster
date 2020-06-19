@@ -1,0 +1,8 @@
+{% macro CED_id(item_name, id) %}
+<div class="row">
+    <a href="{{ url_for('delete_'+item_name, id=id) }}" class="crud btn btn-danger"
+        onclick="return confirm('Are you 100% sure you wanna do that??')">Delete</a>
+    <a href="{{ url_for('edit_'+item_name, id=id) }}" class="crud btn btn-default">Edit</a>
+    <a href="{{ url_for('create_'+item_name) }}" class="crud btn btn-success">New</a>
+</div>
+{% endmacro %}
