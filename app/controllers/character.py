@@ -11,6 +11,7 @@ from app.models.spell import Spell
 from app.models.slots import Slots
 from app.models.spellbook import Spellbook
 from app.models.stats import Stats
+from app.models.action import Action
 from app.db.db import db
 
 from app.forms import CharacterForm
@@ -99,8 +100,9 @@ def view_char():
     char.prof_bonus = get_prof_bonus(char.level)
 
     stats = get_char_child_default(Stats)
+    actions = get_all_char_child(Action, 'name')
 
-    return render_template('char.html', stats=stats, lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
+    return render_template('char.html', actions=actions, stats=stats, lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
 
 
 def edit_stats():

@@ -31,10 +31,11 @@ def routes(app):
 
 
     app.add_url_rule('/action/edit', view_func=action.edit_action, methods=['GET','POST'])
-    app.add_url_rule('/action/delete', view_func=action.delete_action, methods=['POST'])
+    app.add_url_rule('/action/delete', view_func=action.delete_action, methods=['GET'])
     app.add_url_rule('/action/create', view_func=action.create_action, methods=['GET','POST'])
     app.add_url_rule('/action', view_func=action.view_action, methods=['GET','POST'])
     app.add_url_rule('/action/res', view_func=action.change_action_res, methods=['POST'])
+    app.add_url_rule('/action/reset', view_func=action.reset_action, methods=['POST'])
 
 
     app.add_url_rule('/char/create', view_func=character.create_char, methods=['GET','POST'])

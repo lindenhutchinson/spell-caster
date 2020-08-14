@@ -1,0 +1,89 @@
+{% macro actions_div(char, actions) %}
+<style>
+    .ui-menu>li {
+        list-style: none;
+        background-image: none;
+        background-repeat: none;
+        background-position: 0;
+    }
+
+    .ui-menu>ul {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+    }
+</style>
+<div class="stats">
+    <div style="margin-bottom:2em" class="row">
+        <div>
+            <a style="text-align:center" href="{{url_for('view_action')}}" class="center btn btn-default btn-block">Actions</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 ui-menu action-list">
+
+            {% for action in actions %}
+            <div class="row">
+                <div class="col-xs-4">
+                    <h4><a href="{{url_for('view_action', id=action.id)}}">{{action.name}}</a></h4>
+                </div>
+                <div class="col-xs-3">
+                    <input name="action_{{action.name}}" id="action_{{action.id}}"
+                        style="width:63px; text-align:center;" class="form-control" value="{{action.res}}" />
+                    <button class="res-btn btn btn-default" type="button"
+                        onclick="plusRes('action_{{action.id}}')">+</button>
+                    <button class="res-btn btn btn-default" type="button"
+                        onclick="minusRes('action_{{action.id}}')">-</button>
+                </div>
+                <div class="col-xs-2">
+                    <a class="btn btn-default" href="{{url_for('edit_action', id=action.id)}}">Edit</a>
+                </div>
+                <div class="col-xs-1">
+                    <a class="btn btn-primary" onclick="resetRes('action_{{action.id}}', '{{action.max_res}}')">Reset</a>
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function plusRes(id) {
+        var value = parseInt(document.getElementById(id).value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        document.getElementById(id).value = value;
+        changeRes(id, value);
+    }
+    function minusRes(id) {
+        var value = parseInt(document.getElementById(id).value, 10);
+        value = isNaN(value) ? 0 : value;
+        if (value != 0) {
+            value--;
+            document.getElementById(id).value = value;
+        }
+
+        changeRes(id, value)
+    }
+
+    function resetRes(id, res) {
+        document.getElementById(id).value = res;
+        
+        changeRes(id, res)
+    }
+
+    function changeRes(id, res) {
+        data = { id: id, res: res };
+        $.post({
+            url: "{{ url_for('change_action_res') }}",
+            data: JSON.stringify(data, null, "\t"),
+            contentType: "application/json;charset=UTF-8",
+            success: function (result) {
+                console.log(result);
+            },
+        });
+    }
+</script>
+{% endmacro %}

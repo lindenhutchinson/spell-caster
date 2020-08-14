@@ -8,7 +8,7 @@ class Action(db.Model):
     desc = db.Column(db.String(5000))
     res = db.Column(db.Integer)
     max_res = db.Column(db.Integer)
-
+# when does this action refresh? (short rest, long rest etc)
 
     def __init__(self, character, name, desc, max_res):
         self.character = character

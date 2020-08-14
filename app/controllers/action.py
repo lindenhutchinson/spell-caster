@@ -16,8 +16,17 @@ from app.forms import PickActionForm
 from app.utils.character_helpers import *
 from app.utils.model_helpers import *
 
+def reset_action():
+    action_id = request.json['id']
+    action_id = action_id.strip('action_')
+    action = kw_get_model(Action, id=action_id)
+    update_model(action, {'res': action.max_res}, id=action_id)
+    return "Reset an action resource!"
+
+
 def change_action_res():
     action_id = request.json['id']
+    action_id = action_id.strip('action_')
     new_res = int(request.json['res'])
     action = kw_get_model(Action, id=action_id)
     print(action)
@@ -25,7 +34,31 @@ def change_action_res():
     return "Updated an action resource!"
 
 def delete_action():
-    pass
+     # check user is authenticated
+    if not current_user.is_authenticated:
+        flash("Please login first!")
+        return redirect(url_for('login'))
+
+    # check user has characters
+    if not user_has_characters():
+        flash("Please create a character first!")
+        return redirect(url_for('create_char')) 
+
+    # get the current character
+    char = get_model(Character, session['char_id'])
+
+    action = get_char_child(Action, request.args.get('id', type=int))
+
+    if not action:
+        flash("Couldn't find that action!")
+        return redirect(url_for('view_action'))
+
+    delete_model(action)
+
+    flash("Action deleted!")
+    return redirect(url_for('view_char'))
+
+
 
 def edit_action():
      # check user is authenticated

@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+from flaskext.markdown import Markdown
+
 from app.db import db
 from app.models.user import User
 from .router import routes
@@ -41,6 +43,9 @@ def register_extensions(app):
     routes(app)
     login = LoginManager(app)
     bootstrap = Bootstrap(app)
+    Markdown(app)
+
+
     @login.user_loader
     def load_user(id):
         return User.query.get(int(id))

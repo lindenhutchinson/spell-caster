@@ -2,37 +2,35 @@
 
 <div class="stats">
   <div style="margin-bottom:2em" class="row">
-    <div class="col-md-2">
-      <h3 style="text-align:center">Stats</h3>
+    <div>
+      <a style="text-align:center" href="{{url_for('edit_stats')}}" class="btn-block btn-block btn btn-default">Stats</a>
     </div>
-    <div class="col-md-2">
-      <a style="margin-top:1.25em" href="{{url_for('edit_stats')}}" class="center btn btn-default">Edit your stats
-        here</a>
-    </div>
+
   </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 ui-menu">
       <ul>
-        <li>Armor Class: <strong>{{ stats.ac }}</strong></li>
-        <li>Hit Points: <strong>{{ stats.hp }}</strong></li>
-        <li>Spell Save DC: <strong>{{ stats.spell_save }}</strong></li>
-        <li>Spell Attack Modifier: <strong>{{ stats.spell_attack }}</strong></li>
+        <li><h4>Armour Class: <strong>{{ stats.ac }}</strong></h4></li>
+        <li><h4>Hit Point Maximum: <strong>{{ stats.max_hp }}</strong></h4></li>
+        <li><h4>Hit Points: <strong>{{ stats.hp }}</strong></h4></li>
+        <li><h4>Spell Save DC: <strong>{{ stats.spell_save }}</strong></h4></li>
+        <li><h4>Spell Attack Modifier: <strong>{{ stats.spell_attack }}</strong></h4></li>
       </ul>
     </div>
-    <div class='col-md-6'>
+    <div class='col-md-6 ui-menu'>
       <ul>
-        <li>Strength: <strong>{{ stats.str_ }}</strong>
-          ({% if stats.str_ > 11 %}+{% endif %}{{ (stats.str_  - 10 )// 2}})</li>
-        <li>Dexterity: <strong>{{ stats.dex_ }}</strong>
-          ({% if stats.dex_ > 11 %}+{% endif %}{{ (stats.dex_  - 10 )// 2}})</li>
-        <li>Constitution: <strong>{{ stats.con_ }}</strong>
-          ({% if stats.con_ > 11 %}+{% endif %}{{ (stats.con_  - 10 )// 2}})</li>
-        <li>Intelligence: <strong>{{ stats.int_ }}</strong>
-          ({% if stats.int_ > 11 %}+{% endif %}{{ (stats.int_  - 10 )// 2}})</li>
-        <li>Wisdom: <strong>{{ stats.wis_ }}</strong> ({% if stats.wis_ > 11 %}+{% endif %}{{ (stats.wis_  - 10 )// 2}})
-        </li>
-        <li>Charisma: <strong>{{ stats.chr_ }}</strong>
-          ({% if stats.chr_ > 11 %}+{% endif %}{{ (stats.chr_  - 10 )// 2}})</li>
+        <li><h4>Strength: <strong>{{ stats.str_ }}</strong>
+          ({% if stats.str_ > 11 %}+{% endif %}{{ (stats.str_  - 10 )// 2}})</h4></li>
+        <li><h4>Dexterity: <strong>{{ stats.dex_ }}</strong>
+          ({% if stats.dex_ > 11 %}+{% endif %}{{ (stats.dex_  - 10 )// 2}})</h4></li>
+        <li><h4>Constitution: <strong>{{ stats.con_ }}</strong>
+          ({% if stats.con_ > 11 %}+{% endif %}{{ (stats.con_  - 10 )// 2}})</h4></li>
+        <li><h4>Intelligence: <strong>{{ stats.int_ }}</strong>
+          ({% if stats.int_ > 11 %}+{% endif %}{{ (stats.int_  - 10 )// 2}})</h4></li>
+        <li><h4>Wisdom: <strong>{{ stats.wis_ }}</strong>
+           ({% if stats.wis_ > 11 %}+{% endif %}{{ (stats.wis_  - 10 )// 2}}</h4></li>
+        <li><h4>Charisma: <strong>{{ stats.chr_ }}</strong>
+          ({% if stats.chr_ > 11 %}+{% endif %}{{ (stats.chr_  - 10 )// 2}})</h4></li>
       </ul>
     </div>
   </div>

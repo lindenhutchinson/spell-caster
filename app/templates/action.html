@@ -7,6 +7,7 @@
         <h1>
             {{action.name}}
         </h1>
+        <h4>{{char.name}}'s action</h4>
     </div>
     <div class="col-xs-4">
         {{ wtf.quick_form(form) }}
@@ -27,8 +28,9 @@
     </div>
 </div>
 <div class="container">
-    <h3>Description:</h3>
-    <p>{{action.desc}}</p>
+    {% filter markdown %}
+    {{action.desc}}
+    {% endfilter %}
 </div>
 
 

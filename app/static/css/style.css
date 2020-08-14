@@ -54,7 +54,7 @@
 }
 
 .crud {
-  min-width: 3em;
+  width: 5em;
   float: right;
   margin-left: 1em;
   margin-right: 1em;
@@ -161,3 +161,13 @@ tr:hover {
   height: 30em;
 }
 
+.res-btn {
+  width:30px;
+}
+
+.action-list {
+  overflow:scroll; 
+  height:22.5em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
