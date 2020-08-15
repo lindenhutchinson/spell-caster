@@ -48,98 +48,95 @@
     </div>
     <div class="col-xs-3">
       {{ wtf.quick_form(resetSlotsForm)}}
-
     </div>
 
   </div>
   <div class="row">
-    {% for lvl, spells in lvls.items() %}
-    {% if spells|length > 0 or (lvl == 0 and spells|length > 0) %}
-    <div class="col-md-2 col-xs-4">
-      <h3 id="btn-{{lvl}}" class="but btn btn-default" onclick="collapse_table('{{lvl}}')">
-        {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}}
-        spells{% endif %}</h3>
-      {% if lvl > 0 %}
-      <div style="display:flex;" class="align-items-baseline">
-        <button class="btn btn-default" type="button" onclick="decrementValue('lvl_{{lvl}}')">-</button>
-        <input name="lvl_{{lvl}}" id="lvl_{{lvl}}" style="width:50px; text-align:center;" class="form-control"
-          value="{{slots[lvl-1]}}" />
-        <button class="btn btn-default" type="button" onclick="incrementValue('lvl_{{lvl}}')">+</button>
+    <div class="col-md-1 col-xs-4" style="margin-right:2em">
+      {% for lvl, spells in lvls.items() %}
+      {% if spells|length > 0 or (lvl == 0 and spells|length > 0) %}
+      <div class="row">
+        <h3 id="btn-{{lvl}}" class="but btn btn-default" onclick="collapse_table('{{lvl}}')">
+          {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}} spells{% endif %}</h3>
+        {% if lvl > 0 %}
+        <div style="display:flex;" class="align-items-baseline">
+          <button class="btn btn-default" type="button" onclick="decrementValue('lvl_{{lvl}}')">-</button>
+          <input name="lvl_{{lvl}}" id="lvl_{{lvl}}" style="width:50px; text-align:center;" class="form-control"
+            value="{{slots[lvl-1]}}" />
+          <button class="btn btn-default" type="button" onclick="incrementValue('lvl_{{lvl}}')">+</button>
+        </div>
+        {% endif %}
       </div>
       {% endif %}
+      {% endfor %}
     </div>
-    {% endif %}
-    {% endfor %}
+    <div class="col-md-10 col-xs-8">
+      <input type=checkbox class="form-check-input" checked onchange="show_unprepared()" id="show_unprepared">
+      <label class="form-check-label" for="show_unprepared">Show unprepared spells</label>
+      {% for lvl, spells in lvls.items() %}
+      {% if spells|length > 0 %}
+      <table style="display:none" class="spell-table" id="spell-table-{{lvl}}">
+        <thead>
+          <tr>
+            {%if lvl > 0 %}
+            <th></th>
+            {%endif%}
+            <th></th>
+            <th>Name</th>
+            <th>Level</th>
+            <th>Concentration</th>
+            <th>Cast Time</th>
+            <th>Range</th>
+            <th>Duration</th>
+            <th>School</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for spell in spells %}
+          <tr class="spell_row" id="{{spell.id}}" href="{{ url_for('view_spell', id=spell.id) }}">
+            {%if spell.level > 0 %}
+            <td>
+              <button id="btn_{{spell.id}}" onclick="prepareSpell('{{spell.id}}', '{{lvl}}')"
+                {% if spell.id in prep_spells %} class="btn btn-success">Unprepare
+                {% else %}
+                class="btn btn-primary">Prepare
+                {% endif %}
+              </button>
+            </td>
+            {%endif%}
+            <td>
+              <input type="hidden" value="{%if spell.id in prep_spells%}1{%endif%}" id="s_{{spell.id}}">
+              <button class="btn btn-primary" type="button" onclick="decrementValue('lvl_{{lvl}}')">Cast!</button>
+            </td>
+            <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
+            <td>{{spell.level}}</td>
+            <td>{{spell.concentration}}</td>
+            <td>{{spell.cast_time}}</td>
+            <td>{{spell.spell_range}}</td>
+            <td>{{spell.duration}}</td>
+            <td>{{spell.school}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-  <hr>
-  <input type=checkbox class="form-check-input" checked onchange="show_unprepared()" id="show_unprepared">
-  <label class="form-check-label" for="show_unprepared">Show unprepared spells</label>
-  {% for lvl, spells in lvls.items() %}
-  {% if spells|length > 0 %}
-  <table style="display:none" class="spell-table" id="spell-table-{{lvl}}">
-    <thead>
-      <tr>
-        {%if lvl > 0 %}
-        <th></th>
-        {%endif%}
-        <th></th>
-        <th>Name</th>
-        <th>Level</th>
-        <th>Concentration</th>
-        <th>Cast Time</th>
-        <th>Range</th>
-        <th>Duration</th>
-        <th>School</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for spell in spells %}
-      <tr  class="spell_row" id="{{spell.id}}" href="{{ url_for('view_spell', id=spell.id) }}">
-        {%if spell.level > 0 %}
-        <td>
-          <button id="btn_{{spell.id}}" onclick="prepareSpell('{{spell.id}}', '{{lvl}}')" 
-            {% if spell.id in prep_spells %} 
-              class="btn btn-success">Unprepare
-            {% else %} 
-              class="btn btn-primary">Prepare
-            {% endif %}
-          </button>
-      </td>
-      {%endif%}
-        <td>
-          <input type="hidden" value="{%if spell.id in prep_spells%}1{%endif%}" id="s_{{spell.id}}">
-          <button class="btn btn-primary" type="button" onclick="decrementValue('lvl_{{lvl}}')">Cast!</button>
-        </td>
-        <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
-        <td>{{spell.level}}</td>
-        <td>{{spell.concentration}}</td>
-        <td>{{spell.cast_time}}</td>
-        <td>{{spell.spell_range}}</td>
-        <td>{{spell.duration}}</td>
-        <td>{{spell.school}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% endif %}
-  {% endfor %}
-</div>
-
-</div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <script>
   function show_unprepared() {
-    var show_unprep=$("#show_unprepared").is(":checked");
+    var show_unprep = $("#show_unprepared").is(":checked");
     var rows = document.getElementsByClassName('spell_row');
 
-    if(!show_unprep) {
+    if (!show_unprep) {
       console.log("hiding unprepare spells!");
-      for(var i=0; i<rows.length;i++){
-        var spell = document.getElementById('s_'+rows[i].id);
-        if (!spell.value){
+      for (var i = 0; i < rows.length; i++) {
+        var spell = document.getElementById('s_' + rows[i].id);
+        if (!spell.value) {
           console.log("hiding a spell");
           rows[i].setAttribute('style', 'display:none');
         }
@@ -147,9 +144,9 @@
       }
     } else {
       console.log("showing unprepare spells!")
-      for(var i=0; i<rows.length;i++){
+      for (var i = 0; i < rows.length; i++) {
         rows[i].setAttribute('style', '');
-  
+
       }
     }
   }
@@ -239,34 +236,34 @@
     });
   }
   function prepareSpell(spell_id, lvl) {
-        data = { spell_id: spell_id };
-        $.ajax({
-            type: "POST",
-            url: "{{ url_for('prepare_spell') }}",
-            data: JSON.stringify(data, null, "\t"),
-            contentType: "application/json;charset=UTF-8",
-            // success: function (result) {
-            //     updatePrepCount(result);
-            // },
-        });
-        var btn = document.getElementById('btn_'+spell_id);
-        console.log(btn.innerHTML);
-        if (btn.innerHTML.trim() == "Prepare") {
-            var prep = document.getElementById('s_'+spell_id);
-            prep.value = '1';
-            btn.innerHTML = "Unprepare";
-            btn.classList = "btn btn-success";
-            // updateLvlTotal(lvl, false)
+    data = { spell_id: spell_id };
+    $.ajax({
+      type: "POST",
+      url: "{{ url_for('prepare_spell') }}",
+      data: JSON.stringify(data, null, "\t"),
+      contentType: "application/json;charset=UTF-8",
+      // success: function (result) {
+      //     updatePrepCount(result);
+      // },
+    });
+    var btn = document.getElementById('btn_' + spell_id);
+    console.log(btn.innerHTML);
+    if (btn.innerHTML.trim() == "Prepare") {
+      var prep = document.getElementById('s_' + spell_id);
+      prep.value = '1';
+      btn.innerHTML = "Unprepare";
+      btn.classList = "btn btn-success";
+      // updateLvlTotal(lvl, false)
 
-        } else {
-            var prep = document.getElementById('s_'+spell_id);
-            prep.value = '';
-            btn.innerHTML = "Prepare";
-            btn.classList = "btn btn-primary";
-            // updateLvlTotal(lvl, true)
+    } else {
+      var prep = document.getElementById('s_' + spell_id);
+      prep.value = '';
+      btn.innerHTML = "Prepare";
+      btn.classList = "btn btn-primary";
+      // updateLvlTotal(lvl, true)
 
-        }
     }
+  }
 </script>
 
 {% endblock %}
