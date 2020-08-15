@@ -72,14 +72,13 @@ def view_char():
     # get all spellbooks owned by the character
     spellbooks = get_all_char_child(Spellbook, 'id')
     prep_spells = []
-
+    unprep_spells = []
     # curate a list of prepared spellbooks
     for sb in spellbooks:
         if sb.prepared:
             prep_spells.append(sb.spell)
-
-    if len(prep_spells) == 0:
-        flash("Try preparing some spells!")
+        else:
+            unprep_spells.append(sb.spell)
 
     # Split prepared spells by level so they can be separated on the page
     lvls = {0: [], 1: [], 2: [], 3: [], 4: [],
@@ -87,6 +86,11 @@ def view_char():
 
     spaces = get_slots(char.level)
     for s in prep_spells:
+        if spaces[s.level-1] == 0 and s.level != 0:
+            continue
+        lvls[s.level].append(s)
+
+    for s in unprep_spells:
         if spaces[s.level-1] == 0 and s.level != 0:
             continue
         lvls[s.level].append(s)
@@ -101,8 +105,9 @@ def view_char():
 
     stats = get_char_child_default(Stats)
     actions = get_all_char_child(Action, 'name')
-
-    return render_template('char.html', actions=actions, stats=stats, lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
+    prep_spells = [s.id for s in prep_spells]
+    unprep_spells = [s.id for s in unprep_spells]
+    return render_template('char.html', prep_spells=prep_spells, unprep_spells=unprep_spells, actions=actions, stats=stats, lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
 
 
 def edit_stats():

@@ -73,11 +73,16 @@
   </div>
 
   <hr>
+  <input type=checkbox class="form-check-input" checked onchange="show_unprepared()" id="show_unprepared">
+  <label class="form-check-label" for="show_unprepared">Show unprepared spells</label>
   {% for lvl, spells in lvls.items() %}
   {% if spells|length > 0 %}
   <table style="display:none" class="spell-table" id="spell-table-{{lvl}}">
     <thead>
       <tr>
+        {%if lvl > 0 %}
+        <th></th>
+        {%endif%}
         <th></th>
         <th>Name</th>
         <th>Level</th>
@@ -90,8 +95,20 @@
     </thead>
     <tbody>
       {% for spell in spells %}
-      <tr href="{{ url_for('view_spell', id=spell.id) }}">
+      <tr  class="spell_row" id="{{spell.id}}" href="{{ url_for('view_spell', id=spell.id) }}">
+        {%if spell.level > 0 %}
         <td>
+          <button id="btn_{{spell.id}}" onclick="prepareSpell('{{spell.id}}', '{{lvl}}')" 
+            {% if spell.id in prep_spells %} 
+              class="btn btn-success">Unprepare
+            {% else %} 
+              class="btn btn-primary">Prepare
+            {% endif %}
+          </button>
+      </td>
+      {%endif%}
+        <td>
+          <input type="hidden" value="{%if spell.id in prep_spells%}1{%endif%}" id="s_{{spell.id}}">
           <button class="btn btn-primary" type="button" onclick="decrementValue('lvl_{{lvl}}')">Cast!</button>
         </td>
         <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
@@ -114,6 +131,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <script>
+  function show_unprepared() {
+    var show_unprep=$("#show_unprepared").is(":checked");
+    var rows = document.getElementsByClassName('spell_row');
+
+    if(!show_unprep) {
+      console.log("hiding unprepare spells!");
+      for(var i=0; i<rows.length;i++){
+        var spell = document.getElementById('s_'+rows[i].id);
+        if (!spell.value){
+          console.log("hiding a spell");
+          rows[i].setAttribute('style', 'display:none');
+        }
+
+      }
+    } else {
+      console.log("showing unprepare spells!")
+      for(var i=0; i<rows.length;i++){
+        rows[i].setAttribute('style', '');
+  
+      }
+    }
+  }
   $("th").click(function () {
     var table = $(this).parents("table").eq(0);
     var rows = table
@@ -199,7 +238,35 @@
       },
     });
   }
+  function prepareSpell(spell_id, lvl) {
+        data = { spell_id: spell_id };
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('prepare_spell') }}",
+            data: JSON.stringify(data, null, "\t"),
+            contentType: "application/json;charset=UTF-8",
+            // success: function (result) {
+            //     updatePrepCount(result);
+            // },
+        });
+        var btn = document.getElementById('btn_'+spell_id);
+        console.log(btn.innerHTML);
+        if (btn.innerHTML.trim() == "Prepare") {
+            var prep = document.getElementById('s_'+spell_id);
+            prep.value = '1';
+            btn.innerHTML = "Unprepare";
+            btn.classList = "btn btn-success";
+            // updateLvlTotal(lvl, false)
 
+        } else {
+            var prep = document.getElementById('s_'+spell_id);
+            prep.value = '';
+            btn.innerHTML = "Prepare";
+            btn.classList = "btn btn-primary";
+            // updateLvlTotal(lvl, true)
+
+        }
+    }
 </script>
 
 {% endblock %}

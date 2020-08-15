@@ -23,6 +23,14 @@ m_seeder = MonsterSeeder(app)
 ch_seeder = CharSeeder(app)
 
 @manager.command
+def all():
+	c_seeder.run()
+	s_seeder.run()
+	m_seeder.run()
+	ch_seeder.run()
+    
+
+@manager.command
 def _class():
 	c_seeder.run()
 

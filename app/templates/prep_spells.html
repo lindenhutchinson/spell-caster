@@ -94,7 +94,7 @@ app_content %}
                 spell.id
                 in
                 prep_spells
-                %} class="btn btn-success">Unprepare{% else %} class="btn btn-primary">Prepare{% endif %}</button>
+                %} class="btn btn-success">Prepared{% else %} class="btn btn-default">unprepared{% endif %}</button>
                 </td>
                 <td>
                     <a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a>
