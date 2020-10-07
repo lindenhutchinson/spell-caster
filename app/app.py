@@ -44,6 +44,7 @@ def register_extensions(app):
     login = LoginManager(app)
     bootstrap = Bootstrap(app)
     Markdown(app)
+    # migrate = Migrate(app, db)
 
 
     @login.user_loader

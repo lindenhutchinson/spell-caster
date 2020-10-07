@@ -95,6 +95,15 @@ def view_char():
             continue
         lvls[s.level].append(s)
 
+
+    p_spells = [s for s in kw_get_models(Spellbook, char_id=char.id, prepared=1) if s.spell.level > 0]
+    p_lvls = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
+    
+    for p in p_spells:
+        p_lvls[p.spell.level].append(p.spell)
+    
+    total = len(p_spells)
+
     # get the character's spell slots
     slots = get_char_child_default(Slots)
     # put the slot info into an easy to access array that can be accessed by the page
@@ -107,7 +116,7 @@ def view_char():
     actions = get_all_char_child(Action, 'name')
     prep_spells = [s.id for s in prep_spells]
     unprep_spells = [s.id for s in unprep_spells]
-    return render_template('char.html', prep_spells=prep_spells, unprep_spells=unprep_spells, actions=actions, stats=stats, lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
+    return render_template('char.html', p_lvls=p_lvls, total=total, prep_spells=prep_spells, unprep_spells=unprep_spells, actions=actions, stats=stats, lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
 
 
 def edit_stats():

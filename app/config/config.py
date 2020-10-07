@@ -24,7 +24,7 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI_DEV')
     SECRET_KEY = os.getenv('SECRET_KEY')
     # uncomment to open the server to LAN!
-    SERVER_NAME = '192.168.20.8:2000'
+    # SERVER_NAME = '192.168.20.8:2000'
     PORT = os.getenv('PORT') or 2000
 
 class TestingConfig(Config):
