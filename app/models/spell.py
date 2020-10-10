@@ -15,7 +15,7 @@ class Spell(db.Model):
     from_book = db.Column(db.String(128), nullable=True)
     is_bard = db.Column(db.Boolean, nullable=True)
     is_cleric = db.Column(db.Boolean, nullable=True)
-    is_druid = db.Column(db.Boolean, nullable=True)
+    is_druid = db.Column(db.Boolean, nullable=True) 
     is_paladin = db.Column(db.Boolean, nullable=True)
     is_ranger = db.Column(db.Boolean, nullable=True)
     is_sorcerer = db.Column(db.Boolean, nullable=True)

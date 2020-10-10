@@ -116,7 +116,21 @@ def view_char():
     actions = get_all_char_child(Action, 'name')
     prep_spells = [s.id for s in prep_spells]
     unprep_spells = [s.id for s in unprep_spells]
-    return render_template('char.html', p_lvls=p_lvls, total=total, prep_spells=prep_spells, unprep_spells=unprep_spells, actions=actions, stats=stats, lvls=lvls, slots=slots, char=char, resetSlotsForm=form2, form=form1, title=char.name)
+    return render_template(
+        'char.html', 
+        p_lvls=p_lvls, 
+        total=total, 
+        prep_spells=prep_spells, 
+        unprep_spells=unprep_spells, 
+        actions=actions, 
+        stats=stats, 
+        lvls=lvls, 
+        slots=slots, 
+        char=char, 
+        resetSlotsForm=form2, 
+        form=form1, 
+        title=char.name
+    )
 
 
 def edit_stats():
@@ -256,9 +270,8 @@ def edit_char():
 
     if form.is_submitted():
         # If a character's level is changed, then we should update their slots
-        slot_work = False
-        if int(form.level.data) != int(char.level):
-            slot_work = True
+        # need to check this before the form has been updated
+        slot_work = True if int(form.level.data) != int(char.level) else False
 
         update_form(char, form)
 

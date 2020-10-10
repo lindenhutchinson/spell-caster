@@ -5,7 +5,11 @@
 {% from 'macros/actions.html' import actions_div %}
 
 {% block app_content %}
-
+<style>
+  td {
+    width:5em;
+  }
+</style>
 {{ CED_buttons('char')}}
 <div class="row page-head">
   <div class="col-md-5">
@@ -20,26 +24,6 @@
     {{ wtf.quick_form(form) }}
   </div>
 </div>
-<hr>
-<div class="row" style="margin-bottom:2em;">
-  <div class="col-md-6">
-    {% if stats %}
-    {{ stats_div(char, stats) }}
-    {% else %}
-    <a href="{{url_for('create_stats')}}" class="btn btn-default">Create stats for your character here!</a>
-    {% endif %}
-  </div>
-
-  <div class="col-md-6">
-    {% if actions %}
-    {{ actions_div(char, actions) }}
-    {% else %}
-    <a href="{{url_for('create_action')}}" class="btn btn-default">Create an action for your character here!</a>
-    {% endif %}
-  </div>
-</div>
-
-
 
 <div class="container" style="padding-bottom:2em">
   <div class="row">
@@ -57,9 +41,10 @@
       {% for lvl, spells in lvls.items() %}
       {% if spells|length > 0 or (lvl == 0 and spells|length > 0) %}
       <div class="row">
-        <h3 id="btn-{{lvl}}" class="but btn {% if lvl == 0 %} btn-info{%else%} btn-default {%endif%}"
+        <h3 id="btn-{{lvl}}" class="but btn {% if lvl == 0 %} btn-info {%else%} btn-default {%endif%}"
           onclick="collapse_table('{{lvl}}')">
-          {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}} spells{% endif %}</h3>
+          {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}} spells{% endif %}
+        </h3>
         {% if lvl > 0 %}
         <div style="display:flex;" class="align-items-baseline">
           
@@ -78,7 +63,7 @@
       <label class="form-check-label" for="show_unprepared">Show unprepared spells</label>
 
       <div class="row show_prep">
-        <span class="total_prep" id="prep_count">You have {{total}} total spells prepared</span>
+        <span class="total_prep" id="prep_count">You have {{total}} spells prepared</span>
       </div>
       {% for lvl, spells in lvls.items() %}
       {% if spells|length > 0 %}
@@ -135,7 +120,23 @@
         {% endfor %}
     </div>
   </div>
+</div>
+<div class="row" style="margin-bottom:2em;">
+  <div class="col-md-6">
+    {% if stats %}
+    {{ stats_div(char, stats) }}
+    {% else %}
+    <a href="{{url_for('create_stats')}}" class="btn btn-default">Create stats for your character here!</a>
+    {% endif %}
+  </div>
 
+  <div class="col-md-6">
+    {% if actions %}
+    {{ actions_div(char, actions) }}
+    {% else %}
+    <a href="{{url_for('create_action')}}" class="btn btn-default">Create an action for your character here!</a>
+    {% endif %}
+  </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
