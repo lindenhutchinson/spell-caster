@@ -14,13 +14,11 @@ app_content %}
 <div class="page-head row">
   <div class="col-md-8">
     <h1>{{ spell.name }}</h1>
-    <p class="tab">
-      A {% if spell.is_bard %} Bard {% endif %} {% if spell.is_cleric %} Cleric
-      {% endif %} {% if spell.is_druid %} Druid {% endif %} {% if
-      spell.is_paladin %} Paladin {% endif %} {% if spell.is_ranger %} Ranger {%
-      endif %} {% if spell.is_sorcerer %} Sorcerer {% endif %} {% if
-      spell.is_warlock %} Warlock {% endif %} {% if spell.is_wizard %} Wizard {%
-      endif %} spell
+    <p class="tab">A 
+      {% for sp in spell.classes %}
+        {{sp._class.name}}
+      {% endfor %}
+      spell
     </p>
   </div>
   <div class="col-md-4">

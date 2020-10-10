@@ -7,6 +7,7 @@ from werkzeug.datastructures import MultiDict
 from app.models.user import User
 from app.models.character import Character
 from app.models._class import _Class
+from app.models.spellclass import SpellClass
 from app.models.spell import Spell
 
 from app.db.db import db
@@ -14,6 +15,7 @@ from app.db.db import db
 from app.forms import SpellForm, PickSpellForm, PickClassForm
 
 from app.utils.model_helpers import *
+from app.utils.spell_helpers import *
 from app.tables.spell_table import SpellTable
 
 
@@ -25,7 +27,7 @@ def create_spell():
     form = SpellForm()
 
     if form.validate_on_submit():
-        spell = insert_form(Spell, form)
+        spell = insert_spell_form(Spell, form)
         flash("Created spell!")
         return redirect(url_for('view_spell', id=spell.id))
 
@@ -68,27 +70,11 @@ def view_all_spells():
     # check if the url parameter is a valid class
     # if it is, get the list of spells that are available to that class
     # otherwise, just get a list of all spells
-    if filt == 'Bard':
-        spells = kw_get_models(Spell, is_bard=1)
-    elif filt == 'Cleric':
-        spells = kw_get_models(Spell, is_cleric=1)
-    elif filt == 'Druid':
-        spells = kw_get_models(Spell, is_druid=1)
-    elif filt == 'Paladin':
-        spells = kw_get_models(Spell, is_paladin=1)
-    elif filt == 'Ranger':
-        spells = kw_get_models(Spell, is_ranger=1)
-    elif filt == 'Sorcerer':
-        spells = kw_get_models(Spell, is_sorcerer=1)
-    elif filt == 'Warlock':
-        spells = kw_get_models(Spell, is_warlock=1)
-    elif filt == 'Wizard':
-        spells = kw_get_models(Spell, is_wizard=1)
+    _class = kw_get_model(_Class, name=filt)
+    if _class:
+        spells = [sp.spell for sp in _class.spells]
     else:
         spells = get_all_models(Spell)
-
-    # Find the class model associated with the filter
-    _class = kw_get_model(_Class, name=filt)
 
     if not spells:
         flash("No spells found!")
@@ -111,7 +97,8 @@ def view_all_spells():
     # Add the option for 'All' into the select choices
     form.class_id.choices = [(0, 'All')]
     # Combine the class choices
-    form.class_id.choices = form.class_id.choices + get_select_choices(_Class, 'name')
+    form.class_id.choices = form.class_id.choices + \
+        get_select_choices(_Class, 'name')
     if form.is_submitted():
         if form.class_id.data == '0':
             return redirect(url_for('view_all_spells', filter='All'))
@@ -131,8 +118,12 @@ def edit_spell():
         flash("Couldn't find that spell!")
         return redirect(url_for('view_spell'))
 
+
+
     if request.method == 'GET':
-        form = SpellForm(formdata=MultiDict({
+
+
+        data = MultiDict({
             'name': spell.name,
             'level': spell.level,
             'cast_time': spell.cast_time,
@@ -144,21 +135,19 @@ def edit_spell():
             'scaling': spell.scaling,
             'from_book': spell.from_book,
             'concentration': spell.concentration,
-            'is_bard': spell.is_bard,
-            'is_cleric': spell.is_cleric,
-            'is_druid': spell.is_druid,
-            'is_paladin': spell.is_paladin,
-            'is_ranger': spell.is_ranger,
-            'is_sorcerer': spell.is_sorcerer,
-            'is_warlock': spell.is_warlock,
-            'is_wizard': spell.is_wizard
-        }))
+        })
+        for sc in spell.classes:
+            if sc._class:
+                name = sc._class.name.lower()
+                name = f'is_{name}'
+                data.update({name:1})
 
+        form = SpellForm(formdata=data)
     else:
         form = SpellForm()
 
     if form.is_submitted():
-        update_form(spell, form)
+        update_spell_form(spell, form)
 
         flash("Updated spell!")
         return redirect(url_for('view_spell', id=spell.id))

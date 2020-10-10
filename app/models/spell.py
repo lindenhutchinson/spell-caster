@@ -13,18 +13,19 @@ class Spell(db.Model):
     info = db.Column(db.String(5000))
     scaling = db.Column(db.String(5000), nullable=True)
     from_book = db.Column(db.String(128), nullable=True)
-    is_bard = db.Column(db.Boolean, nullable=True)
-    is_cleric = db.Column(db.Boolean, nullable=True)
-    is_druid = db.Column(db.Boolean, nullable=True) 
-    is_paladin = db.Column(db.Boolean, nullable=True)
-    is_ranger = db.Column(db.Boolean, nullable=True)
-    is_sorcerer = db.Column(db.Boolean, nullable=True)
-    is_warlock = db.Column(db.Boolean, nullable=True)
-    is_wizard = db.Column(db.Boolean, nullable=True)
+    # is_bard = db.Column(db.Boolean, nullable=True)
+    # is_cleric = db.Column(db.Boolean, nullable=True)
+    # is_druid = db.Column(db.Boolean, nullable=True) 
+    # is_paladin = db.Column(db.Boolean, nullable=True)
+    # is_ranger = db.Column(db.Boolean, nullable=True)
+    # is_sorcerer = db.Column(db.Boolean, nullable=True)
+    # is_warlock = db.Column(db.Boolean, nullable=True)
+    # is_wizard = db.Column(db.Boolean, nullable=True)
     spellbooks = db.relationship("Spellbook", backref='spell')
-
+    classes = db.relationship("SpellClass", backref='spell', cascade="all, delete", passive_deletes=True)
     
-    def __init__(self, name, level, school, cast_time, spell_range, components, duration, text, from_book, scaling=' ', concentration=0,is_bard=0, is_cleric=0, is_druid=0, is_paladin=0, is_ranger=0, is_sorcerer=0, is_warlock=0, is_wizard=0):
+    def __init__(self, name, level, school, cast_time, spell_range, components, duration, info, from_book, scaling=' ', concentration=0):
+        # is_bard=0, is_cleric=0, is_druid=0, is_paladin=0, is_ranger=0, is_sorcerer=0, is_warlock=0, is_wizard=0
     
         self.name = name
         self.level = level
@@ -33,18 +34,20 @@ class Spell(db.Model):
         self.components = components
         self.duration = duration
         self.school = school
-        self.info = text
+        self.info = info
         self.from_book = from_book
         self.scaling = scaling
         self.concentration=int(concentration)
-        self.is_bard = int(is_bard)
-        self.is_cleric = int(is_cleric)
-        self.is_druid = int(is_druid)
-        self.is_paladin = int(is_paladin)
-        self.is_ranger = int(is_ranger)
-        self.is_sorcerer = int(is_sorcerer)
-        self.is_warlock = int(is_warlock)
-        self.is_wizard = int(is_wizard)
+
+        
+        # self.is_bard = int(is_bard)
+        # self.is_cleric = int(is_cleric)
+        # self.is_druid = int(is_druid)
+        # self.is_paladin = int(is_paladin)
+        # self.is_ranger = int(is_ranger)
+        # self.is_sorcerer = int(is_sorcerer)
+        # self.is_warlock = int(is_warlock)
+        # self.is_wizard = int(is_wizard)
 
     def __repr__(self):
         return '<Spell {}>'.format(self.name)

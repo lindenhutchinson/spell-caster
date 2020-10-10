@@ -94,6 +94,7 @@ class MakeSpell:
         self.class_list = []
 
     def get_data(self, soup):
+        self.name = soup.find("h1", class_="classic-title").get_text()
         unclean = [s.get_text() for s in soup.find_all("p")]
         data = []
         for d in unclean:
@@ -153,14 +154,19 @@ class MakeSpell:
         book = self.data[-2]
         self.book = book.split(':')[1].strip()
 
-    def get_name(self):
-        div = self.soup.find("h1", class_="classic-title")
-        self.name = div.get_text()
+    # def get_name(self):
+    #     div = 
+    #     
 
     def get_classes(self):
         row = self.data[-1]
+
+        # for item in row.split(','):
+        #     item=item.lstrip('A\r\n ')
+        #     self.class_list.append(item)
+
         for c in ['Bard', 'Cleric', 'Druid', 'Paladin', 'Ranger', 'Sorcerer', 'Warlock', 'Wizard']:
-            self.class_list.append(1 if c in row else 0)
+            self.class_list.append(c if c in row else 0)
 
     def write_spell(self):
         with open(self.fn, "a", encoding="UTF-16") as handle:
@@ -171,7 +177,7 @@ class MakeSpell:
 
     def make_spell(self):
         self.get_info()
-        self.get_name()
+        # self.get_name()
         self.get_book()
         self.get_level_scaling()
         self.get_text()
@@ -180,6 +186,6 @@ class MakeSpell:
 
 if __name__ == '__main__':
     url = "https://www.dnd-spells.com/spells"
-    file = "./spells.csv"
+    file = "./spells2.csv"
     scraper = SpellScraper(url, file)
     scraper.get_spells()

@@ -86,11 +86,15 @@ def view_char():
 
     spaces = get_slots(char.level)
     for s in prep_spells:
+        if s.level > len(spaces):
+            continue
         if spaces[s.level-1] == 0 and s.level != 0:
             continue
         lvls[s.level].append(s)
 
     for s in unprep_spells:
+        if s.level > len(spaces):
+            continue
         if spaces[s.level-1] == 0 and s.level != 0:
             continue
         lvls[s.level].append(s)
@@ -220,17 +224,19 @@ def create_char():
 
     if form.is_submitted():
         char = insert_form(Character, form, user=current_user)
-
-        if get_model(_Class, char.class_id).name == 'Druid':
-            for s in kw_get_models(Spell, is_druid=1):
+        _class = get_model(_Class, char.class_id)
+        if _class.name == 'Druid':
+            for sc in _class.spells:
+                s = sc.spell
                 if int(s.level) == 0:
                     continue
+                    
                 insert_model(Spellbook(char.id, s))
-        elif get_model(_Class, char.class_id).name == 'Cleric':
-            for s in kw_get_models(Spell, is_cleric=1):
+        elif _class.name == 'Cleric':
+            for sc in _class.spells:
+                s = sc.spell
                 if int(s.level) == 0:
                     continue
-                insert_model(Spellbook(char.id, s))
 
         # If a character is created, we should create some slots for them as well!
         insert_model(Slots(char))

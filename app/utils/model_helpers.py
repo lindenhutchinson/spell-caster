@@ -22,7 +22,7 @@ def insert_form(model, form, **kwargs):
     db.session.commit()
 
     return obj
-
+   
 def insert_seeded_model(model, data, *args):
     obj = model(*data.items(), *args)
     db.session.add(obj)
