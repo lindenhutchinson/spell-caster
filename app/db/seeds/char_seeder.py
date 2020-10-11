@@ -31,7 +31,7 @@ class CharSeeder():
 
         name = 'Guh'
         class_id = kw_get_model(_Class, name='Druid').id
-        level = 7
+        level = 8
         if kw_get_model(Character, name=name):
             kw_delete_model(Character, name=name)
             print("the old guh has been decomposed")
@@ -41,28 +41,34 @@ class CharSeeder():
         insert_model(Slots(char))
         print("created slots")
 
-        insert_model(Stats(char, 11, 15, 11, 18, 12, 11, 17, 55, 15, 7))
+        insert_model(Stats(char, 11, 15, 11, 20, 12, 11, 17, 55, 15, 7))
         print("created stats")
-        for spell in kw_get_models(Spell, is_druid=1):
-            if spell.level > 0:
-                insert_model(Spellbook(char.id, spell))
+        _class = kw_get_model(_Class, name='Druid')
+
+        for sc in _class.spells:
+            if sc.spell.level > 0:
+                insert_model(Spellbook(char.id, sc.spell))
 
         spell_names = ['Chill Touch', 'Shape Water',
                        'Shillelagh', 'Thorn Whip',
                        'Blindness/Deafness', 'Gentle Repose (Ritual)',
                        'Animate Dead', 'Gaseous Form',
                        'Blight', 'Confusion']
+
+        known_spells = [sb.spell.id for sb in kw_get_models(Spellbook, char_id=char.id)]
         for name in spell_names:
             spell = kw_get_model(Spell, name=name)
-            if spell and not spell.id in [sb.spell.id for sb in kw_get_models(Spellbook, char_id=char.id)]:
+            if spell and not spell.id in known_spells:
                 insert_model(Spellbook(char.id, spell, 1))
             else:
-                print("couldn't add {} to spellbook".format(name))
+                print("didn't add {} to spellbook".format(name))
         print("created custom spellbooks")
         
-
-
-        decompose = Spell('Decompose', 0, 'Necromancy', '1 action', 'Touch', 'V, S', 'Instantaneous', 'You reach out and touch the corpse of a creature. Over the next minute, the corpse begins to rapidly decompose, sprouting fungus and moss as it begins to degrade into compost and mulch. An odd-colored flower or two may also spring from the corpse in this time. Applicable requirements for resurrection are unaffected by this decomposition', 'Matt Mercer', is_druid=1)
-        insert_model(decompose)
-        insert_model(Spellbook(char.id, decompose, 1))
+        decomp = kw_get_model(Spell, name="Decompose")
+        if decomp:
+            insert_model(Spellbook, char.id, decomp, 1)
+        else:
+            decompose = Spell('Decompose', 0, 'Necromancy', '1 action', 'Touch', 'V, S', 'Instantaneous', 'You reach out and touch the corpse of a creature. Over the next minute, the corpse begins to rapidly decompose, sprouting fungus and moss as it begins to degrade into compost and mulch. An odd-colored flower or two may also spring from the corpse in this time. Applicable requirements for resurrection are unaffected by this decomposition', 'Matt Mercer')
+            insert_model(decompose)
+            insert_model(Spellbook(char.id, decompose, 1))
         print("Created Guh!")

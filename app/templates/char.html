@@ -121,6 +121,8 @@
     </div>
   </div>
 </div>
+
+
 <div class="row" style="margin-bottom:2em;">
   <div class="col-md-6">
     {% if stats %}
@@ -138,7 +140,7 @@
     {% endif %}
   </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 
 <script>
   function show_unprepared() {
@@ -237,6 +239,7 @@
       }
     }
   }
+
   function changeSlot(lvl, res) {
     data = { slot_lvl: lvl, slot_res: res };
     $.post({
@@ -260,20 +263,17 @@
       },
     });
     var btn = document.getElementById('btn_' + spell_id);
-    console.log(btn.innerHTML);
+    
     if (btn.innerHTML.trim() == "Prepare") {
       var prep = document.getElementById('s_' + spell_id);
       prep.value = '1';
       btn.innerHTML = "Unprepare";
       btn.classList = "btn btn-success";
-      updateLvlTotal(lvl, false)
-
     } else {
       var prep = document.getElementById('s_' + spell_id);
       prep.value = '';
       btn.innerHTML = "Prepare";
       btn.classList = "btn btn-primary";
-      updateLvlTotal(lvl, true)
 
     }
   }
@@ -282,24 +282,6 @@
     el.innerHTML = "You have " + result + " spells prepared";
   }
 
-  function updateLvlTotal(lvl, dec) {
-    el = document.getElementById('prep-' + lvl);
-    total = Number(el.innerHTML)
-    console.log(total);
-    if (dec) {
-      total -= 1;
-    }
-    else {
-      total += 1;
-    }
-    el.innerHTML = total;
-    s = document.getElementById('lvl_prep-' + lvl);
-    if (total > 0) {
-      s.style.display = "";
-    } else {
-      s.style.display = "none";
-    }
-  }
 </script>
 
 {% endblock %}

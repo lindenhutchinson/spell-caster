@@ -23,8 +23,9 @@ def learn_spell():
     char_id = session['char_id']
     spell_id = request.json['spell_id']
     spell = get_model(Spell, spell_id)
-    if kw_get_model(Spellbook, char_id=char_id, spell=spell):
-        kw_delete_model(Spellbook, char_id=char_id, spell=spell)
+    spellbook = kw_get_model(Spellbook, char_id=char_id, spell=spell)
+    if spellbook:
+        delete_model(spellbook)
         return "Deleted Spellbook"
     else:
         if spell.level == 0:
@@ -34,7 +35,23 @@ def learn_spell():
 
         insert_model(sb)
         return "Added Spellbook"
-        
+
+def learn_class_spells():
+    char_id = session['char_id']
+    class_id = request.json['class_id']
+    _class = get_model(_Class, class_id)
+    count = 0
+    for sc in _class.spells:
+        if sc.spell.level > 0:
+            spellbook = kw_get_model(Spellbook,  char_id=char_id, spell=sc.spell)
+            if spellbook:
+                continue
+            else:
+                count+=1
+                insert_model(Spellbook(char_id, sc.spell))
+
+    return f"Added {count} spellbooks"
+
 def prepare_spell():
     char_id = session['char_id']
     spell_id = request.json['spell_id']
@@ -128,11 +145,16 @@ def learn_spells():
 
     # get the url parameter
     filt = request.args.get('filter', default='', type=str)
-    spells = get_filtered_spells(filt)
+
+    _class = kw_get_model(_Class, name=filt)
+    if _class:
+        spells = [sp.spell for sp in _class.spells]
+    else:
+        spells = get_all_models(Spell)
+
     if not spells:
         flash("No spells found!")
         return redirect(url_for('create_spell'))
-
 
     # intialize the Class form
     classForm = PickClassForm()

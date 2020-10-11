@@ -121,8 +121,6 @@ def edit_spell():
 
 
     if request.method == 'GET':
-
-
         data = MultiDict({
             'name': spell.name,
             'level': spell.level,

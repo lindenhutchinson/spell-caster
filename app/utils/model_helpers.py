@@ -6,6 +6,7 @@ import string
 def insert_model(model):
     db.session.add(model)
     db.session.commit()
+    return model
 
 # inserts a model object into the database, getting the model values via a passed form
 def insert_form(model, form, **kwargs):

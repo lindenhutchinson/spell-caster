@@ -99,40 +99,42 @@ def view_char():
             continue
         lvls[s.level].append(s)
 
+    p_spells = [s for s in kw_get_models(
+        Spellbook, char_id=char.id, prepared=1) if s.spell.level > 0]
+    p_lvls = {0: [], 1: [], 2: [], 3: [], 4: [],
+              5: [], 6: [], 7: [], 8: [], 9: []}
 
-    p_spells = [s for s in kw_get_models(Spellbook, char_id=char.id, prepared=1) if s.spell.level > 0]
-    p_lvls = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
-    
     for p in p_spells:
         p_lvls[p.spell.level].append(p.spell)
-    
+
     total = len(p_spells)
 
     # get the character's spell slots
     slots = get_char_child_default(Slots)
     # put the slot info into an easy to access array that can be accessed by the page
+    if not slots:
+        slots = insert_model(Slots(char))
     slots = [slots.lvl_1, slots.lvl_2, slots.lvl_3, slots.lvl_4,
              slots.lvl_5, slots.lvl_6, slots.lvl_7, slots.lvl_8, slots.lvl_9]
 
     char.prof_bonus = get_prof_bonus(char.level)
-
     stats = get_char_child_default(Stats)
     actions = get_all_char_child(Action, 'name')
     prep_spells = [s.id for s in prep_spells]
     unprep_spells = [s.id for s in unprep_spells]
     return render_template(
-        'char.html', 
-        p_lvls=p_lvls, 
-        total=total, 
-        prep_spells=prep_spells, 
-        unprep_spells=unprep_spells, 
-        actions=actions, 
-        stats=stats, 
-        lvls=lvls, 
-        slots=slots, 
-        char=char, 
-        resetSlotsForm=form2, 
-        form=form1, 
+        'char.html',
+        p_lvls=p_lvls,
+        total=total,
+        prep_spells=prep_spells,
+        unprep_spells=unprep_spells,
+        actions=actions,
+        stats=stats,
+        lvls=lvls,
+        slots=slots,
+        char=char,
+        resetSlotsForm=form2,
+        form=form1,
         title=char.name
     )
 
@@ -177,7 +179,7 @@ def edit_stats():
         return redirect(url_for('view_char'))
 
     return render_template('form.html', form=form, title="Edit Stats")
-    
+
 
 def create_stats():
     if not current_user.is_authenticated:
@@ -201,15 +203,15 @@ def create_stats():
         return redirect(url_for('view_char'))
 
     return render_template('form.html', form=form, title="Create Stats")
-        # stats = form.stats.data
-        # stats.pop('csrf_token')
-        # delattr(form, 'stats')
-        # if get_char_child_default(Stats):
-        #     stats = kw_get_model(Stats, char_id=char.id)
-        #     kw_update_model(stats, *stats.values(), char_id=char.id)
-        # else:
-        #     stats = Stats(char, *stats.values())
-        #     insert_model(stats)
+    # stats = form.stats.data
+    # stats.pop('csrf_token')
+    # delattr(form, 'stats')
+    # if get_char_child_default(Stats):
+    #     stats = kw_get_model(Stats, char_id=char.id)
+    #     kw_update_model(stats, *stats.values(), char_id=char.id)
+    # else:
+    #     stats = Stats(char, *stats.values())
+    #     insert_model(stats)
 
 
 def create_char():
@@ -230,7 +232,7 @@ def create_char():
                 s = sc.spell
                 if int(s.level) == 0:
                     continue
-                    
+
                 insert_model(Spellbook(char.id, s))
         elif _class.name == 'Cleric':
             for sc in _class.spells:

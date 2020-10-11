@@ -13,23 +13,19 @@ app_content %}
   }
 </style>
 <div class="container">
-
   <h2>Picking spells for <strong>{{char.name}}</strong></h2>
-
-
-
-
-
-
 </div>
-<div class="container">
 
+<div class="container">
   <div class="row" style="padding-bottom: 2em;">
     <div class="col-md-4">
       {{ wtf.quick_form(classForm) }}
     </div>
     <div class="col-md-8">
       {{spell_navigation(0, 1)}}
+    </div>
+    <div> 
+      <button class="btn btn-primary" onclick=learnClassSpells({{char.class_id}})>Learn all {{char._class.name}} spells</button>
     </div>
   </div>
   <div class="form-group">
@@ -110,10 +106,17 @@ app_content %}
   function getCellValue(row, index) {
     return $(row).children("td").eq(index).text();
   }
-
-
-
-
+  function learnClassSpells(class_id) {
+    data = { class_id: class_id };
+    $.post({
+      url: "{{ url_for('learn_class_spells') }}",
+      data: JSON.stringify(data, null, "\t"),
+      contentType: "application/json;charset=UTF-8",
+      success: function (result) {
+        location.reload();
+      },
+    });
+  }
 
   function learnSpell(spell_id) {
     data = { spell_id: spell_id }
