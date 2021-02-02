@@ -1,0 +1,241 @@
+{% macro spell_slots_table(slot_lvls, slots, resetSlotsForm, prepped_spells, total_prepped, wtf) %}
+{% if slot_lvls and slots and resetSlotsForm and wtf %}
+<style>
+    .spell-list {
+  overflow:scroll !important; 
+  height:22.5em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+</style>
+<div class="container">
+<h3 style="padding-bottom: 10px">Spell Casting</h3>
+
+<div class="col-md-1 col-xs-4" style="margin-right:2em">
+    <div class="row">
+      {{ wtf.quick_form(resetSlotsForm)}}
+    </div>
+
+    {% for lvl, spells in slot_lvls.items() %}
+        {% if spells|length > 0 or (lvl == 0 and spells|length > 0) %}
+        <div class="row">
+        <h3 
+            id="btn-{{lvl}}" 
+            class="but btn {% if lvl == 0 %} btn-info {%else%} btn-default {%endif%}"
+            onclick="collapse_table('{{lvl}}')"
+        >
+            {% if lvl == 0 %}Cantrips{% else %}Level {{lvl}} spells{% endif %}
+        </h3>
+        {% if lvl > 0 %}
+        <div style="display:flex;" class="align-items-baseline">
+            <button class="level_button btn btn-default" type="button" onclick="decrementValue('lvl_{{lvl}}')">-</button>
+            <input name="lvl_{{lvl}}" id="lvl_{{lvl}}" style="width:50px; text-align:center;" class="form-control"
+            value="{{slots[lvl-1]}}" />
+            <button class="btn btn-default" type="button" onclick="incrementValue('lvl_{{lvl}}')">+</button>
+        </div>
+        {% endif %}
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="col-md-10 col-xs-8">
+<input type=checkbox class="form-check-input" checked onchange="show_unprepared()" id="show_unprepared">
+<label class="form-check-label" for="show_unprepared">Show unprepared spells</label>
+<span class="total_prep" id="prep_count">You have {{total_prepped}} spells prepared</span>
+{% for lvl, spells in slot_lvls.items() %}
+
+{% if spells|length > 0 %}
+    {% if lvl == 0 %}
+    <table class="spell-table" id="spell-table-{{lvl}}">
+    {% else %}
+    <table style="table-layout:fixed; display:none;" class="spell-table spell-list" id="spell-table-{{lvl}}">
+    {% endif%}
+    <thead>
+        <tr>
+        {%if lvl > 0 %}
+        <th></th>
+        {%endif%}
+        <th></th>
+        <th>Name</th>
+        <th>Cast Time</th>
+        <th>Range</th>
+        <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for spell in spells %}
+        <tr class="spell_row" id="{{spell.id}}" href="{{ url_for('view_spell', id=spell.id) }}">
+        {%if spell.level > 0 %}
+        <td>
+            <button id="btn_{{spell.id}}" onclick="prepareSpell('{{spell.id}}', '{{lvl}}')"
+            {% if spell.id in prepped_spells %} class="btn btn-success">Unprepare
+            {% else %}
+            class="btn btn-primary">Prepare
+            {% endif %}
+            </button>
+        </td>
+        {%endif%}
+        <td>
+            <input type="hidden" value="{%if spell.id in prepped_spells%}1{%endif%}" id="s_{{spell.id}}">
+            <button class="btn btn-primary" type="button" onclick="decrementValue('lvl_{{lvl}}')">Cast!</button>
+        </td>
+        <td><a href="{{url_for('view_spell', id=spell.id)}}" target="_blank">{{spell.name}}</a></td>
+        <td>{{spell.cast_time}}</td>
+        <td>{{spell.spell_range}}</td>
+        <td>{{spell.duration}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    {% endif %}
+    {% endfor %}
+</div>
+</div>
+{% else %}
+<div>
+    No spells found
+</div>
+{% endif %}
+
+<script>
+    function show_unprepared() {
+      var show_unprep = $("#show_unprepared").is(":checked");
+      var rows = document.getElementsByClassName('spell_row');
+  
+      if (!show_unprep) {
+        console.log("hiding unprepare spells!");
+        for (var i = 0; i < rows.length; i++) {
+          var spell = document.getElementById('s_' + rows[i].id);
+          if (!spell.value) {
+            console.log("hiding a spell");
+            rows[i].setAttribute('style', 'display:none');
+          }
+  
+        }
+      } else {
+        console.log("showing unprepare spells!")
+        for (var i = 0; i < rows.length; i++) {
+          rows[i].setAttribute('style', '');
+  
+        }
+      }
+    }
+    $("th").click(function () {
+      var table = $(this).parents("table").eq(0);
+      var rows = table
+        .find("tr:gt(0)")
+        .toArray()
+        .sort(comparer($(this).index()));
+      this.asc = !this.asc;
+      if (!this.asc) {
+        rows = rows.reverse();
+      }
+      for (var i = 0; i < rows.length; i++) {
+        table.append(rows[i]);
+      }
+    });
+    function comparer(index) {
+      return function (a, b) {
+        var valA = getCellValue(a, index),
+          valB = getCellValue(b, index);
+        return $.isNumeric(valA) && $.isNumeric(valB)
+          ? valA - valB
+          : valA.toString().localeCompare(valB);
+      };
+    }
+    function getCellValue(row, index) {
+      return $(row).children("td").eq(index).text();
+    }
+    function toggle_button(btn) {
+      console.log("toggling button");
+      if (btn.classList.contains("btn-primary")) {
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-info");
+      } else {
+        btn.classList.remove("btn-info");
+        btn.classList.add("btn-primary");
+      }
+    }
+  
+    function collapse_table(id) {
+      var table = document.getElementById('spell-table-' + id);
+      var but = document.getElementById("btn-" + id)
+  
+      var toggle = (table.style.display == '' ? 'none' : '');
+      var but_toggle = (but.classList.contains('btn-info') ? 'btn-default' : 'btn-info');
+      var tables = document.getElementsByClassName('spell-table');
+      var buts = document.getElementsByClassName('but');
+      for (var i = 0; i < tables.length; i++) {
+        tables[i].style.display = 'none';
+      }
+      for (var i = 0; i < buts.length; i++) {
+        buts[i].classList.remove('btn-info')
+        buts[i].classList.add('btn-default')
+      }
+      table.style.display = toggle;
+      but.classList.add(but_toggle)
+    }
+  
+    function incrementValue(id) {
+      var value = parseInt(document.getElementById(id).value, 10);
+      value = isNaN(value) ? 0 : value;
+      value++;
+      document.getElementById(id).value = value;
+      changeSlot(id, value);
+    }
+    function decrementValue(id) {
+      if (id != 'lvl_0') {
+        var value = parseInt(document.getElementById(id).value, 10);
+        value = isNaN(value) ? 0 : value;
+        if (value != 0) {
+          value--;
+          document.getElementById(id).value = value;
+          changeSlot(id, value);
+        }
+      }
+    }
+  
+    function changeSlot(lvl, res) {
+      data = { slot_lvl: lvl, slot_res: res };
+      $.post({
+        url: "{{ url_for('change_slot_val') }}",
+        data: JSON.stringify(data, null, "\t"),
+        contentType: "application/json;charset=UTF-8",
+        success: function (result) {
+          console.log(result);
+        },
+      });
+    }
+    function prepareSpell(spell_id, lvl) {
+      data = { spell_id: spell_id };
+      $.ajax({
+        type: "POST",
+        url: "{{ url_for('prepare_spell') }}",
+        data: JSON.stringify(data, null, "\t"),
+        contentType: "application/json;charset=UTF-8",
+        success: function (result) {
+          updatePrepCount(result);
+        },
+      });
+      var btn = document.getElementById('btn_' + spell_id);
+      
+      if (btn.innerHTML.trim() == "Prepare") {
+        var prep = document.getElementById('s_' + spell_id);
+        prep.value = '1';
+        btn.innerHTML = "Unprepare";
+        btn.classList = "btn btn-success";
+      } else {
+        var prep = document.getElementById('s_' + spell_id);
+        prep.value = '';
+        btn.innerHTML = "Prepare";
+        btn.classList = "btn btn-primary";
+  
+      }
+    }
+    function updatePrepCount(result) {
+      el = document.getElementById('prep_count');
+      el.innerHTML = "You have " + result + " spells prepared";
+    }
+  
+  </script>  
+{% endmacro %}
